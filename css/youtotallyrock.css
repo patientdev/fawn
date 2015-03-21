@@ -1,4 +1,4 @@
-html, body { padding: 0; margin: 0; }
+html, body { padding: 0; margin: 0; width: 100%; }
 
 body {
 	font: 16px/1.2em Raleway, Helvetica, Arial, sans-serif;
