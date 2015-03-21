@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		
-		<title>You Totally Rock</title>
+		<title>Forger: A Worldwide Network</title>
 
 		<link href='http://fonts.googleapis.com/css?family=Raleway:400,700,200' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/youtotallyrock.css" media="screen">
@@ -12,10 +12,3 @@
 
 	</head>
 	<body>
-
-	<div id ="container">
-		<header>
-		<input type="text" placeholder="Search" id="search">
-		</header>
-
-		<content>
