@@ -24,19 +24,46 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="search">
 	<h3>I&rsquo;m searching for a...</h3>
-	<div id="selection">
-		<p><select>
-			<option value="" class="option-selected" disabled selected>Occupation</option>
-		</select></p>
-		<p>who<br> supports</p>
-		<p><select>
-			<option value="" class="option-selected" disabled selected>Cause</option>
-		</select></p>
+
+	<div id="sentence">
+		<div class="drop-down">
+			<h5>Occupation</h5>
+			<ul>
+				<li class="option">Photographer</li>
+				<li class="option">Musician</li>
+				<li class="option">Graphic Designer</li>
+			</ul>
+		</div>
+
+		<p>who supports</p>
+
+		<div class="drop-down">
+			<h5>Cause</h5>
+			<ul>
+				<li class="option">Conservation</li>
+				<li class="option">Local Food</li>
+				<li class="option">Local Culture</li>
+			</ul>
+		</div>
+
 		<p>in</p>
-		<p><select>
-			<option value="" class="option-selected" disabled selected>Location</option>
-		</select></p>
+
+		<div class="drop-down">
+			<h5>Location</h5>
+			<ul>
+				<li class="option">Ithaca, NY</li>
+				<li class="option">New York, New York</li>
+				<li class="option">Bhangra, India</li>
+			</ul>
+		</div>
 	</div>
+
+	<!-- <div class="drop-down">
+		<h5>Cause</h5>
+	</div>
+	<div class="drop-down">
+		<h5>Location</h5>
+	</div> -->
 </div>
 </header>
 

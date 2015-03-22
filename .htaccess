@@ -1,5 +1,5 @@
 RewriteEngine On
 
-# Redirect non-www to www:
-RewriteCond %{HTTP_HOST} ^fawnworldwide.org [NC]
-RewriteRule ^(.*)$ http://www.fawnworldwide.org/$1 [L,R=301]
+# Redirect www to non-www:
+RewriteCond %{HTTP_HOST} ^www.fawnworldwide.org [NC]
+RewriteRule ^(.*)$ http://fawnworldwide.org/$1 [L,R=301]

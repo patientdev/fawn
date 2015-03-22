@@ -8,6 +8,8 @@ header {
 	background-image: url(/img/header-background.jpg);
 	background-size: 110%;	color: white;
 	padding-bottom: 175px;
+	-webkit-transition: background-position 0s linear;
+	webkit-transform: translate3d(0, 0, 0);
 }
 
 #top-bar {
@@ -92,7 +94,7 @@ h2 {
 	text-align: center;
 	margin-top: 120px;
 	padding: 50px 0;
-	background-color: rgba(255, 255, 255, 0.4);
+	background-color: rgba(255, 255, 255, 0.15);
 	border-top: 2px solid rgba(0, 0, 0, 0.5);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 }
@@ -166,4 +168,61 @@ content a {
 
 #what-were-up-to {
 	background-color: rgba(243, 238, 238, 1);
+}
+
+.drop-down {
+	background-color: white;
+	display: inline-block;
+	position: relative;
+}
+
+.drop-down:hover {
+	cursor: pointer;
+}
+
+.drop-down h5 {
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 1);
+	padding: 18px 0 18px 15px;
+	color: black;
+	font-size: 1.8em;
+	font-weight: 300;
+	font-style: italic;
+	letter-spacing: 8px;
+	margin: 0;
+}
+
+.drop-down h5:after {
+	content: "\25BE";
+	font-style: normal;
+	padding: 10px 15px 10px 22px;
+	margin-left: 10px;
+	background-color: rgba(235, 235, 235, 1);
+	color: rgba(137, 137, 137, 1);
+}
+
+.drop-down ul {
+	display: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border-top: 2px solid rgba(235, 235, 235, 1);
+	position: absolute;
+	width: 100%;
+}
+
+.drop-down li {
+	font-style: normal;
+	padding: 15px 15px 15px 22px;
+	background-color: rgba(255, 255, 255, 1);
+	color: black;
+	text-align: left;
+	font-size: 1.4em;
+	line-height: 1.4em;
+	border-bottom: 2px solid rgba(235, 235, 235, 1);
+}
+
+.drop-down li:hover {
+	background-color: rgba(125, 164, 221, 1);
+	color: white;
 }
