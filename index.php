@@ -5,6 +5,10 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <header>
 
+<div id="background-image" style="display: none;">
+	<img src="/img/header-background.jpg">
+</div>
+
 <div id="top-bar">
 	<div id="heart"><a href="/">Forger</a></div>
 	<div id="actions">
@@ -21,17 +25,17 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div id="search">
 	<h3>I&rsquo;m searching for a...</h3>
 	<div id="selection">
-		<select>
+		<p><select>
 			<option value="" class="option-selected" disabled selected>Occupation</option>
-		</select>
+		</select></p>
 		<p>who<br> supports</p>
-		<select>
+		<p><select>
 			<option value="" class="option-selected" disabled selected>Cause</option>
-		</select>
+		</select></p>
 		<p>in</p>
-		<select>
+		<p><select>
 			<option value="" class="option-selected" disabled selected>Location</option>
-		</select>
+		</select></p>
 	</div>
 </div>
 </header>
