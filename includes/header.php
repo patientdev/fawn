@@ -2,8 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Forger: A Worldwide Network</title>
+        <meta name="description" content="Elevating Creativity That Makes A Difference">
 
 		<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/fawn.css" media="screen">
