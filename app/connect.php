@@ -1,5 +1,5 @@
 <?php
-test
+
 $user = "shanecav";
 $pass = "nLD&9fURP9yN8";
 
