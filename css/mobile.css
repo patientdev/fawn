@@ -1,0 +1,74 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+
+header {
+	padding: 0;
+}
+
+#top-bar {
+	font-size: 0.5em;
+	padding: 10px 20px;
+}
+
+#actions button {
+	display: block;
+	padding: 15px;
+}
+
+#headline { margin-top: 0; padding: 0 10px;}
+
+#search {
+	padding: 50px 0;
+}
+
+#search h3 {
+	line-height: 1.4em;
+	margin-top: 0;
+}
+
+#sentence {
+	width: 95%;
+	margin: auto;
+	padding: 10px;
+}
+
+#sentence {
+	font-size: 0.9em;
+}
+
+.drop-down ul {
+	z-index: 10;
+}
+
+.drop-down, .search p {
+	display: inline-block;
+	margin: 20px 0;
+}
+
+.drop-down li {
+	text-align: center;
+}
+
+content {
+	padding: 0 20px;
+}
+
+content p {
+	width: auto;
+}
+
+#who-we-are, #what-were-up-to {
+	padding: 40px 10px;
+}
+
+#who-we-are h3, #what-were-up-to h3 {
+	line-height: 1.4em;
+}
+
+#who-we-are h4 {
+	line-height: 1.6em;
+}
+

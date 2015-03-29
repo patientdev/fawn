@@ -23,7 +23,7 @@ $('.drop-down li').click(function() {
 		$occupation = $('#search-occupation h5').text();
 		$cause =  $('#search-cause h5').text();
 		$location =  $('#search-location h5').text();
-		$('<form action="/forge/" method="POST">' + 
+		$('<form action="/search/" method="POST">' + 
     		'<input type="hidden" name="occupation" value="' + $occupation + '">' +'<input type="hidden" name="cause" value="' + $cause + '">' +'<input type="hidden" name="location" value="' + $location + '">' +
     		'</form>').submit();
 	}

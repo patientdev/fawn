@@ -1,6 +1,14 @@
 <?php 
 
-$styles = "";
+$styles = "
+header {
+	background-image: url(/img/header-background.jpg);
+	background-size: 110%;	color: white;
+	background-color: transparent;
+	padding-bottom: 175px;
+	-webkit-transition: background-position 0s linear;
+	webkit-transform: translate3d(0, 0, 0);
+}";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <header>
@@ -10,7 +18,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 </div>
 
 <div id="top-bar">
-	<div id="heart"><a href="/">Forger</a></div>
+	<div id="heart">
+		<h1><a href="/">Forger</a></h1>
+	</div>
 	<div id="actions">
 		<a href="/sign-in" id="sign-in-button">Sign In</a>
 		<a href="/join-us" id="join-us-button">Join Us</a>
@@ -18,8 +28,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 </div>
 
 <div id="headline">
-	<h1>A Worldwide Network</h1>
-	<h2>Elevating Creativity That Makes A Difference</h2>
+	<h2>A Worldwide Network</h2>
+	<h3>Elevating Creativity That Makes A Difference</h3>
 </div>
 
 <div id="search">
