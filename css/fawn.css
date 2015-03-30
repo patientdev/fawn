@@ -56,6 +56,7 @@ h1 {
 
 #actions {
 	float: right;
+	display: none;
 }
 
 #actions a {
@@ -92,15 +93,10 @@ h1 {
 
 h2 {
 	text-transform: uppercase;
-	letter-spacing: 9px;
+	letter-spacing: 11px;
 	font-weight: 700;
-	font-size: 2.2em;
+	font-size: 2.7em;
 	margin-bottom: 30px;
-}
-
-h3 {
-	font-weight: 400;
-	letter-spacing: 3px;
 }
 
 #search {
@@ -110,6 +106,7 @@ h3 {
 	background-color: rgba(255, 255, 255, 0.15);
 	border-top: 2px solid rgba(0, 0, 0, 0.5);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+	display: none;
 }
 
 #search h3 {
@@ -150,9 +147,9 @@ content {
 }
 
 h3 {
-	font-size: 2em;
-	text-transform: uppercase;
-	letter-spacing: 11px;
+	font-size: 1.4em;
+	letter-spacing: 7px;
+	font-weight: 100;
 }
 
 #who-we-are p, #what-were-up-to p {
@@ -163,6 +160,7 @@ h3 {
 
 .call-to-action {
 	margin-top: 60px;
+	display: none;
 }
 
 content a {
@@ -172,11 +170,20 @@ content a {
 	font-size: 1.2em;
 }
 
-#who-we-are h4 {
+h4 {
+	font-size: 1.8em;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+#who-we-are h5 {
 	font-size: 1.2em;
 	font-weight: 300;
 	letter-spacing: 6px;
 	font-style: italic;
+	margin: 0;
 }
 
 #what-were-up-to {

@@ -81,8 +81,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="who-we-are">
 
-	<h3>Who We Are</h3>
-	<h4>Forger: A Worldwide Network (FAWN)</h4>
+	<h4>Who We Are</h4>
+	<h5>Forger: A Worldwide Network (FAWN)</h5>
 
 	<p>A united team of passionate individuals using creativity and artistic expression to propel humanity forward, and to empower others to make THE difference they want to make!</p>
 
@@ -92,7 +92,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="what-were-up-to">
 
-	<h3>What We&rsquo;re Up To</h3>
+	<h4>What We&rsquo;re Up To</h4>
 
 	<p>We&rsquo;ve created Forger: A Worldwide Network (FAWN) as a space for artists and social activists around the world to connect and collaborate &mdash; via a simple web&ndash;based platform.</p>
 
