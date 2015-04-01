@@ -159,7 +159,10 @@ $('#checkbox').click(function() {
 });
 
 ";
-include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
+//include $_SERVER["DOCUMENT_ROOT"] . "/app/connect.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
+
+ ?>
 
 <header>
 

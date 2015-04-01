@@ -77,7 +77,7 @@ $('button').click(function(e) {
 })
 ";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/db.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/connect.php";
 
 $email = $_POST["email"];
 
