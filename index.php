@@ -77,7 +77,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 </div>
 </header>
 
-<content>
+<div id="content">
 
 <div id="who-we-are">
 
@@ -104,6 +104,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 </div>
 
-</content>
+</div>
 
 <?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

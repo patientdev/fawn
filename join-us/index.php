@@ -1,5 +1,6 @@
 <?php 
 
+session_start();
 
 $styles = "
 
@@ -52,7 +53,7 @@ input:focus {
 	font-family: Raleway;
 }
 
-button {
+#sign-up button {
 	background-color: rgba(125, 164, 221, 1);
 	font-weight: 500;
 	letter-spacing: 8px;
@@ -69,37 +70,7 @@ button {
 }
 
 ";
-
-$script = "
-$('button').click(function(e) {
-	e.preventDevault();
-	$.ajax()
-})
-";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/connect.php";
-
-$email = $_POST["email"];
-
-$result = $dbh->prepare("SELECT firstname FROM artists WHERE email = :email");
-$result->bindParam(':email', $email);
-$result->execute();
-$email_exists = ($result->rowCount() > 0) ? true : false;
-
-if($email_exists) {
-    $error = "<div class=\"error\"><p>This email address is already signed&ndash;up.</p> <p>Would you like your password emailed to you?</p></div>";
-} else {
-	$password = crypt($_POST["password"], 'igltt4t5');
-
-	$sql = "INSERT INTO artists (email, password) values(:email, :password)";
-	$stmt = $dbh->prepare($sql);
-	$stmt->bindValue(':email', $email);
-	$stmt->bindValue(':password', $password);
-	$stmt->execute();
-}
-
-$dbh = null;
-
 
 ?>
 
@@ -113,17 +84,35 @@ $dbh = null;
 
 </header>
 
-<content>
+<div id="content">
 
-<form method="post" action="<?=$_SERVER['PHP_SELF']?>">
+<?php if (isset($_GET["error"])) {
+	echo "<p id=\"error\">It looks like you&rsquo;re already signed&ndash;up! Do you need to reset your password? <button id=\"send-pass\">Yes, please.</button></p>";
+} ?>
+
+<form method="post" id="sign-up" action="/app/controller/sign-up.php">
 
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
 
-
 <button>Submit</button>
 </form>
 
-</content>
+</div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php 
+
+$foot = "
+<script>
+$('#send-pass').click(function() {
+	$.ajax({
+		url: 'http://dev.forgerworldwide.org/app/controller/send-pass.php',
+		method: 'POST',
+		data: { email: '" . $_SESSION['email'] . "'}
+	}).always(function(msg) {
+		console.log(msg);
+	});
+})
+</script>";
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

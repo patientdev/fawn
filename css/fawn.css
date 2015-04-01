@@ -140,9 +140,17 @@ h3 {
 	line-height: 1.3em;
 }
 
-content {
+#content {
 	text-align: center;
 	color: rgba(63, 63, 67, 1);
+	padding: 40px 0;
+}
+
+#content:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: visible;
 }
 
 #who-we-are, #what-were-up-to {
@@ -240,12 +248,29 @@ content a {
 	color: white;
 }
 
-.error {
+#error {
 	color: red;
 	text-align: center;
-	font-weight: 100;
+	font-weight: 200;
 	letter-spacing: 4px;
 	font-style: italic;
 	width: 40%; margin: auto;
 	line-height: 1.6em;
+}
+
+#error button {
+	color: red;
+	border: none;
+	background-color: transparent;
+	font-weight: 200;
+	letter-spacing: 4px;
+	line-height: 1.6em;
+	font-size: 1em;
+	font-style: italic;
+	padding: 0;
+	text-decoration: underline;
+}
+
+#error button:hover {
+	cursor: pointer;
 }
