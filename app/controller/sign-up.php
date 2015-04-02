@@ -1,10 +1,10 @@
 <?php 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/connect.php";
+
+include('Mail.php');
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/connect.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/sign-up.php";
 
 session_start();
-
-$_SESSION["email"] = $_POST["email"];
-$email = $_SESSION["email"];
 
 $result = $db->prepare("SELECT firstname FROM artists WHERE email = :email");
 $result->bindParam(':email', $email);
@@ -14,13 +14,13 @@ $email_exists = ($result->rowCount() > 0) ? true : false;
 if($email_exists) {
 	header("Location: /join-us/?error");
 } else {
-	$_SESSION["password"] = crypt($_POST["password"], 'igltt4t5');
+	$email = $_POST["email"];
+	$password = crypt($_POST["password"], microtime().rand());
 
-	$sql = "INSERT INTO artists (email, password) values(:email, :password)";
-	$stmt = $db->prepare($sql);
-	$stmt->bindValue(':email', $email);
-	$stmt->bindValue(':password', $password);
-	$stmt->execute();
+	$signUp = new signUp;
+
+	$signUp->confirmEmail($email);
+	$signUp->insertArtist($email, $password);
 
 	header("Location: /join-us/?success");
 }
