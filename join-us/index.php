@@ -86,14 +86,15 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<?php if (isset($_GET["error"])) {
-	echo "<p id=\"error\">It looks like you&rsquo;re already signed&ndash;up! Do you need to reset your password? <button id=\"send-pass\">Yes, please.</button></p>";
-} ?>
+<?php if ( isset($_SESSION["status"])) { ?>
+	<p><?php echo $_SESSION["status"]; ?></p>
+<?php } ?>
 
 <form method="post" id="sign-up" action="/app/controller/sign-up.php">
 
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
+<input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
 
 <button>Submit</button>
 </form>
@@ -102,17 +103,22 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <?php 
 
-$foot = "
+$foot = <<<'DOC'
 <script>
-$('#send-pass').click(function() {
-	$.ajax({
-		url: 'http://dev.forgerworldwide.org/app/controller/send-pass.php',
-		method: 'POST',
-		data: { email: '" . $_SESSION['email'] . "'}
-	}).always(function(msg) {
-		console.log(msg);
-	});
-})
-</script>";
 
-include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+$('#sign-up button').click(function(e) {
+	e.preventDefault();
+	if ($('#password').val() !== $('#confirm-password').val() ) {
+		$('#content').append('<p>Whoops! Please retry confirming your password.</p>');
+	}
+
+	else $('#sign-up').submit();
+})
+</script>
+DOC;
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; 
+
+session_destroy();
+
+?>
