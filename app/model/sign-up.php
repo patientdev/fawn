@@ -33,7 +33,7 @@ class signUp {
 		$stmt->bindValue(':confirmkey', $confirmkey);
 		$stmt->execute();
 
-		//$this->mailConfirmation($email, $confirmkey);
+		$this->mailConfirmation($email, $confirmkey);
 	}
 
 	public function insertArtist($email, $password) {
