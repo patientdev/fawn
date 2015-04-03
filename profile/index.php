@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 
 $styles = "
 
@@ -89,29 +91,6 @@ textarea {
 
 ";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
-// include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/db.php";
-
-// $firstname = $_POST["firstname"];
-// $lastname = $_POST["lastname"];
-// $email = $_POST["email"];
-// $location = $_POST["location"];
-
-// $sql = "insert into artists (firstname, lastname, email, location) values ('$firstname', '$lastname', '$email', '$location')";
-
-// $result = $dbh->prepare("SELECT firstname FROM artists WHERE email = :email");
-// $result->bindParam(':email', $email);
-// $result->execute();
-// $email_exists = ($result->rowCount() > 0) ? true : false;
-
-// if($email_exists) {
-//     echo "<script>console.log(\"blah\");</script>";
-// } else {
-// 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// 	$dbh->exec($sql);
-// }
-// $dbh = null;
-
-
 ?>
 
 
@@ -124,10 +103,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 </header>
 
-<content>
+<div id="content">
 
-<form method="post" action="<?=$_SERVER['PHP_SELF']?>">
+<div id="status"><?php 
+	echo $_SESSION["email"];
+?></div>
 
+<form id="profile" method="post" action="">
 
 <div id="profile-photo">Upload Profile Photo</div>
 <div id="info">
@@ -155,6 +137,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <button>Submit</button>
 </form>
 
-</content>
+</div>
 
 <?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

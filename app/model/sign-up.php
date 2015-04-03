@@ -49,17 +49,35 @@ class signUp {
 	private function mailConfirmation($email, $confirmkey) {
 	// Mail the user a confirmation email
 	
+		include_once("Mail.php");
 		$recipients = $email;
 		$headers['From'] = 'info@forgerworldwide.org';
 		$headers['To'] = $email;
 		$headers['Subject'] = 'Please confirm your email address';
 		$headers['Content-Type'] = 'text/html; charset=UTF-8';
-		$body = "Please click <a href=\"http://forgerworldwide.org/profile/?confirm=$kconfirmey\">here</a> to confirm your email address.";
+		$body = "Please click <a href=\"http://dev.forgerworldwide.org/app/controller/sign-up.php?confirm=$confirmkey\">here</a> to confirm your email address.";
 		$params['sendmail_path'] = '/nfsn/sendmail';
 		$mail =& Mail::factory('sendmail', $params);
 		$result = $mail->send($recipients, $headers, $body);
 	}
 
+	public function activateUser($confirmkey) {
+		$sql = "SELECT confirmkey, email FROM confirm WHERE confirmkey = :confirmkey LIMIT 1";
+		$stmt = $this->con->prepare($sql);
+		$stmt->bindValue(':confirmkey', $confirmkey);
+		$stmt->execute();
+		$result = $stmt->fetch();
+
+		if ( $result["confirmkey"] === $confirmkey ) {
+			$sql = "DELETE FROM confirm WHERE confirmkey = :confirmkey LIMIT 1";
+			$stmt = $this->con->prepare($sql);
+			$stmt->bindValue(':confirmkey', $confirmkey);
+			$stmt->execute();
+			return $result["email"];
+		}
+
+		else return null;
+	}
 
 }
 
