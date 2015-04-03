@@ -1,5 +1,7 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
+
 session_start();
 
 
@@ -105,9 +107,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"><?php 
-	echo $_SESSION["email"];
-?></div>
+<div id="status"></div>
 
 <form id="profile" method="post" action="">
 
@@ -117,7 +117,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div><input type="text" name="location" placeholder="Location"></div>
 
-	<div><input type="email" name="email" placeholder="Email"><br><small>You&rsquo;ll use this to log in.</small></div>
+	<div><input type="email" name="email" placeholder="Email"></div>
 
 	<div><input type="website" name="email" placeholder="Website"></div>
 </div>

@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 $styles = "
 
 h2 {
@@ -159,7 +161,6 @@ $('#checkbox').click(function() {
 });
 
 ";
-//include $_SERVER["DOCUMENT_ROOT"] . "/app/connect.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
  ?>
@@ -178,7 +179,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <hr>
 
-<form name="sign-in" id="sign-in" method="post" action="/app/controller/sign-in.php">
+<form name="sign-in" id="sign-in" method="post" action="/app/controller/sign-in.controller.php">
 <p><input type="text" name="email" placeholder="Your Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'"></p>
 <p><input type="password" name="password" placeholder="Your Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"></p>
 <p><button type="submit">Sign In</button></p>

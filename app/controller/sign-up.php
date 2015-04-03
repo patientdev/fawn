@@ -1,6 +1,5 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/db-connect.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.php";
 
 session_start();
