@@ -1,30 +1,26 @@
 <?php 
 
-include('Mail.php');
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/connect.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/sign-up.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/db-connect.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.php";
 
 session_start();
 
-$result = $db->prepare("SELECT firstname FROM artists WHERE email = :email");
-$result->bindParam(':email', $email);
-$result->execute();
-$email_exists = ($result->rowCount() > 0) ? true : false;
+$signUp = new signUp();
 
-if($email_exists) {
-	header("Location: /join-us/?error");
-} else {
-	$email = $_POST["email"];
-	$password = crypt($_POST["password"], microtime().rand());
+$email = $_POST["email"];
+$password = crypt($_POST["password"] . microtime().rand());
 
-	$signUp = new signUp;
-
-	$signUp->confirmEmail($email);
-	$signUp->insertArtist($email, $password);
-
-	header("Location: /join-us/?success");
+if ( $signUp->emailExists($email) ) {
+	$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Would you like to <a href=\"\">reset your password</a>?";
+	header("Location: /join-us/");
 }
 
-$db = null;
+else { 
+	$signUp->confirmEmail($email); 
+	$signUp->insertArtist($email, $password);
+	$_SESSION["status"] = "Great! You&rsquo;re all signed&ndash;up. We&rsquo;ve sent you an email with a link to click so that we can confirm your email address."; 
+	header("Location: /profile/");
+}
+
 
 ?>
