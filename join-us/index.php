@@ -90,7 +90,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	<p><?php echo $_SESSION["status"]; ?></p>
 <?php } ?>
 
-<form method="post" id="sign-up" action="/app/controller/sign-up.php">
+<form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">

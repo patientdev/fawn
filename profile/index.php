@@ -1,8 +1,17 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php";
 
 session_start();
+
+if ( isset($_SESSION["email"]) ) {
+	$profile = new Profile();
+	$email = $_SESSION["email"];
+	$password = $profile->gimme("password", $email);
+	$name = (isset($_SESSION["name"]) ? $_SESSION["name"] : $profile->gimme("name", $email));
+	$location = (empty($location) ? null : $profile->gimme("location", $email));
+	$website = (empty($website) ? null : $profile->gimme("website", $email));
+}
 
 
 $styles = "
@@ -91,6 +100,12 @@ textarea {
 	height: 10em;
 }
 
+#info div p {
+	padding: 15px;
+	margin: 0;
+	letter-spacing: 3px;
+}
+
 ";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
@@ -107,19 +122,27 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"></div>
+<div id="status"><?php echo print_r($_SESSION); ?></div>
 
 <form id="profile" method="post" action="">
 
 <div id="profile-photo">Upload Profile Photo</div>
 <div id="info">
-	<div><input type="text" name="name" placeholder="First and Last Name"> </div>
+	<div>
+		<?php if (isset($name)) { echo $name; } else echo "<input type=\"text\" name=\"name\" placeholder=\"First and Last Name\">" ?>
+	</div>
 
-	<div><input type="text" name="location" placeholder="Location"></div>
+	<div>
+		<?php if (isset($email)) { echo "<p>" . $email . "</p>"; } else echo "<input type=\"text\" name=\"email\" placeholder=\"Email\">" ?>
+	</div>
 
-	<div><input type="email" name="email" placeholder="Email"></div>
+	<div>
+		<?php if (isset($location)) { echo $location; } else echo "<input type=\"text\" name=\"location\" placeholder=\"Location\">" ?>
+	</div>
 
-	<div><input type="website" name="email" placeholder="Website"></div>
+	<div>
+		<?php if (isset($website)) { echo $website; } else echo "<input type=\"text\" name=\"website\" placeholder=\"Website\">" ?>
+	</div>
 </div>
 
 <h3>Summary</h3>
@@ -139,4 +162,23 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 </div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php 
+
+$foot = <<<'JS'
+<script>
+	$('#profile input').blur(function() {
+		$input = $(this);
+		$name = $input.attr('name');
+		$val = $input.val();
+		jsonObject = {};
+		jsonObject[$name] = $val;
+		$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
+			console.log(msg);
+			$input.parent('div').html("<p>" + $val + "</p>");
+		});	
+	});
+</script>
+JS;
+
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

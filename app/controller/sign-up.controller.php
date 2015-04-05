@@ -1,6 +1,7 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.model.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
 session_start();
 
@@ -12,7 +13,7 @@ if (!isset($_GET["confirm"])) {
 	$password = crypt($_POST["password"] . microtime().rand());
 
 	if ( $signUp->emailExists($email) ) {
-		$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Would you like to <a href=\"\">reset your password</a>?";
+		$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Do you need to <a href=\"\">reset your password</a>?";
 		header("Location: /join-us/");
 	}
 
@@ -26,7 +27,17 @@ if (!isset($_GET["confirm"])) {
 
 else if ( isset($_GET["confirm"])) {
 	$_SESSION["email"] = $signUp->activateUser($_GET["confirm"]);
-	header("Location: /profile/");
+	if ( $_SESSION["email"] === null ) {
+		$_SESSION["status"] = "We received an unknown confirmation key somehow.";
+		header("Location: /sign-in/");
+	}
+
+	else {
+		$profile = new Profile();
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
+		$_SESSION["email"] = $profile->email;
+		$_SESSION["password"] = $profile->password;
+	}
 }
 
 
