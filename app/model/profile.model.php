@@ -28,8 +28,7 @@ class Profile {
 		$stmt = $this->con->prepare($sql);
 		$stmt->bindValue(":email", $email);
 		$stmt->execute();
-		$result = $stmt->fetch();
-		$id = $result["id"];
+		$id = $stmt->fetchColumn();
 
 		$sql = "UPDATE 
 					artists 
@@ -39,9 +38,10 @@ class Profile {
 					email = $email";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
-		$result = $stmt->fetch();
-		echo "blah";
-		
+
+		$_SESSION[$column] = $datum;
+
+		return true;
 
 	}
 }

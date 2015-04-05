@@ -8,9 +8,9 @@ if ( isset($_SESSION["email"]) ) {
 	$profile = new Profile();
 	$email = $_SESSION["email"];
 	$password = $profile->gimme("password", $email);
-	$name = (isset($_SESSION["name"]) ? $_SESSION["name"] : $profile->gimme("name", $email));
-	$location = (empty($location) ? null : $profile->gimme("location", $email));
-	$website = (empty($website) ? null : $profile->gimme("website", $email));
+	$name = (!isset($_SESSION["name"]) ? $profile->gimme("name", $email) : $_SESSION["name"]);
+	$location = (!isset($_SESSION["location"]) ? $profile->gimme("location", $email) : $_SESSION["location"]);
+	$website = (!isset($_SESSION["website"]) ? $profile->gimme("website", $email) : $_SESSION["website"]);
 }
 
 
@@ -122,14 +122,14 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"><?php echo print_r($_SESSION); ?></div>
+<div id="status"><?php echo $_SESSION["status"]; ?></div>
 
 <form id="profile" method="post" action="">
 
-<div id="profile-photo">Upload Profile Photo</div>
+<div id="profile-photo"><span>Upload<br> Profile<br> Photo</span></div>
 <div id="info">
 	<div>
-		<?php if (isset($name)) { echo $name; } else echo "<input type=\"text\" name=\"name\" placeholder=\"First and Last Name\">" ?>
+		<?php if (isset($name)) { echo "<p>" . $name . "</p>"; } else echo "<input type=\"text\" name=\"name\" placeholder=\"First and Last Name\">" ?>
 	</div>
 
 	<div>
@@ -137,11 +137,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 
 	<div>
-		<?php if (isset($location)) { echo $location; } else echo "<input type=\"text\" name=\"location\" placeholder=\"Location\">" ?>
+		<?php if (isset($location)) { echo "<p>" . $location . "</p>"; } else echo "<input type=\"text\" name=\"location\" placeholder=\"Location\">" ?>
 	</div>
 
 	<div>
-		<?php if (isset($website)) { echo $website; } else echo "<input type=\"text\" name=\"website\" placeholder=\"Website\">" ?>
+		<?php if (isset($website)) { echo "<p>" . $website . "</p>"; } else echo "<input type=\"text\" name=\"website\" placeholder=\"Website\">" ?>
 	</div>
 </div>
 

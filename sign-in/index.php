@@ -164,7 +164,9 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 </header>
 
-<content>
+<div id="content">
+
+<div id="status"><?php echo $_SESSION["status"]; ?></div>
 
 <h2>Sign In Below</h2>
 
@@ -187,7 +189,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <p><a href="" id="sign-up-here">Sign up here.</a></p>
 </div>
 
-</content>
+</div>
 
 <?php 
 

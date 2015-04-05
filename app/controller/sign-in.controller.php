@@ -12,8 +12,10 @@ $password = $_POST["password"];
 
 if ($signIn->passwordVerify($email, $password)) {
 	$_SESSION["email"] = $email;
-	$_SESSION["password"] = $password;
 	header("Location: /profile/");
 }
 
-else header("Location: /");
+else {
+	$_SESSION["status"] = "Sorry! You&rsquo;re login information wasn&rsquo;t recognized. Please try again.";
+	header("Location: /sign-in");
+}

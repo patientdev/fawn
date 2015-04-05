@@ -14,6 +14,7 @@ class signIn {
 		$hash = $profile->gimme("password", $email);
 
 		if (password_verify($password, $hash)) {
+			$_SESSION["password"] = $hash;
 			return true;
 		} return false;
 	}
