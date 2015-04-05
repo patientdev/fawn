@@ -8,17 +8,14 @@ class signIn {
 		$this->con = $db->connect();
 	}
 
-	public function passwordMatch($email, $password) {
-		$password = crypt($password . microtime().rand());
-		$stmt = $this->con->prepare("SELECT * FROM artists WHERE email = '$email' AND password = '$password' LIMIT 1");
-		$stmt->execute();
-		$result = $stmt->fetch();
+	public function passwordVerify($email, $password) {
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
+		$profile = new Profile();
+		$hash = $profile->gimme("password", $email);
 
-		if ( $result["password"] === $password ) {
-			return true;
-		}
-
-		else return false;
+		if (password_verify($password, $hash)) {
+			echo $hash;
+		} else return false;;
 	}
 	
 }

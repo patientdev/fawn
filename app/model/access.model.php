@@ -9,16 +9,16 @@ class Gatekeeper {
 	}
 
 	public function checksOut($email, $password) {
-		$password = crypt($password, microtime().rand());
-		$stmt = $this->con->prepare("SELECT * FROM artists WHERE email = '$email' AND password = '$password' LIMIT 1");
+		$password = password_hash($password, PASSWORD_DEFAULT);
+		$stmt = $this->con->prepare("SELECT email FROM artists WHERE email = '$email' AND password = '$password' LIMIT 1");
 		$stmt->execute();
 		$result = $stmt->fetch();
 
 		if ( $result["email"] === $email) {
-			return false;
-		}
+			return true;
+		}	
 
-		else return true;
+		else return false;
 	}
 }
 

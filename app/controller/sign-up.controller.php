@@ -7,10 +7,10 @@ session_start();
 
 $signUp = new signUp();
 
-if (!isset($_GET["confirm"])) {
+if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 	$email = $_POST["email"];
-	$password = crypt($_POST["password"] . microtime().rand());
+	$password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 	if ( $signUp->emailExists($email) ) {
 		$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Do you need to <a href=\"\">reset your password</a>?";

@@ -8,17 +8,18 @@ class Profile {
 		$this->con = $db->connect();
 	}
 
-	public function gimme($dataum, $email) {
+	public function gimme($datum, $email) {
 	// Gimme the info about the user that I ask for
-		
-		$email = "'" . $email . "'";
 
-		$sql = "SELECT $datum FROM artists WHERE email = $email LIMIT 1";
+		$sql = "SELECT `password`
+				FROM `artists` 
+				WHERE `email` = `shane@shanecav.net` LIMIT 1";
 		$stmt = $this->con->prepare($sql);
+		$stmt->bindValue(":datum", $datum);
+		$stmt->bindValue(":email", $email);
 		$stmt->execute();
-		$result = $stmt->fetch();
-
-		return $result[$datum];
+		$result = $stmt->fetchColumn();
+		echo $result;
 	}
 
 	public function set($column, $datum, $email) {
@@ -41,8 +42,9 @@ class Profile {
 					email = $email";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
-
-		echo $id;
+		$result = $stmt->fetch();
+		echo "blah";
+		
 
 	}
 }

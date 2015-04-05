@@ -1,5 +1,7 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
+
 session_start();
 
 $styles = "
