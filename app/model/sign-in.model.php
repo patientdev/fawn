@@ -14,8 +14,8 @@ class signIn {
 		$hash = $profile->gimme("password", $email);
 
 		if (password_verify($password, $hash)) {
-			echo $hash;
-		} else return false;;
+			return true;
+		} return false;
 	}
 	
 }

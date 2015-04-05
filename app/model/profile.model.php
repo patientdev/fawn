@@ -10,16 +10,13 @@ class Profile {
 
 	public function gimme($datum, $email) {
 	// Gimme the info about the user that I ask for
-
-		$sql = "SELECT `password`
+		$sql = "SELECT `$datum`
 				FROM `artists` 
-				WHERE `email` = `shane@shanecav.net` LIMIT 1";
+				WHERE `email` = '$email' LIMIT 1";
 		$stmt = $this->con->prepare($sql);
-		$stmt->bindValue(":datum", $datum);
-		$stmt->bindValue(":email", $email);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
-		echo $result;
+		return $result;
 	}
 
 	public function set($column, $datum, $email) {
