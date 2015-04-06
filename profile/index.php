@@ -173,19 +173,19 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="info">
 	<div id="profile-name">
 
-		<?php if (isset($name)) { echo "<span>" . $name . "</span>"; } else echo '<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name">' ?>
+		<?php if (!empty($name)) { echo "<span>" . $name . "</span>"; } else echo '<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name">' ?>
 	</div>
 
 	<div id="profile-occupation">
-		<?php if (isset($occupation)) { echo "<span>" . $occupation . "</span>"; } else echo '<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation">' ?>
+		<?php if (!empty($occupation)) { echo "<span>" . $occupation . "</span>"; } else echo '<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation">' ?>
 	</div>
 
 	<div id="profile-location">
-		<?php if (isset($location)) { echo "<span>" . $location . "</span>"; } else echo '<input id="profile-name-input" type="text" name="location" placeholder="Location">' ?>
+		<?php if (!empty($location)) { echo "<span>" . $location . "</span>"; } else echo '<input id="profile-name-input" type="text" name="location" placeholder="Location">' ?>
 	</div>
 
 	<div id="profile-website">
-		<?php if (isset($website)) { echo "<span>" . $website . "</span>"; } else echo '<input id="profile-name-input" type="text" name="website" placeholder="Website">' ?>
+		<?php if (!empty($website)) { echo "<span>" . $website . "</span>"; } else echo '<input id="profile-name-input" type="text" name="website" placeholder="Website">' ?>
 	</div>
 </div>
 
@@ -193,17 +193,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-summary">
 	<h3>Summary</h3>
-	<?php if (isset($summary)) { echo "<span>" . $summary . "</span>"; } else echo '<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>' ?>
+	<?php if (!empty($summary)) { echo "<span>" . $summary . "</span>"; } else echo '<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>' ?>
 </div>
 
 <div id="profile-about">
 	<h3>About</h3>
-	<?php if (isset($about)) { echo "<span>" . $about . "</span>"; } else echo '<textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals."></textarea>' ?>
+	<?php if (!empty($about)) { echo "<p>" . str_replace("\n\n", "</p><p>", $about) . "</p>"; } else echo '<textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals."></textarea>' ?>
 </div>
 
 <div id="profile-currentprojects">
 	<h3>Current Projects</h3>
-	<?php if (isset($currentprojects)) { echo "<span>" . $currentprojects . "</span>"; } else echo '<textarea id="current-projects" name="currentprojects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?"></textarea>' ?>
+	<?php if (!empty($currentprojects)) { echo "<p>" . str_replace("\n\n", "</p><p>", $currentprojects) . "</p>"; } else echo '<textarea id="current-projects" name="currentprojects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?"></textarea>' ?>
 </div>
 
 </form>
