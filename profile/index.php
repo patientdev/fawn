@@ -9,13 +9,13 @@ if ( isset($_SESSION["email"]) ) {
 	$profile = new Profile();
 	$email = $_SESSION["email"];
 	$password = $profile->gimme("password", $email);
-	$name = (empty($_SESSION["name"] || !isset($_SESSION["name"])) ? $profile->gimme("name", $email) : $_SESSION["name"]);
-	$location = (empty($_SESSION["location"] || !isset($_SESSION["location"])) ? $profile->gimme("location", $email) : $_SESSION["location"]);
-	$website = (empty($_SESSION["website"] || !isset($_SESSION["website"])) ? $profile->gimme("website", $email) : $_SESSION["website"]);
-	$occupation = (empty($_SESSION["occupation"] || !isset($_SESSION["occupation"])) ? $profile->gimme("occupation", $email) : $_SESSION["occupation"]);
-	$about = (empty($_SESSION["about"] || !isset($_SESSION["about"])) ? $profile->gimme("about", $email) : $_SESSION["about"]);
-	$summary = (empty($_SESSION["summary"] || !isset($_SESSION["summary"])) ? $profile->gimme("summary", $email) : $_SESSION["summary"]);
-	$currentprojects = (empty($_SESSION["currentprojects"] || !isset($_SESSION["currentprojects"])) ? $profile->gimme("currentprojects", $email) : $_SESSION["currentprojects"]);
+	$name = ((empty($_SESSION["name"]) || !isset($_SESSION["name"])) ? $profile->gimme("name", $email) : $_SESSION["name"]);
+	$location = ((empty($_SESSION["location"]) || !isset($_SESSION["location"])) ? $profile->gimme("location", $email) : $_SESSION["location"]);
+	$website = ((empty($_SESSION["website"]) || !isset($_SESSION["website"])) ? $profile->gimme("website", $email) : $_SESSION["website"]);
+	$occupation = ((empty($_SESSION["occupation"]) || !isset($_SESSION["occupation"])) ? $profile->gimme("occupation", $email) : $_SESSION["occupation"]);
+	$about = ((empty($_SESSION["about"]) || !isset($_SESSION["about"])) ? $profile->gimme("about", $email) : $_SESSION["about"]);
+	$summary = ((empty($_SESSION["summary"]) || !isset($_SESSION["summary"])) ? $profile->gimme("summary", $email) : $_SESSION["summary"]);
+	$currentprojects = ((empty($_SESSION["currentprojects"]) || !isset($_SESSION["currentprojects"])) ? $profile->gimme("currentprojects", $email) : $_SESSION["currentprojects"]);
 }
 
 
@@ -217,7 +217,7 @@ $foot = <<<'JS'
 	$('#profile input, #profile textarea').blur(function() {
 		$input = $(this);
 		$name = $input.attr('name');
-		$val = $input.val();
+		$val = $input.val().replace('\n\n', '</p><p>');
 		jsonObject = {};
 		jsonObject[$name] = $val;
 		$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
