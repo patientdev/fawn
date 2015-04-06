@@ -1,6 +1,7 @@
 <?php 
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 
 session_start();
 
@@ -100,7 +101,7 @@ textarea {
 	height: 10em;
 }
 
-#info div p {
+#info div span {
 	padding: 15px;
 	margin: 0;
 	letter-spacing: 3px;
@@ -122,26 +123,27 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"><?php echo $_SESSION["status"] . "<br>" > print_r($_SESSION); ?></div>
+<div id="status"><?php echo $_SESSION["status"]; ?></div>
 
 <form id="profile" method="post" action="">
 
 <div id="profile-photo"><span>Upload<br> Profile<br> Photo</span></div>
 <div id="info">
-	<div>
-		<?php if (isset($name)) { echo "<p>" . $name . "</p>"; } else echo "<input type=\"text\" name=\"name\" placeholder=\"First and Last Name\">" ?>
+	<div id="profile-name">
+
+		<?php if (isset($name)) { echo "<span>" . $name . "</span>"; } else echo '<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name">' ?>
 	</div>
 
-	<div>
-		<?php if (isset($email)) { echo "<p>" . $email . "</p>"; } else echo "<input type=\"text\" name=\"email\" placeholder=\"Email\">" ?>
+	<div id="profile-email">
+		<?php if (isset($email)) { echo "<span>" . $email . "</span>"; } else echo '<input id="profile-name-input" type="text" name="email" placeholder="Email">' ?>
 	</div>
 
-	<div>
-		<?php if (isset($location)) { echo "<p>" . $location . "</p>"; } else echo "<input type=\"text\" name=\"location\" placeholder=\"Location\">" ?>
+	<div id="profile-location">
+		<?php if (isset($location)) { echo "<span>" . $location . "</span>"; } else echo '<input id="profile-name-input" type="text" name="location" placeholder="Location">' ?>
 	</div>
 
-	<div>
-		<?php if (isset($website)) { echo "<p>" . $website . "</p>"; } else echo "<input type=\"text\" name=\"website\" placeholder=\"Website\">" ?>
+	<div id="profile-website">
+		<?php if (isset($website)) { echo "<span>" . $website . "</span>"; } else echo '<input id="profile-name-input" type="text" name="website" placeholder="Website">' ?>
 	</div>
 </div>
 
@@ -154,10 +156,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <h3>Current Projects</h3>
 <textarea id="current-projects" name="current-projects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?"></textarea>
 
-
-
-
-<button>Submit</button>
 </form>
 
 </div>

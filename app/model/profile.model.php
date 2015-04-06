@@ -11,7 +11,7 @@ class Profile {
 	public function gimme($datum, $email) {
 	// Gimme the info about the user that I ask for
 
-		$sql = "SELECT `$datum`
+		$sql = "SELECT $datum
 				FROM `artists` 
 				WHERE `email` = '$email' LIMIT 1";
 		$stmt = $this->con->prepare($sql);

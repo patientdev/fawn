@@ -21,6 +21,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 		$signUp->confirmEmail($email); 
 		$signUp->insertArtist($email, $password);
 		$_SESSION["status"] = "Great! You&rsquo;re all signed&ndash;up. We&rsquo;ve sent you an email with a link to click so that we can confirm your email address."; 
+		$_SESSION["email"] = $email;
 		header("Location: /profile/");
 	}
 }
