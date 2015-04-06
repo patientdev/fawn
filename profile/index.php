@@ -9,36 +9,34 @@ if ( isset($_SESSION["email"]) ) {
 	$profile = new Profile();
 	$email = $_SESSION["email"];
 	$password = $profile->gimme("password", $email);
-	$name = (empty($_SESSION["name"]) ? $profile->gimme("name", $email) : $_SESSION["name"]);
-	$location = (empty($_SESSION["location"]) ? $profile->gimme("location", $email) : $_SESSION["location"]);
-	$website = (empty($_SESSION["website"]) ? $profile->gimme("website", $email) : $_SESSION["website"]);
+	$name = (empty($_SESSION["name"] || !isset($_SESSION["name"])) ? $profile->gimme("name", $email) : $_SESSION["name"]);
+	$location = (empty($_SESSION["location"] || !isset($_SESSION["name"])) ? $profile->gimme("location", $email) : $_SESSION["location"]);
+	$website = (empty($_SESSION["website"] || !isset($_SESSION["name"])) ? $profile->gimme("website", $email) : $_SESSION["website"]);
+	$occupation = (empty($_SESSION["occupation"] || !isset($_SESSION["name"])) ? $profile->gimme("occupation", $email) : $_SESSION["occupation"]);
 }
 
 
 $styles = "
 
 form {
-	width: 50%;
+	width: 850px;
 	margin: 40px auto;
 }
 #profile-photo {
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	background-color: #ccc;
 	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
 	float: left;
+	margin-right: 20px;
 }
 
 #info {
-	width: 400px;
+	width: 600px;
 	display: inline-block;
 	text-align: left;
-}
-
-#info div {
-	margin-bottom: 20px;
 }
 
 input {
@@ -101,10 +99,51 @@ textarea {
 	height: 10em;
 }
 
-#info div span {
-	padding: 15px;
-	margin: 0;
-	letter-spacing: 3px;
+#info input {
+	margin-bottom: 30px;
+}
+
+#profile-name span {
+	font-size: 2em;
+	font-weight: 700;
+	letter-spacing: 15px;
+	text-transform: uppercase;
+	margin-bottom: 40px;
+	display: block;
+}
+
+#profile-occupation span {
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 8px;
+	font-size: 1.2em;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+#profile-location {
+	margin-top: 0;
+}
+
+#profile-location span {
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 1.1em;
+	letter-spacing: 8px;
+	display: inline-block;
+	margin-bottom: 30px;
+}
+
+#profile-website span {
+	text-transfor: lowercase;
+	letter-spacing: 8px;
+	font-weight: 100;
+	border-bottom: 1px solid black;
+}
+
+#profile-summary {
+	clear: both;
+	margin-top: 60px;
 }
 
 ";
@@ -134,8 +173,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<?php if (isset($name)) { echo "<span>" . $name . "</span>"; } else echo '<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name">' ?>
 	</div>
 
-	<div id="profile-email">
-		<?php if (isset($email)) { echo "<span>" . $email . "</span>"; } else echo '<input id="profile-name-input" type="text" name="email" placeholder="Email">' ?>
+	<div id="profile-occupation">
+		<?php if (isset($occupation)) { echo "<span>" . $occupation . "</span>"; } else echo '<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation">' ?>
 	</div>
 
 	<div id="profile-location">
@@ -147,8 +186,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 </div>
 
-<h3>Summary</h3>
-<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>
+<div style="clear: both;"></div>
+
+<div id="profile-summary">
+	<h3>Summary</h3>
+	<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>
+</div>
 
 <h3>About</h3>
 <textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals."></textarea>
@@ -172,7 +215,7 @@ $foot = <<<'JS'
 		jsonObject[$name] = $val;
 		$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
 			console.log(msg);
-			$input.parent('div').html("<p>" + $val + "</p>");
+			$input.parent('div').html("<span>" + $val + "</span>");
 		});	
 	});
 </script>
