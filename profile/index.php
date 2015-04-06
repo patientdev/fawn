@@ -10,9 +10,12 @@ if ( isset($_SESSION["email"]) ) {
 	$email = $_SESSION["email"];
 	$password = $profile->gimme("password", $email);
 	$name = (empty($_SESSION["name"] || !isset($_SESSION["name"])) ? $profile->gimme("name", $email) : $_SESSION["name"]);
-	$location = (empty($_SESSION["location"] || !isset($_SESSION["name"])) ? $profile->gimme("location", $email) : $_SESSION["location"]);
-	$website = (empty($_SESSION["website"] || !isset($_SESSION["name"])) ? $profile->gimme("website", $email) : $_SESSION["website"]);
-	$occupation = (empty($_SESSION["occupation"] || !isset($_SESSION["name"])) ? $profile->gimme("occupation", $email) : $_SESSION["occupation"]);
+	$location = (empty($_SESSION["location"] || !isset($_SESSION["location"])) ? $profile->gimme("location", $email) : $_SESSION["location"]);
+	$website = (empty($_SESSION["website"] || !isset($_SESSION["website"])) ? $profile->gimme("website", $email) : $_SESSION["website"]);
+	$occupation = (empty($_SESSION["occupation"] || !isset($_SESSION["occupation"])) ? $profile->gimme("occupation", $email) : $_SESSION["occupation"]);
+	$about = (empty($_SESSION["about"] || !isset($_SESSION["about"])) ? $profile->gimme("about", $email) : $_SESSION["about"]);
+	$summary = (empty($_SESSION["summary"] || !isset($_SESSION["summary"])) ? $profile->gimme("summary", $email) : $_SESSION["summary"]);
+	$currentprojects = (empty($_SESSION["currentprojects"] || !isset($_SESSION["currentprojects"])) ? $profile->gimme("currentprojects", $email) : $_SESSION["currentprojects"]);
 }
 
 
@@ -190,14 +193,18 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-summary">
 	<h3>Summary</h3>
-	<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>
+	<?php if (isset($summary)) { echo "<span>" . $summary . "</span>"; } else echo '<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?"></textarea>' ?>
 </div>
 
-<h3>About</h3>
-<textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals."></textarea>
+<div id="profile-about">
+	<h3>About</h3>
+	<?php if (isset($about)) { echo "<span>" . $about . "</span>"; } else echo '<textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals."></textarea>' ?>
+</div>
 
-<h3>Current Projects</h3>
-<textarea id="current-projects" name="current-projects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?"></textarea>
+<div id="profile-currentprojects">
+	<h3>Current Projects</h3>
+	<?php if (isset($currentprojects)) { echo "<span>" . $currentprojects . "</span>"; } else echo '<textarea id="current-projects" name="currentprojects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?"></textarea>' ?>
+</div>
 
 </form>
 
@@ -207,7 +214,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 $foot = <<<'JS'
 <script>
-	$('#profile input').blur(function() {
+	$('#profile input, #profile textarea').blur(function() {
 		$input = $(this);
 		$name = $input.attr('name');
 		$val = $input.val();
