@@ -3,13 +3,14 @@
 class Profile {
 
 	public function __construct() {
-		require_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/db-connect.php";
+		require_once $_SERVER["DOCUMENT_ROOT"] . "../protected/db-connect.php";
 		$db = new Database;
 		$this->con = $db->connect();
 	}
 
 	public function gimme($datum, $email) {
 	// Gimme the info about the user that I ask for
+
 		$sql = "SELECT `$datum`
 				FROM `artists` 
 				WHERE `email` = '$email' LIMIT 1";

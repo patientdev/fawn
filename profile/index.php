@@ -1,6 +1,6 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
 session_start();
 
@@ -122,7 +122,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"><?php echo $_SESSION["status"]; ?></div>
+<div id="status"><?php echo $_SESSION["status"] . "<br>" > print_r($_SESSION); ?></div>
 
 <form id="profile" method="post" action="">
 
