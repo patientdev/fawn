@@ -9,9 +9,9 @@ if ( isset($_SESSION["email"]) ) {
 	$profile = new Profile();
 	$email = $_SESSION["email"];
 	$password = $profile->gimme("password", $email);
-	$name = (!isset($_SESSION["name"]) ? $profile->gimme("name", $email) : $_SESSION["name"]);
-	$location = (!isset($_SESSION["location"]) ? $profile->gimme("location", $email) : $_SESSION["location"]);
-	$website = (!isset($_SESSION["website"]) ? $profile->gimme("website", $email) : $_SESSION["website"]);
+	$name = (empty($_SESSION["name"]) ? $profile->gimme("name", $email) : $_SESSION["name"]);
+	$location = (empty($_SESSION["location"]) ? $profile->gimme("location", $email) : $_SESSION["location"]);
+	$website = (empty($_SESSION["website"]) ? $profile->gimme("website", $email) : $_SESSION["website"]);
 }
 
 
