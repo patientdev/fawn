@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 html, body { padding: 0; margin: 0; width: 100%; }
 
 body {
@@ -5,11 +9,15 @@ body {
 }
 
 header {
-	background-image: url(/img/header-background.jpg);
-	background-size: 110%;	color: white;
-	padding-bottom: 175px;
-	-webkit-transition: background-position 0s linear;
-	webkit-transform: translate3d(0, 0, 0);
+	background-color: rgba(32, 121, 209, 1);
+	padding: 20px;
+}
+
+header:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: visible;
 }
 
 #top-bar {
@@ -24,16 +32,19 @@ header {
 	overflow: visible;
 }
 
+h1 {
+	letter-spacing: 8px;
+	font-weight: 600;
+	margin: 0;
+	line-height: 35px;
+}
+
 #heart {
 	float: left;
 	background-image: url(/img/heart-icon.png);
 	background-size: 35px;
 	background-position: 0 5px;
-	line-height: 35px;
 	background-repeat: no-repeat;
-	letter-spacing: 8px;
-	font-weight: 600;
-	font-size: 1.6em;
 }
 
 #heart a {
@@ -47,16 +58,18 @@ header {
 	float: right;
 }
 
-#actions button {
+#actions a {
 	font-size: 1.2em;
 	padding: 10px 20px;
 	color: white;
 	border: none;
 	font-family: Raleway;
 	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 4px;
 }
 
-#actions button:hover {
+#actions a:hover {
 	cursor: pointer;
 }
 
@@ -65,7 +78,7 @@ header {
 	letter-spacing: 5px;
 }
 
-#join-us-button, content a {
+#join-us-button, #who-we-are a, #what-were-up-to a {
 	background-color: rgba(125, 164, 221, 1);
 	font-weight: 600;
 	letter-spacing: 4px;
@@ -77,7 +90,7 @@ header {
 	margin-top: 150px;
 }
 
-h1 {
+h2 {
 	text-transform: uppercase;
 	letter-spacing: 9px;
 	font-weight: 700;
@@ -85,7 +98,7 @@ h1 {
 	margin-bottom: 30px;
 }
 
-h2 {
+h3 {
 	font-weight: 400;
 	letter-spacing: 3px;
 }
@@ -127,22 +140,29 @@ h2 {
 	line-height: 1.3em;
 }
 
-content {
-	text-align: center;
+#content {
 	color: rgba(63, 63, 67, 1);
+	padding: 40px 0;
+}
+
+#content:after {
+	content: "";
+	display: block;
+	clear: both;
+	overflow: visible;
 }
 
 #who-we-are, #what-were-up-to {
 	padding: 40px 0;
 }
 
-content h3 {
+h3 {
 	font-size: 2em;
 	text-transform: uppercase;
 	letter-spacing: 11px;
 }
 
-content p {
+#who-we-are p, #what-were-up-to p {
 	letter-spacing: 4px;
 	line-height: 1.8em;
 	width: 50%; margin: 40px auto;
@@ -225,4 +245,47 @@ content a {
 .drop-down li:hover {
 	background-color: rgba(125, 164, 221, 1);
 	color: white;
+}
+
+#error {
+	color: red;
+	text-align: center;
+	font-weight: 200;
+	letter-spacing: 4px;
+	font-style: italic;
+	width: 40%; margin: auto;
+	line-height: 1.6em;
+}
+
+#error button {
+	color: red;
+	border: none;
+	background-color: transparent;
+	font-weight: 200;
+	letter-spacing: 4px;
+	line-height: 1.6em;
+	font-size: 1em;
+	font-style: italic;
+	padding: 0;
+	text-decoration: underline;
+}
+
+#error button:hover {
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;
+}
+
+#status {
+	position: absolute;
+	top: 0; right: 0;
+	background-color: white;
+	width: 300px;
+	white-space: pre;
+	font-size: 12px;
+	line-height: 1em;
+	overflow: hidden;
+
 }
