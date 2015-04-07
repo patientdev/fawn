@@ -3,6 +3,11 @@
 $user = "shanecav";
 $pass = "nLD&9fURP9yN8";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+$db_host = "forger.db";
+$db_name = "forgers";
+>>>>>>> database
 =======
 $db_host = "forger.db";
 $db_name = "forgers";
