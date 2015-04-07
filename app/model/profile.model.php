@@ -25,25 +25,21 @@ class Profile {
 		
 		$sql = "SELECT id
 				FROM artists
-				WHERE email = :email";
+				WHERE email = '$email'";
 		$stmt = $this->con->prepare($sql);
-		$stmt->bindValue(":email", $email);
 		$stmt->execute();
 		$id = $stmt->fetchColumn();
 
 		$sql = "UPDATE 
 					artists 
 				SET 
-					$column = :datum
+					$column = '$datum'
 				WHERE 
-					email = :email";
+					email = '$email'";
 		$stmt = $this->con->prepare($sql);
-		$stmt->bindValue(":datum", $datum);
-		$stmt->bindValue(":email", $email);
 		$stmt->execute();
 
 		return true;
-
 	}
 }
 

@@ -3,8 +3,6 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 
-session_start();
-
 $styles = "
 
 #profile {
@@ -252,8 +250,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 			<h3 class="saved"></h3>
 		<?php } ?>
 
-
-		<input id="profile-name-input" type="text" name="location" placeholder="Location" class="editing">
+		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing">
 	</div>
 
 	<div id="profile-website">
@@ -266,7 +263,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 			<h3 class="saved"></h3>
 		<?php } ?>
 
-		<input id="profile-name-input" type="text" name="website" placeholder="Website" class="editing">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing">
 	</div>
 </div>
 
@@ -293,6 +290,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 			#profile-about .editing { display: none; }
 		</style>
 	<?php } else { ?>
+		<h3 class="saved"></h3>
 		<div class="saved"></div>
 	<?php } ?>
 
@@ -345,12 +343,12 @@ $foot = <<<'JS'
 				if ($parent.attr('id') === 'profile-name') {
 					console.log('guh');
 					$parent.children('.saved').html($val);
-					$parent.children('.saved').toggle();
+					$parent.children('.saved').show();
 				}
 
 				else if ($parent.attr('id') === 'profile-occupation' || $parent.attr('id') === 'profile-location' || $parent.attr('id') === 'profile-website')  { 
 					$parent.children('.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-					$parent.children('.saved').toggle();
+					$parent.children('.saved').show();
 
 				}
 
@@ -358,7 +356,7 @@ $foot = <<<'JS'
 					$parent.children('div.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
 					$parent.children('h3.editing').hide();
 					$parent.children('h3.saved').show();
-					$parent.children('div.saved').toggle();
+					$parent.children('div.saved').show();
 				}
 			});
 		}	
