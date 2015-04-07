@@ -8,13 +8,13 @@ class signIn {
 		$this->con = $db->connect();
 	}
 
-	public function passwordVerify($email, $password) {
+	public function passwordVerify($email, $hash) {
 		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 		$profile = new Profile();
-		$hash = $profile->gimme("password", $email);
+		$hash = $profile->gimme("hash", $email);
 
 		if (password_verify($password, $hash)) {
-			$_SESSION["password"] = $hash;
+			$_SESSION["hash"] = $hash;
 			return true;
 		} return false;
 	}

@@ -10,7 +10,7 @@ if ( isset($_SESSION["email"]) ) {
 	$profile = new Profile();
 
 	$email = $_SESSION["email"];
-	$password = $profile->gimme("password", $email);
+	$hash = $profile->gimme("hash", $email);
 
 	$name = $profile->gimme("name", $email);
 	$location = $profile->gimme("location", $email);
