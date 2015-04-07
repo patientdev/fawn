@@ -13,9 +13,9 @@ session_start();
 
 // else {
 // 	$email = $_SESSION["email"];
-// 	$password = $profile->gimme("password", $email);
-// 	$location = $profile->gimme("location", $email);
-// 	$website = $profile->gimme("website", $email);
+// 	$password = $profile->gimme("password", "email", $email);
+// 	$location = $profile->gimme("location", "email", $email);
+// 	$website = $profile->gimme("website", "email", $email);
 // }
 
 if ( !empty($_POST) ) {
@@ -24,10 +24,37 @@ if ( !empty($_POST) ) {
 		$column = $key;
 		$datum = $value;
 		$email = $_SESSION["email"];
-		$profile->set($column, $datum, $email);
+		$profile->set($column, $datum, "email", $email);
 	}
 }
 
-echo $_GET["forger"];
+if ( isset($_GET["forger"]) ) {
+
+	$id = intval($_GET["forger"]);
+
+	$hash = $profile->gimme("hash", "id", $id);
+
+	$name = $profile->gimme("name", "id", $id);
+	$location = $profile->gimme("location", "id", $id);
+	$website = $profile->gimme("website", "id", $id);
+	$occupation = $profile->gimme("occupation", "id", $id);
+	$about = $profile->gimme("about", "id", $id);
+	$summary = $profile->gimme("summary", "id", $id);
+	$currentprojects = $profile->gimme("currentprojects", "id", $id);
+}
+
+if ( isset($_SESSION["email"]) ) {
+
+	$email = $_SESSION["email"];
+	$hash = $profile->gimme("hash", "email", $email);
+
+	$name = $profile->gimme("name", "email", $email);
+	$location = $profile->gimme("location", "email", $email);
+	$website = $profile->gimme("website", "email", $email);
+	$occupation = $profile->gimme("occupation", "email", $email);
+	$about = $profile->gimme("about", "email", $email);
+	$summary = $profile->gimme("summary", "email", $email);
+	$currentprojects = $profile->gimme("currentprojects", "email", $email);
+}
 
 ?>

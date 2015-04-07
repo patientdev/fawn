@@ -9,4 +9,4 @@ RewriteOptions MaxRedirects=1
 RewriteCond %{REQUEST_FILENAME} -f [NC,OR] 
 RewriteCond %{REQUEST_FILENAME} -d [NC] 
 RewriteRule .* - [L]
-RewriteRule ^(.*)$ /app/controller/profile.controller.php?forger=$1 [QSA,L]
+RewriteRule ^forger/(.*)$ profile/show.php?forger=$1 [QSA,L]

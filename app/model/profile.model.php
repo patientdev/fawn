@@ -8,12 +8,12 @@ class Profile {
 		$this->con = $db->connect();
 	}
 
-	public function gimme($datum, $email) {
+	public function gimme($datum, $column, $email) {
 	// Gimme the info about the user that I ask for
 
 		$sql = "SELECT $datum
 				FROM `artists` 
-				WHERE `email` = '$email' LIMIT 1";
+				WHERE $column = '$email' LIMIT 1";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
