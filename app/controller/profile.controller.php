@@ -26,8 +26,8 @@ if ( !empty($_POST) ) {
 		$email = $_SESSION["email"];
 		$profile->set($column, $datum, $email);
 	}
-
 }
 
+echo $_GET["forger"];
 
 ?>

@@ -357,7 +357,7 @@ $foot = <<<'JS'
 				console.log(msg);
 			}).done(function() {
 
-				$input.css('display', 'none');
+				$input.toggle();
 
 				if ($parent.attr('id') === 'profile-name') {
 					console.log('guh');
@@ -368,11 +368,13 @@ $foot = <<<'JS'
 				else if ($parent.attr('id') === 'profile-occupation' || $parent.attr('id') === 'profile-location' || $parent.attr('id') === 'profile-website')  { 
 					$parent.children('.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
 					$parent.children('.saved').toggle();
+
 				}
 
 				else if ($parent.attr('id') === 'profile-about' || $parent.attr('id') === 'profile-summary' || $parent.attr('id') === 'profile-currentprojects') { 
-					$parent.children('.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-					$parent.children('h3.saved').toggle();
+					$parent.children('div.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+					$parent.children('h3.editing').hide();
+					$parent.children('h3.saved').show();
 					$parent.children('div.saved').toggle();
 				}
 			});

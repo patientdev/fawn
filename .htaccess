@@ -3,3 +3,10 @@ RewriteEngine On
 # Redirect www to non-www:
 RewriteCond %{HTTP_HOST} ^www.forgerworldwide.org [NC]
 RewriteRule ^(.*)$ http://forgerworldwide.org/$1 [L,R=301]
+
+RewriteEngine on
+RewriteOptions MaxRedirects=1
+RewriteCond %{REQUEST_FILENAME} -f [NC,OR] 
+RewriteCond %{REQUEST_FILENAME} -d [NC] 
+RewriteRule .* - [L]
+RewriteRule ^(.*)$ /app/controller/profile.controller.php?forger=$1 [QSA,L]
