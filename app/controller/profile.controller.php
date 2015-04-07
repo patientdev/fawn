@@ -20,12 +20,11 @@ session_start();
 
 if ( !empty($_POST) ) {
 	foreach ($_POST as $key => $value) {
-			$column = $key;
-			$datum = "'" . $value . "'";
-			$email = "'" . $_SESSION["email"] . "'";
-			$profile->set($column, $datum, $email);
-
-			$_SESSION[$column] = $value;
+		$value = $value;
+		$column = $key;
+		$datum = $value;
+		$email = $_SESSION["email"];
+		$profile->set($column, $datum, $email);
 	}
 
 }

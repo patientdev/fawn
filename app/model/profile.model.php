@@ -17,7 +17,7 @@ class Profile {
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
-		return $result;
+		return nl2br($result);
 	}
 
 	public function set($column, $datum, $email) {
@@ -34,13 +34,13 @@ class Profile {
 		$sql = "UPDATE 
 					artists 
 				SET 
-					$column = $datum
+					$column = :datum
 				WHERE 
-					email = $email";
+					email = :email";
 		$stmt = $this->con->prepare($sql);
+		$stmt->bindValue(":datum", $datum);
+		$stmt->bindValue(":email", $email);
 		$stmt->execute();
-
-		$_SESSION[$column] = $datum;
 
 		return true;
 
