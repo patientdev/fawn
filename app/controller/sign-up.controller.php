@@ -18,11 +18,10 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 	}
 
 	else { 
-		$signUp->confirmEmail($email); 
-		$signUp->insertArtist($email, $hash);
+		$signUp->confirmEmail($email, $hash); 
 		$_SESSION["status"] = "Great! You&rsquo;re all signed&ndash;up. We&rsquo;ve sent you an email with a link to click so that we can confirm your email address."; 
 		$_SESSION["email"] = $email;
-		header("Location: /profile/");
+		header("Location: /join-us/");
 	}
 }
 
@@ -30,14 +29,14 @@ else if ( isset($_GET["confirm"])) {
 	$_SESSION["email"] = $signUp->activateUser($_GET["confirm"]);
 	if ( $_SESSION["email"] === null ) {
 		$_SESSION["status"] = "We received an unknown confirmation key somehow.";
-		header("Location: /sign-in/");
+		header("Location: /join-us/");
 	}
 
 	else {
-		$profile = new Profile();
 		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
-		$_SESSION["email"] = $profile->email;
-		$_SESSION["password"] = $profile->password;
+		$profile = new Profile();
+		$_SESSION["email"] = $profile->gimme("email", "email", $email);
+		header("Location: /sign-in/");
 	}
 }
 
