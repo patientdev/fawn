@@ -321,47 +321,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 $foot = <<<'JS'
 <script>
-	$('#profile input, #profile textarea').blur(function() {
-		$input = $(this);
-		$parent = $(this).parent('div')
-		$name = $input.attr('name');
-		$val = $input.val();
-		jsonObject = {};
-		jsonObject[$name] = $val;
-
-		if ( $val == '') {
-			return false;
-		}
-
-		else {
-			$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
-				console.log(msg);
-			}).done(function() {
-
-				$input.toggle();
-
-				if ($parent.attr('id') === 'profile-name') {
-					console.log('guh');
-					$parent.children('.saved').html($val);
-					$parent.children('.saved').show();
-				}
-
-				else if ($parent.attr('id') === 'profile-occupation' || $parent.attr('id') === 'profile-location' || $parent.attr('id') === 'profile-website')  { 
-					$parent.children('.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-					$parent.children('.saved').show();
-
-				}
-
-				else if ($parent.attr('id') === 'profile-about' || $parent.attr('id') === 'profile-summary' || $parent.attr('id') === 'profile-currentprojects') { 
-					$parent.children('div.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
-					$parent.children('h3.editing').hide();
-					$parent.children('h3.saved').show();
-					$parent.children('div.saved').show();
-				}
-			});
-		}	
-	});
-
 	$('#edit').click(function(e){ 
 		e.preventDefault();
 		$('.saved').hide();
@@ -372,6 +331,49 @@ $foot = <<<'JS'
 		e.preventDefault();
 		$('.saved').show();
 		$('.editing').hide();
+
+
+		$('#profile input, #profile textarea').each(function() {
+			$input = $(this);
+			$parent = $(this).parent('div');
+			$name = $input.attr('name');
+			$val = $input.val();
+			console.log($input);
+			jsonObject = {};
+			jsonObject[$name] = $val;
+
+			if ( $val == '') {
+				return false;
+			}
+
+			else {
+				$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
+					console.log(msg);
+				}).done(function() {
+
+					$input.toggle();
+
+					if ($parent.attr('id') === 'profile-name') {
+						console.log('guh');
+						$parent.children('h2.saved').html($val);
+						$parent.children('.saved').show();
+					}
+
+					else if ($parent.attr('id') === 'profile-occupation' || $parent.attr('id') === 'profile-location' || $parent.attr('id') === 'profile-website')  { 
+						$parent.children('h3.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+						$parent.children('.saved').show();
+
+					}
+
+					else if ($parent.attr('id') === 'profile-about' || $parent.attr('id') === 'profile-summary' || $parent.attr('id') === 'profile-currentprojects') { 
+						$parent.children('div.saved').html($val.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+						$parent.children('h3.editing').hide();
+						$parent.children('h3.saved').show();
+						$parent.children('div.saved').show();
+					}
+				});
+			}	
+		});
 	});
 </script>
 JS;
