@@ -8,24 +8,24 @@ class Profile {
 		$this->con = $db->connect();
 	}
 
-	public function gimme($datum, $column, $email) {
+	public function gimme($datum, $column, $id) {
 	// Gimme the info about the user that I ask for
 
 		$sql = "SELECT $datum
 				FROM `artists` 
-				WHERE $column = '$email' LIMIT 1";
+				WHERE $column = '$id' LIMIT 1";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
 		return nl2br($result);
 	}
 
-	public function set($column, $datum, $email) {
+	public function set($column, $datum, $id) {
 	// Set info about the user
 		
 		$sql = "SELECT id
 				FROM artists
-				WHERE email = '$email'";
+				WHERE id = '$id'";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 		$id = $stmt->fetchColumn();
@@ -35,7 +35,7 @@ class Profile {
 				SET 
 					$column = '$datum'
 				WHERE 
-					email = '$email'";
+					id = '$id'";
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 
