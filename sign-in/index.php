@@ -202,12 +202,14 @@ $foot = <<<JS
 $('#checkbox').click(function(e) {
 	e.preventDefault();
 	checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
-	if (checked) {
+	if (checked && $.cookie('remember')) {
+		$.removeCookie('remember');
 		$('input', this).removeAttr('checked'); 
 		$('span', this).html('');
 	} 
 
 	else { 
+		$.cookie('remember', 'true');
 		$('input', this).attr('checked', '');
 		$('span', this).html('&#x2713;');
 	}
