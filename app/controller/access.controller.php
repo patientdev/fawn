@@ -1,7 +1,5 @@
 <?php
 
-// include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/access.model.php";
-
 session_start();
 
 // if (!isset($_SESSION["email"])) {
@@ -22,6 +20,10 @@ if ( !empty($_COOKIE["remember"]) ) {
 	else {
 		$cookie = $_COOKIE["remember"];
 		$_SESSION["id"] = $profile->gimme("id", "remember", $cookie);
+
+		if ( $_SERVER["REQUEST_URI"] === "/sign-in/" ) {
+			header("Location: /profile/");
+		}
 	}
 
 }
