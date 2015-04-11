@@ -19,14 +19,15 @@ $styles = "
 }
 
 #profile-photo {
-	width: 200px;
-	height: 200px;
+	width: 225px;
+	height: 225px;
 	background-color: #ccc;
 	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
 	float: left;
 	margin-right: 60px;
+	margin-top: 40px;
 }
 
 #info {
@@ -49,25 +50,25 @@ input {
 
 ::-webkit-input-placeholder {
 	color: black;
-	font-weight: 100;
+	font-weight: 200;
 	font-family: Raleway;
 }
 
 :-moz-placeholder { /* Firefox 18- */
 	color: black;  
-	font-weight: 100;
+	font-weight: 200;
 	font-family: Raleway;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
 	color: black;  
-	font-weight: 100;
+	font-weight: 200;
 	font-family: Raleway;
 }
 
 :-ms-input-placeholder {  
 	color: black; 
-	font-weight: 100; 
+	font-weight: 200; 
 	font-family: Raleway;
 }
 
@@ -111,37 +112,20 @@ textarea {
 	margin-bottom: 40px;
 }
 
-#profile-occupation h3 {
+h3 {
+	font-size: 1.3em;
+}
+
+h3.saved {
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 8px;
-	font-size: 1.2em;
 	margin-bottom: 10px;
 	margin-top: 0;
 	display: inline-block;
 }
 
 #profile-location {
-	margin-top: 0;
-}
-
-#profile-location h3 {
-	text-transform: uppercase;
-	font-weight: 400;
-	font-size: 1.1em;
-	letter-spacing: 8px;
-	display: inline-block;
-	margin-bottom: 40px;
-	margin-top: 0;
-}
-
-#profile-website h3 {
-	text-transform: lowercase;
-	font-size: 1.1em;
-	letter-spacing: 8px;
-	font-weight: 400;
-	border-bottom: 1px solid black;
-	display: inline-block;
 	margin-top: 0;
 }
 
@@ -164,20 +148,8 @@ textarea {
 	text-align: left;
 }
 
-#profile-about h3, #profile-summary h3, #profile-currentprojects h3 {
-	border-bottom: 1px solid black;
-	padding-bottom: 25px;
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 30px;
-}
-
 #profile-summary, #profile-about, #profile-currentprojects {
 	margin-bottom: 60px;
-}
-
-#save {
-	display: none;
 }
 
 div.saved {
@@ -185,6 +157,10 @@ div.saved {
   font-weight: 400;
   letter-spacing: 3px;
   line-height: 1.4em;
+}
+
+h3.editing{
+	border: none;
 }
 
 ";
@@ -205,23 +181,65 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="status"><?php echo print_r($_SESSION); ?></div>
 
-<form id="profile" method="post" action="">
+<form id="profile" method="post" action="" class="editing">
+
+<?php if ( isset($_GET["edit"]) ) { ?>
 
 <div id="profile-edit">
-	<button type="button" id="edit" class="saved">Edit your profile</button>
-	<button type="button" id="save" class="editing">Save your profile</button>
+	<button type="button" id="save">Save your profile</button>
+</div>
+
+<div id="profile-photo"><span>Upload<br> Profile<br> Photo</span></div>
+<div id="info">
+
+	<div id="profile-name">
+		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>">
+	</div>
+
+	<div id="profile-occupation">
+		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" class="editing" value="<?php echo $occupation; ?>">
+	</div>
+
+	<div id="profile-location">
+		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+	</div>
+
+	<div id="profile-website">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>">
+	</div>
+</div>
+
+<div style="clear: both;"></div>
+
+<div id="profile-summary">
+	<h3 class="editing">Summary</h3>
+	<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?" class="editing"><?php echo $summary; ?></textarea>
+</div>
+
+<div id="profile-about">
+	<h3 class="editing">About</h3>
+	<textarea id="about" name="about" placeholder="Use this section to tell everyone about your experience, background, skills, and goals." class="editing"><?php echo $about; ?></textarea>
+</div>
+
+<div id="profile-currentprojects">
+	<h3 class="editing">Current Projects</h3>
+	<textarea id="current-projects" name="currentprojects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?" class="editing"><?php echo $currentprojects; ?></textarea>
+</div>
+
+<?php } else { ?>
+
+<div id="profile-edit">
+	<button type="button" id="edit">Edit your profile</button>
 </div>
 
 <div id="profile-photo"><span>Upload<br> Profile<br> Photo</span></div>
 <div id="info">
 	<div id="profile-name">
 		<?php if(!empty($name)) { ?>
-			<h2 class="saved"><?php echo $name ?></h2>
+			<h2><?php echo $name ?></h2>
 			<style>
 				#profile-name-input.editing { display: none; }
 			</style>
-		<?php } else { ?>
-			<h2 class="saved"></h2>
 		<?php } ?>
 	
 		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing">
@@ -229,12 +247,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-occupation">
 		<?php if(!empty($occupation)) { ?>
-			<h3 class="saved"><?php echo $occupation ?></h3>
+			<h3><?php echo $occupation ?></h3>
 			<style>
 				#profile-occupation-input.editing { display: none; }
 			</style>
-		<?php } else { ?>
-			<h3 class="saved"></h3>
 		<?php } ?>
 
 		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" class="editing">
@@ -242,12 +258,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-location">
 		<?php if(!empty($location)) { ?>
-			<h3 class="saved"><?php echo $location ?></h3>
+			<h3><?php echo $location ?></h3>
 			<style>
 				#profile-location-input.editing { display: none; }
 			</style>
-		<?php } else { ?>
-			<h3 class="saved"></h3>
 		<?php } ?>
 
 		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing">
@@ -255,12 +269,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-website">
 		<?php if(!empty($website)) { ?>
-			<h3 class="saved"><?php echo $website ?></h3>
+			<h3><?php echo $website ?></h3>
 			<style>
 				#profile-website-input.editing { display: none; }
 			</style>
-		<?php } else { ?>
-			<h3 class="saved"></h3>
 		<?php } ?>
 
 		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing">
@@ -275,23 +287,19 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<style>
 			#profile-summary .editing { display: none; }
 		</style>
-	<?php } else { ?>
-		<div class="saved"></div>
 	<?php } ?>
+
 	<h3 class="editing">Summary</h3>
 	<textarea id="summary" name="summary" placeholder="How would you describe yourself in a few words?" class="editing"></textarea>
 </div>
 
 <div id="profile-about">
 	<?php if(!empty($about)) { ?>
-		<h3 class="saved">About</h3>
+		<h3>About</h3>
 		<div class="saved"><?php echo $about; ?></div>
 		<style>
 			#profile-about .editing { display: none; }
 		</style>
-	<?php } else { ?>
-		<h3 class="saved"></h3>
-		<div class="saved"></div>
 	<?php } ?>
 
 	<h3 class="editing">About</h3>
@@ -300,18 +308,18 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-currentprojects">
 	<?php if(!empty($currentprojects)) { ?>
-		<h3 class="saved">Current Projects</h3>
+		<h3>Current Projects</h3>
 		<div class="saved"><?php echo $currentprojects ?></div>
 		<style>
 			#profile-currentprojects .editing { display: none; }
 		</style>
-	<?php } else { ?>
-		<div class="saved"></div>
 	<?php } ?>
 
 	<h3 class="editing">Current Projects</h3>
 	<textarea id="current-projects" name="currentprojects" placeholder="What are you currently working on? Do you have any ideas for projects you&rsquo;d like to start or see happen?" class="editing"></textarea>
 </div>
+
+<?php } ?>
 
 </form>
 
@@ -323,14 +331,13 @@ $foot = <<<'JS'
 <script>
 	$('#edit').click(function(e){ 
 		e.preventDefault();
-		$('.saved').hide();
-		$('.editing').show();
+		window.location.href = "?edit";
 	});
 
 	$('#save').click(function(e){ 
 		e.preventDefault();
-		$('.saved').show();
-		$('.editing').hide();
+		window.location.href = "/profile/";
+
 
 
 		$('#profile input, #profile textarea').each(function() {
