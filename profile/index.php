@@ -1,7 +1,7 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
 $styles = "
 

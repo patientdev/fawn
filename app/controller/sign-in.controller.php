@@ -18,9 +18,10 @@ if ($signIn->passwordVerify($email, $password)) {
 	if ( $remember == 'on') {
 		$rememberkey = md5(microtime().rand());
 		$profile->set("remember", $rememberkey, $email);
+		$_SESSION["id"] = $profile->gimme("id", "remember", $rememberkey);
 	}
 
-	$_SESSION["id"] = $profile->gimme("id", "email", $email);
+	else { $_SESSION["id"] = $profile->gimme("id", "email", $email); }
 
 	header("Location: /profile/");
 }
