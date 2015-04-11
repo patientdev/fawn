@@ -9,9 +9,13 @@ $signIn = new signIn();
 
 $email = $_POST["email"];
 $password = $_POST["password"];
+$remember = $_COOKIE["remember"];
 
 if ($signIn->passwordVerify($email, $password)) {
 	$_SESSION["email"] = $email;
+	if ( $_COOKIE["remember"] === 'true') {
+		$_COOKIE["remember"] = $email;
+	}
 	header("Location: /profile/");
 }
 

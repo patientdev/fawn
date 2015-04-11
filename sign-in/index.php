@@ -180,7 +180,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <p><button type="submit">Sign In</button></p>
 
 <div id="options">
-	<label id="checkbox"><input type="checkbox"><span></span> Remember Me</label>
+	<label id="checkbox"><input name="remember" type="checkbox"><span></span> Remember Me</label>
 	<a href="" id="forgot-password">Forgot Password</a>
 </div>
 
@@ -199,6 +199,14 @@ session_destroy();
 
 $foot = <<<JS
 <script>
+
+$(function() {
+	if ( $.cookie('remember') ) {
+		$('#checkbox input').attr('checked', '');
+		$('#checkbox span').html('&#x2713;');
+	}
+});
+
 $('#checkbox').click(function(e) {
 	e.preventDefault();
 	checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
@@ -206,7 +214,7 @@ $('#checkbox').click(function(e) {
 		$.removeCookie('remember');
 		$('input', this).removeAttr('checked'); 
 		$('span', this).html('');
-	} 
+	}
 
 	else { 
 		$.cookie('remember', 'true');
