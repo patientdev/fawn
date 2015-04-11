@@ -5,16 +5,18 @@ session_start();
 $styles = "
 
 h2 {
-	margin-top: 80px;
+	margin-top: 20px;
 	margin-bottom: 0;
 	font-weight: 600;
 	letter-spacing: 14px;
 	font-size: 1.6em;
+	text-align: center;
 }
 
 hr {
 	width: 70%;
 	margin: 40px auto;
+	border: 1px solid #ccc;
 }
 
 form {
