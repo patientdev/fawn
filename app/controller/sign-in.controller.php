@@ -6,16 +6,22 @@ session_start();
 
 $signIn = new signIn();
 
-
 $email = $_POST["email"];
 $password = $_POST["password"];
-$remember = $_COOKIE["remember"];
+$remember = $_POST["remember"];
 
 if ($signIn->passwordVerify($email, $password)) {
-	$_SESSION["email"] = $email;
-	if ( $_COOKIE["remember"] === 'true') {
-		$_COOKIE["remember"] = $email;
+	
+	include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
+	$profile = new Profile();
+	
+	if ( $remember == 'on') {
+		$rememberkey = md5(microtime().rand());
+		$profile->set("remember", $rememberkey, $email);
 	}
+
+	$_SESSION["id"] = $profile->gimme("id", "email", $email);
+
 	header("Location: /profile/");
 }
 

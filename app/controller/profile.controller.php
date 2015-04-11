@@ -41,17 +41,17 @@ if ( isset($_GET["forger"]) ) {
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 }
 
-if ( isset($_SESSION["email"]) ) {
+if ( isset($_SESSION["id"]) ) {
 
-	$email = $_SESSION["email"];
+	$id = $_SESSION["id"];
 
-	$name = $profile->gimme("name", "email", $email);
-	$location = $profile->gimme("location", "email", $email);
-	$website = $profile->gimme("website", "email", $email);
-	$occupation = $profile->gimme("occupation", "email", $email);
-	$about = $profile->gimme("about", "email", $email);
-	$summary = $profile->gimme("summary", "email", $email);
-	$currentprojects = $profile->gimme("currentprojects", "email", $email);
+	$name = $profile->gimme("name", "id", $id);
+	$location = $profile->gimme("location", "id", $id);
+	$website = $profile->gimme("website", "id", $id);
+	$occupation = $profile->gimme("occupation", "id", $id);
+	$about = $profile->gimme("about", "id", $id);
+	$summary = $profile->gimme("summary", "id", $id);
+	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 }
 
 ?>
