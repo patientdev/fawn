@@ -6,7 +6,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php"
 $styles = "
 
 #profile {
-	width: 70%;
+	width: 60%; min-width: 715px;
 	margin: auto;
 	position: relative;
 	overflow: visible;
@@ -43,8 +43,8 @@ $styles = "
 	float: left;
 	margin-right: 60px;}
 
-#info {
-	width: 500px;
+#info {	
+	width: 60%;
 	display: inline-block;
 	text-align: left;
 	white-space: nowrap;
@@ -52,10 +52,10 @@ $styles = "
 }
 
 #profile-name h2 {
-	font-size: 2.2em;
+	font-size: 2em;
 	line-height: 1em;
 	font-weight: 700;
-	letter-spacing: 15px;
+	letter-spacing: 10px;
 	text-transform: uppercase;
 	display: block;
 	margin-top: 0;
@@ -109,8 +109,10 @@ h3 {
 	border-bottom: 1px solid black;
 }
 
-#profile-about p, #profile-currentprojects p {
+#profile-about, #profile-currentprojects {
 	text-align: left;
+	letter-spacing: 2px;
+	line-height: 1.6em;
 }
 
 #profile-summary, #profile-about, #profile-currentprojects {
@@ -133,7 +135,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="content">
 
-<div id="status"><?php echo print_r($_SESSION); ?></div>
+<div id="status"></div>
 
 <div id="profile">
 
@@ -179,14 +181,14 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="profile-about">
 	<?php if(!empty($about)) { ?>
 		<h3>About</h3>
-		<div><?php echo $about; ?></div>
+		<div><?php echo nl2br($about); ?></div>
 	<?php } else return; ?>
 </div>
 
 <div id="profile-currentprojects">
 	<?php if(!empty($currentprojects)) { ?>
 		<h3>Current Projects</h3>
-		<div><?php echo $currentprojects ?></div>
+		<div><?php echo nl2br($currentprojects); ?></div>
 	<?php } else return; ?>
 </div>
 

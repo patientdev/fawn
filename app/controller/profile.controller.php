@@ -27,22 +27,9 @@ if ( !empty($_POST) ) {
 	}
 }
 
-if ( isset($_GET["forger"]) ) {
+if ( isset($_GET["forger"]) || isset($_SESSION["id"]) ) {
 
-	$id = intval($_GET["forger"]);
-
-	$name = $profile->gimme("name", "id", $id);
-	$location = $profile->gimme("location", "id", $id);
-	$website = $profile->gimme("website", "id", $id);
-	$occupation = $profile->gimme("occupation", "id", $id);
-	$about = $profile->gimme("about", "id", $id);
-	$summary = $profile->gimme("summary", "id", $id);
-	$currentprojects = $profile->gimme("currentprojects", "id", $id);
-}
-
-if ( isset($_SESSION["id"]) ) {
-
-	$id = $_SESSION["id"];
+	$id = intval($_GET["forger"]) || $_SESSION["id"];
 
 	$name = $profile->gimme("name", "id", $id);
 	$location = $profile->gimme("location", "id", $id);

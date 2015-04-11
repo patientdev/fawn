@@ -17,26 +17,21 @@ class Profile {
 		$stmt = $this->con->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchColumn();
-		return nl2br($result);
+		return $result;
 	}
 
 	public function set($column, $datum, $id) {
 	// Set info about the user
-		
-		$sql = "SELECT id
-				FROM artists
-				WHERE id = '$id'";
-		$stmt = $this->con->prepare($sql);
-		$stmt->execute();
-		$id = $stmt->fetchColumn();
 
 		$sql = "UPDATE 
 					artists 
 				SET 
-					$column = '$datum'
+					$column = :datum
 				WHERE 
-					id = '$id'";
+					id = :id";
 		$stmt = $this->con->prepare($sql);
+		$stmt->bindValue(':datum', $datum, PDO::PARAM_STR);
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
 
 		return true;
