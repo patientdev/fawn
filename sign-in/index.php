@@ -197,4 +197,22 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 session_destroy();
 
+$foot = <<<JS
+<script>
+$('#checkbox').click(function(e) {
+	e.preventDefault();
+	checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
+	if (checked) {
+		$('input', this).removeAttr('checked'); 
+		$('span', this).html('');
+	} 
+
+	else { 
+		$('input', this).attr('checked', '');
+		$('span', this).html('&#x2713;');
+	}
+});
+</script>
+JS;
+
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
