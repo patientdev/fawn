@@ -1,3 +1,4 @@
+<?php $debug = 0; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -15,4 +16,4 @@
 	</head>
 	<body>
 
-	<div id="debug"><?php echo var_dump($_SESSION); ?></div>
+	<?php if ( $debug === 1 ) { ?><div id="debug"><?php echo var_dump($_SESSION); ?></div> <?php } ?>
