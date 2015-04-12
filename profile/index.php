@@ -148,25 +148,25 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	<div id="profile-name">
 		<?php if(!empty($name)) { ?>
 			<h2><?php echo $name ?></h2>
-		<?php } else return; ?>
+		<?php } ?>
 	</div>
 
 	<div id="profile-occupation">
 		<?php if(!empty($occupation)) { ?>
 			<h3><?php echo $occupation ?></h3>
-		<?php } else return; ?>
+		<?php } ?>
 	</div>
 
 	<div id="profile-location">
 		<?php if(!empty($location)) { ?>
 			<h3><?php echo $location ?></h3>
-		<?php } else return; ?>
+		<?php } ?>
 	</div>
 
 	<div id="profile-website">
 		<?php if(!empty($website)) { ?>
 			<h3><a href="http://<?php echo $website ?>" target="_blank"><?php echo $website ?></a></h3>
-		<?php } else return; ?>
+		<?php } ?>
 	</div>
 </div>
 
@@ -175,21 +175,21 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="profile-summary">
 	<?php if(!empty($summary)) { ?>
 		<div><?php echo $summary ?></div>
-	<?php } else return; ?>
+	<?php } ?>
 </div>
 
 <div id="profile-about">
 	<?php if(!empty($about)) { ?>
 		<h3>About</h3>
 		<div><?php echo nl2br($about); ?></div>
-	<?php } else return; ?>
+	<?php } ?>
 </div>
 
 <div id="profile-currentprojects">
 	<?php if(!empty($currentprojects)) { ?>
 		<h3>Current Projects</h3>
 		<div><?php echo nl2br($currentprojects); ?></div>
-	<?php } else return; ?>
+	<?php } ?>
 </div>
 
 </div>
