@@ -60,7 +60,7 @@ if ( isset($_SESSION["id"]) ) {
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 	$photo = $profile->gimme("photo", "id", $id);
 
-	if ( empty($name )) { header("Location: edit/"); }
+	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: edit/"); }
 }
 
 ?>
