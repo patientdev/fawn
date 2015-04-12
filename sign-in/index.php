@@ -212,14 +212,13 @@ $(function() {
 $('#checkbox').click(function(e) {
 	e.preventDefault();
 	checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
-	if (checked && $.cookie('remember')) {
+	if (!checked && $.cookie('remember')) {
 		$.removeCookie('remember', { expires: 60, path: '/'});
 		$('input', this).removeAttr('checked'); 
 		$('span', this).html('');
 	}
 
 	else { 
-		$.cookie('remember', 'true', { expires: 60, path: '/' });
 		$('input', this).attr('checked', '');
 		$('span', this).html('&#x2713;');
 	}

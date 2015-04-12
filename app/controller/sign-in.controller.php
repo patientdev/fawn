@@ -14,14 +14,14 @@ if ($signIn->passwordVerify($email, $password)) {
 	
 	include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 	$profile = new Profile();
-	
-	if ( $remember == 'on') {
-		$rememberkey = md5(microtime().rand());
-		$profile->set("remember", $rememberkey, $email);
-		$_SESSION["id"] = $profile->gimme("id", "remember", $rememberkey);
-	}
 
-	else { $_SESSION["id"] = $profile->gimme("id", "email", $email); }
+	$_SESSION["id"] = intval($profile->gimme("id", "email", $email));
+	
+	if ( $remember === "on") {
+		$rememberkey = md5(microtime().rand());
+		$profile->set("remember", $rememberkey, $_SESSION["id"]);
+		setcookie("remember", $rememberkey, time() + 5184000, "/");
+	}
 
 	header("Location: /profile/");
 }
