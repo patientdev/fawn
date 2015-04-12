@@ -41,7 +41,12 @@ $styles = "
 	text-align: center;
 	display: inline-block;
 	float: left;
-	margin-right: 60px;}
+	margin-right: 60px;
+}
+
+#profile-photo img {
+	width: 225px;
+}
 
 #info {	
 	width: 60%;
@@ -98,14 +103,14 @@ h3 {
 	border-bottom: 1px solid black;
 }
 
-#profile-summary {
+#profile-summary div{
 	clear: both;
 	font-weight: 600;
 	font-size: 1.4em;
 	line-height: 1.4em;
 	letter-spacing: 3px;
 	font-style: italic;
-	width: 90%; margin: auto;
+	width: 80%; margin: auto;
 	text-align: center;
 
 }
