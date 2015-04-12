@@ -36,7 +36,7 @@ $styles = "
 #profile-photo {
 	width: 225px;
 	height: 225px;
-	background-color: #ccc;
+	background-color: transparent;
 	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
@@ -45,16 +45,30 @@ $styles = "
 }
 
 #profile-photo input {
-	display: none;
+    cursor: pointer;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    /*This makes the button huge. If you want a bigger button, increase the font size*/
+    font-size:50px;
+    /*Opacity settings for all browsers*/
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
-#profile-photo button {
-	border: 0;
-	padding: 0;
-	background-color: transparent;
-	font-size: 1.2em;
-	font-weight: 200;
+#profile-photo-input {
+	overflow: hidden;
+	background-color: rgba(125, 164, 221, 1);
+	position: relative;
+	color: white;
+	font-size: .8em;
+	padding: 20px 40px;
 }
+
+#profile-photo-input h3 { margin: 0;}
 
 #info {
 	width: 60%;
@@ -177,15 +191,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="status"></div>
 
-<form id="profile" method="post" action="" class="editing">
+<form id="profile" name="profile-edit" method="post" action="/app/controller/profile.controller.php" class="editing" enctype="multipart/form-data">
 
 <div id="profile-edit">
-	&#x2713; <button type="button" id="save">Save your profile</button>
+	&#x2713; <button type="submit" id="save">Save your profile</button>
 </div>
 
 <div id="profile-photo">
-	<button>Upload Photo</button>
-	<!-- <input type="file" name="profilephoto"> -->
+	<div id="profile-photo-input">
+		<h3>Upload Photo</h3>
+		<input type="file" name="photo">
+	</div>
 </div>
 
 <div id="info">
@@ -233,27 +249,22 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 $foot = <<<'JS'
 <script>
 
-	$('#profile-photo button').click(function() {
-		$('#profile-photo input').click();
-	});
+	// $('#save').click(function(e){ 
+	// 	e.preventDefault();
 
-	$('#save').click(function(e){ 
-		e.preventDefault();
+	// 	$('#profile input, #profile textarea').each(function() {
+	// 		$input = $(this);
+	// 		$parent = $(this).parent('div');
+	// 		$name = $input.attr('name');
+	// 		$val = $input.val();
+	// 		console.log($name + " - " + $val);
+	// 		jsonObject = {};
+	// 		jsonObject[$name] = $val;
 
-		$('#profile input, #profile textarea').each(function() {
-			$input = $(this);
-			$parent = $(this).parent('div');
-			$name = $input.attr('name');
-			$val = $input.val();
-			jsonObject = {};
-			jsonObject[$name] = $val;
+	// 		$.post('/app/controller/profile.controller.php', jsonObject).done(function() { window.location.href = "/profile/"; });
+	// 	});
 
-			$.post('/app/controller/profile.controller.php', jsonObject, function(msg) {
-				console.log(msg);
-			}).done(function() { window.location.href = "/profile/"; });
-		});
-
-	});
+	// });
 </script>
 JS;
 

@@ -19,12 +19,30 @@ session_start();
 // }
 
 if ( !empty($_POST) ) {
+	
+	$id = $_SESSION["id"];
+	
+	if ( !empty($_FILES["photo"]) ) {
+		$column = "photo";
+		$datum = $_FILES["photo"]["name"];
+
+		$target_dir = "app/data/avatars/" . $id . "/";
+
+		if ( !is_dir($_SERVER["DOCUMENT_ROOT"] . $target_dir) ) { mkdir($_SERVER["DOCUMENT_ROOT"] . $target_dir); }
+
+		$target_file = $target_dir . basename($datum);
+		move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . $target_dir . $datum);
+
+		$profile->set($column, $target_file, $id);
+	}
+
 	foreach ($_POST as $key => $value) {
 		$column = $key;
 		$datum = $value;
-		$id = $_SESSION["id"];
 		$profile->set($column, $datum, $id);
 	}
+
+	header("Location: /profile/");
 }
 
 if ( isset($_SESSION["id"]) ) {
@@ -38,6 +56,7 @@ if ( isset($_SESSION["id"]) ) {
 	$about = $profile->gimme("about", "id", $id);
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
+	$photo = $profile->gimme("photo", "id", $id);
 }
 
 ?>

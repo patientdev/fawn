@@ -155,7 +155,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	&#x270e; <button type="button" id="edit">Edit Your Profile</button>
 </div>
 
-<div id="profile-photo"><span>Upload<br> Profile<br> Photo</span></div>
+<div id="profile-photo">
+		<?php if(!empty($photo)) { ?>
+			<h3><?php echo "<img src=\"/" . $photo . "\">"; ?></h3>
+		<?php } ?>
+</div>
 <div id="info">
 	<div id="profile-name">
 		<?php if(!empty($name)) { ?>
