@@ -36,7 +36,7 @@ $styles = "
 #profile-photo {
 	width: 225px;
 	height: 225px;
-	background-color: #ccc;
+	background-color: transparent;
 	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
