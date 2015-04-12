@@ -198,6 +198,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 </div>
 
 <div id="profile-photo">
+	<?php if(!empty($photo)) { ?>
+		<h3><?php echo "<img src=\"/" . $photo . "\">"; ?></h3>
+	<?php } ?>
 	<div id="profile-photo-input">
 		<h3>Upload Photo</h3>
 		<input type="file" name="photo">

@@ -22,11 +22,13 @@ if ( !empty($_POST) ) {
 	
 	$id = $_SESSION["id"];
 	
-	if ( !empty($_FILES["photo"]) ) {
+	if ( !empty($_FILES["photo"]["name"]) ) {
 		$column = "photo";
 		$datum = $_FILES["photo"]["name"];
 
 		$target_dir = "app/data/avatars/" . $id . "/";
+
+		$_SESSION["status"] = $_FILES["photo"];
 
 		if ( !is_dir($_SERVER["DOCUMENT_ROOT"] . $target_dir) ) { mkdir($_SERVER["DOCUMENT_ROOT"] . $target_dir); }
 
