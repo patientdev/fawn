@@ -51,6 +51,13 @@ $styles = "
 	padding-top: 10px;
 }
 
+#info:after {
+	display: block;
+	content: \"\";
+	clear: both;
+	margin: 60px auto;
+}
+
 #profile-name h2 {
 	font-size: 2em;
 	line-height: 1em;
@@ -98,7 +105,7 @@ h3 {
 	line-height: 1.4em;
 	letter-spacing: 3px;
 	font-style: italic;
-	width: 90%; margin: 60px auto;
+	width: 90%; margin: auto;
 	text-align: center;
 
 }
@@ -109,6 +116,10 @@ h3 {
 	border-bottom: 1px solid black;
 }
 
+#profile-about {
+	margin-top: 60px
+}
+
 #profile-about, #profile-currentprojects {
 	text-align: left;
 	letter-spacing: 2px;
@@ -117,6 +128,7 @@ h3 {
 
 #profile-summary, #profile-about, #profile-currentprojects {
 	margin-bottom: 60px;
+	clear: both;
 }
 
 ";
