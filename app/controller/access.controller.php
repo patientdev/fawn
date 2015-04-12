@@ -18,7 +18,7 @@ else if ( !empty($_COOKIE["remember"]) ) {
 
 	$_SESSION["id"] = $profile->gimme("id", "remember", $_COOKIE["remember"]);
 
-	if ( $_SERVER["REQUEST_URI"] === "/sign-in/" && !(empty$_SESSION["id"])) {
+	if ( $_SERVER["REQUEST_URI"] === "/sign-in/" && !empty($_SESSION["id"]) ) {
 		header("Location: /profile/");
 	}
 
