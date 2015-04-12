@@ -27,9 +27,9 @@ if ( !empty($_POST) ) {
 	}
 }
 
-if ( isset($_GET["forger"]) || isset($_SESSION["id"]) ) {
+if ( isset($_SESSION["id"]) ) {
 
-	$id = intval($_GET["forger"]) || $_SESSION["id"];
+	$id = intval($_SESSION["id"]);
 
 	$name = $profile->gimme("name", "id", $id);
 	$location = $profile->gimme("location", "id", $id);

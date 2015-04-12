@@ -35,7 +35,7 @@ else if ( isset($_GET["confirm"])) {
 	else {
 		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 		$profile = new Profile();
-		$_SESSION["email"] = $profile->gimme("email", "email", $email);
+		$_SESSION["id"] = $profile->gimme("id", "email", $email);
 		header("Location: /sign-in/");
 	}
 }

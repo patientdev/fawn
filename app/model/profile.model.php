@@ -32,9 +32,7 @@ class Profile {
 		$stmt = $this->con->prepare($sql);
 		$stmt->bindValue(':datum', $datum, PDO::PARAM_STR);
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();
-
-		return true;
+		$stmt->execute();		
 	}
 }
 

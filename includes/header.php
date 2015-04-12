@@ -14,3 +14,5 @@
 		<?php include $_SERVER["DOCUMENT_ROOT"] . "/js/analytics.js" ?>
 	</head>
 	<body>
+
+	<div id="debug"><?php echo var_dump($_SESSION); ?></div>
