@@ -120,7 +120,4 @@ $('#sign-up button').click(function(e) {
 DOC;
 
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; 
-
-session_destroy();
-
 ?>

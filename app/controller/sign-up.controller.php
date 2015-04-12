@@ -40,6 +40,10 @@ else if ( isset($_GET["confirm"])) {
 	}
 }
 
+else if ( isset($_SESSION["id"]) && !empty($_SESSION["id"]) ) {
+	header("Location: /profile/");
+}
+
 
 
 ?>

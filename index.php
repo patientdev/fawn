@@ -8,7 +8,54 @@ header {
 	padding-bottom: 175px;
 	-webkit-transition: background-position 0s linear;
 	webkit-transform: translate3d(0, 0, 0);
-}";
+}
+
+#who-we-are h3, #what-were-up-to h3, #who-we-are h4 {
+	text-align: center;
+}
+
+#who-we-are h3, #what-were-up-to h3 {
+	font-size: 1.8em;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 5px;
+}
+
+#who-we-are .call-to-action, #what-were-up-to .call-to-action {
+	text-align: center;
+}
+
+#who-we-are .call-to-action a, #what-were-up-to .call-to-action a {
+	padding: 15px 35px;
+	background-color: rgba(125, 164, 221, 1);
+	font-weight: 400;
+	letter-spacing: 4px;
+	color: white;
+	text-decoration: none;
+	font-size: 1.2em;
+}
+
+#headline {
+	text-align: center;
+	margin-top: 150px;
+}
+
+#headline h2 {
+	text-transform: uppercase;
+	letter-spacing: 9px;
+	font-weight: 700;
+	font-size: 3em;
+	margin-bottom: 30px;
+}
+
+#headline h3 {
+	font-size: 1.4em;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <header>
@@ -100,7 +147,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 	<p>At FAWN, we&rsquo;re creating opportunities to build community, both online and offline, that will foster inspiration, beginnings, partnerships, and more!</p>
 
-	<p class="call-to-action"><a href="/join/">Join Our Network</a></p>
+	<p class="call-to-action"><a href="/join-us/">Join Our Network</a></p>
 
 </div>
 

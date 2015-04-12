@@ -55,7 +55,6 @@ $styles = "
 	display: block;
 	content: \"\";
 	clear: both;
-	margin: 60px auto;
 }
 
 #profile-name h2 {
@@ -74,6 +73,7 @@ $styles = "
 }
 
 #profile-location h3 {
+	margin-top: 0;
 	margin-bottom: 40px;
 	font-weight: 200;
 }
@@ -117,7 +117,7 @@ h3 {
 }
 
 #profile-about {
-	margin-top: 60px
+	margin: 60px 0;
 }
 
 #profile-about, #profile-currentprojects {
@@ -127,7 +127,7 @@ h3 {
 }
 
 #profile-summary, #profile-about, #profile-currentprojects {
-	margin-bottom: 60px;
+	margin: 60px 0;
 	clear: both;
 }
 

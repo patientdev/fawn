@@ -13,7 +13,7 @@ $(window).scroll(function() {
 })
 
 //Drop-downs
-$('.drop-down').hover(function() { $('ul', $(this)).slideToggle('fast'); })
+$('.drop-down').click(function() { $('ul', $(this)).slideToggle('fast'); })
 $('.drop-down li').click(function() {
 	$(this).parent().prev().text($(this).text());
 

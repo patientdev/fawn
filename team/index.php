@@ -6,6 +6,7 @@ h2 {
 	margin: 60px 0;
 	font-weight: 600;
 	letter-spacing: 14px;
+	text-align: center;
 }
 
 #team {
