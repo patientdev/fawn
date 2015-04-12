@@ -153,4 +153,26 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 </div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php 
+
+$foot = <<<'JS'
+
+<script>
+//Parallax
+$(window).scroll(function() {
+
+	$parallax = 0;
+	$windowScroll = $(window).scrollTop();
+
+	if ( $windowScroll <= 0 ) { $parallax = 0; }
+	else { $parallax = $windowScroll/5; }
+
+	$('header').css('background-position', '0 ' + $parallax + 'px');
+
+})
+</script>
+
+JS;
+
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
