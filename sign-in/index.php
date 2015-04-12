@@ -190,7 +190,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="sign-up">
 <p id="dont-have-an-account">Don&rsquo;t have an account?</p>
-<p><a href="" id="sign-up-here">Sign up here.</a></p>
+<p><a href="/join-us/" id="sign-up-here">Sign up here.</a></p>
 </div>
 
 </div>
