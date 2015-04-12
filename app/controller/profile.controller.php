@@ -59,6 +59,8 @@ if ( isset($_SESSION["id"]) ) {
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 	$photo = $profile->gimme("photo", "id", $id);
+
+	if ( empty($name )) { header("Location: edit/"); }
 }
 
 ?>
