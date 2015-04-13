@@ -2,6 +2,8 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
+$head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";
+
 $styles = "
 
 #profile {
@@ -177,6 +179,10 @@ h3 {
 	margin-bottom: 60px;
 }
 
+.jcrop-holder > div > div {
+	border-radius: 50%;
+}
+
 ";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
@@ -275,7 +281,8 @@ $foot .= <<<'JS'
 		}
 
 		$('#jcrop').Jcrop({
-			onChange: giveCoords
+			onChange: giveCoords,
+			aspectRatio: 1
 		});
 	});
 </script>
