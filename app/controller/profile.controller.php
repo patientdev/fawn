@@ -19,6 +19,13 @@ session_start();
 // }
 
 if ( !empty($_POST) ) {
+
+	unset($_POST["jcrop-x"]);
+	unset($_POST["jcrop-y"]);
+	unset($_POST["jcrop-x2"]);
+	unset($_POST["jcrop-y2"]);
+	unset($_POST["jcrop-w"]);
+	unset($_POST["jcrop-h"]);
 	
 	$id = $_SESSION["id"];
 	

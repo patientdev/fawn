@@ -88,6 +88,7 @@ h3 {
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 8px;
+	margin-top: 0;
 }
 
 #profile-location {

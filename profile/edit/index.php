@@ -23,7 +23,8 @@ $styles = "
 	border: none;
 	background-color: transparent;
 	font-style: italic;
-	font-size: .9em;	letter-spacing: 1px;
+	font-size: .9em;	
+	letter-spacing: 1px;
 	padding: 0;
 }
 
@@ -41,6 +42,10 @@ $styles = "
 	display: inline-block;
 	float: left;
 	margin-right: 60px;
+}
+
+#profile-photo img {
+	width: 225px;
 }
 
 #profile-photo input {
@@ -198,7 +203,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo "<img src=\"/" . $photo . "\">"; ?></h3>
+		<h3><?php echo "<img src=\"/" . $photo . "\" id=\"jcrop\">"; ?></h3>
+		<input type="hidden" name="jcrop-x" id="jcrop-x">
+		<input type="hidden" name="jcrop-y" id="jcrop-y">
+		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
+		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
+		<input type="hidden" name="jcrop-w" id="jcrop-w">
+		<input type="hidden" name="jcrop-h" id="jcrop-h">
 	<?php } ?>
 	<div id="profile-photo-input">
 		<h3>Upload Photo</h3>
@@ -248,25 +259,25 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <?php 
 
-$foot = <<<'JS'
+$foot = "<script src=\"/js/jquery.Jcrop.min.js\"></script>";
+
+$foot .= <<<'JS'
+
 <script>
+	$(function() {
+		function giveCoords(c) {
+			$('#jcrop-y').val(c.y);
+			$('#jcrop-x').val(c.x);
+			$('#jcrop-y2').val(c.y2);
+			$('#jcrop-x2').val(c.x2);
+			$('#jcrop-w').val(c.w);
+			$('#jcrop-h').val(c.h);
+		}
 
-	// $('#save').click(function(e){ 
-	// 	e.preventDefault();
-
-	// 	$('#profile input, #profile textarea').each(function() {
-	// 		$input = $(this);
-	// 		$parent = $(this).parent('div');
-	// 		$name = $input.attr('name');
-	// 		$val = $input.val();
-	// 		console.log($name + " - " + $val);
-	// 		jsonObject = {};
-	// 		jsonObject[$name] = $val;
-
-	// 		$.post('/app/controller/profile.controller.php', jsonObject).done(function() { window.location.href = "/profile/"; });
-	// 	});
-
-	// });
+		$('#jcrop').Jcrop({
+			onChange: giveCoords
+		});
+	});
 </script>
 JS;
 
