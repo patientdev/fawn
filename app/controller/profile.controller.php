@@ -19,15 +19,29 @@ session_start();
 // }
 
 if ( !empty($_POST) ) {
-
-	unset($_POST["jcrop-x"]);
-	unset($_POST["jcrop-y"]);
-	unset($_POST["jcrop-x2"]);
-	unset($_POST["jcrop-y2"]);
-	unset($_POST["jcrop-w"]);
-	unset($_POST["jcrop-h"]);
 	
 	$id = $_SESSION["id"];
+
+	if ( !empty($_POST["jcrop-x"]) ) {
+		$targ_w = $targ_h = 255;
+		$jpeg_quality = 90;
+
+		$src = $_SERVER["DOCUMENT_ROOT"] . $profile->gimme("photo", "id", $id);
+		$img_r = imagecreatefromjpeg($src);
+		$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+		imagecopyresampled($dst_r,$img_r,0,0,$_POST['jcrop-x'],$_POST['jcrop-y'],
+		    $targ_w,$targ_h,$_POST['jcrop-w'],$_POST['jcrop-h']);
+
+		imagejpeg($dst_r, $_SERVER["DOCUMENT_ROOT"] . "/app/data/avatars/" . $id . "/jcropped.jpg", $jpeg_quality);
+
+		unset($_POST["jcrop-x"]);
+		unset($_POST["jcrop-y"]);
+		unset($_POST["jcrop-x2"]);
+		unset($_POST["jcrop-y2"]);
+		unset($_POST["jcrop-w"]);
+		unset($_POST["jcrop-h"]);
+	}
 	
 	if ( !empty($_FILES["photo"]["name"]) ) {
 		$column = "photo";
