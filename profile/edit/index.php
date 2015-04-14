@@ -216,9 +216,14 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
 		<input type="hidden" name="jcrop-w" id="jcrop-w">
 		<input type="hidden" name="jcrop-h" id="jcrop-h">
+
 	<?php } ?>
 	<div id="profile-photo-input">
-		<h3>Upload Photo</h3>
+		<?php if ( !empty($photo) ) { ?>
+			<h3>Change Photo</h3>
+		<?php } else { ?> 
+			<h3>Change Photo</h3>
+		<?php } ?>
 		<input type="file" name="photo">
 	</div>
 </div>
