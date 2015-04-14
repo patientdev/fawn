@@ -21,9 +21,9 @@ h2 {
 	margin-bottom: 40px;
 }
 
-.teammate-image {
-	width: 150px;
-	height: 150px;
+.teammate-image img {
+	width: 200px;
+	height: 200px;
 	border-radius: 50%;
 	border: 1px solid black;
 	margin: 0 auto 20px auto;
@@ -69,7 +69,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/lydia.jpg">
 	</div>
 
 	<div class="teammate-info">
@@ -95,7 +95,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/gayle.jpg">
 	</div>
 
 	<div class="teammate-info">
@@ -134,7 +134,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/meghan.jpg">
 	</div>
 
 	<div class="teammate-info">

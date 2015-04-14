@@ -46,6 +46,7 @@ $styles = "
 
 #profile-photo img {
 	width: 225px;
+	border-radius: 50%;
 }
 
 #info {	

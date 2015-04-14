@@ -13,6 +13,10 @@ if ( isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SERVER["REQUEST_URI"
 	header("Location: /profile/");
 }
 
+if ( !isset($_SESSION["id"]) && $_SERVER["REQUEST_URI"] === "/profile/") {
+	header("Location: /sign-in/");
+}
+
 else if ( !empty($_COOKIE["remember"]) ) {
 
 	include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
