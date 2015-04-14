@@ -24,7 +24,6 @@ h2 {
 .teammate-image img {
 	width: 200px;
 	height: 200px;
-	border-radius: 50%;
 	margin: 0 auto 20px auto;
 }
 
