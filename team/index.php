@@ -25,7 +25,6 @@ h2 {
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	border: 1px solid black;
 	margin: 0 auto 20px auto;
 }
 
