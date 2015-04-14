@@ -5,7 +5,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
 	$profile = new Profile();
 
-session_start();
+if ( !isset($_SESSION) ) {
+	session_start();
+}
 
 // if (!isset($_SESSION["email"])) {
 // 	header("Location: /sign-in/");
@@ -81,7 +83,7 @@ if ( isset($_SESSION["id"]) ) {
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 	$photo = $profile->gimme("photo", "id", $id);
 
-	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: edit/"); }
+	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: /profile/edit/"); }
 }
 
 ?>

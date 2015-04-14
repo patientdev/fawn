@@ -15,7 +15,7 @@ class signIn {
 
 		if (password_verify($password, $hash)) {
 			return true;
-		} return false;
+		} $_SESSION["debug"] = $hash;
 	}
 	
 }

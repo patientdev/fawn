@@ -2,7 +2,9 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
-session_start();
+if ( !isset($_SESSION) ) {
+	session_start();
+}
 
 $styles = "
 
