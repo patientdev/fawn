@@ -34,13 +34,6 @@ if ( !empty($_POST) ) {
 		    $targ_w,$targ_h,$_POST['jcrop-w'],$_POST['jcrop-h']);
 
 		imagejpeg($dst_r, $_SERVER["DOCUMENT_ROOT"] . "/app/data/avatars/" . $id . "/jcropped.jpg", $jpeg_quality);
-
-		unset($_POST["jcrop-x"]);
-		unset($_POST["jcrop-y"]);
-		unset($_POST["jcrop-x2"]);
-		unset($_POST["jcrop-y2"]);
-		unset($_POST["jcrop-w"]);
-		unset($_POST["jcrop-h"]);
 	}
 	
 	if ( !empty($_FILES["photo"]["name"]) ) {
@@ -60,9 +53,11 @@ if ( !empty($_POST) ) {
 	}
 
 	foreach ($_POST as $key => $value) {
-		$column = $key;
-		$datum = $value;
-		$profile->set($column, $datum, $id);
+		if ( !empty($value) ) {
+			$column = $key;
+			$datum = $value;
+			$profile->set($column, $datum, $id);
+		}
 	}
 
 	header("Location: /profile/");
