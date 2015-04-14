@@ -209,7 +209,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo "<img src=\"/app/data/avatars/" . $id . "/jcropped.jpg\" id=\"jcrop\">"; ?></h3>
+		<h3><?php echo "<img src=\"" . $photo . "\" id=\"jcrop\">"; ?></h3>
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
