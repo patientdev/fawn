@@ -30,10 +30,15 @@ if ( !empty($_POST) ) {
 		$img_r = imagecreatefromjpeg($src);
 		$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
+		$target_dir = "app/data/avatars/" . $id . "/";
+		$target_file = $target_dir . "jcropped.jpg";
+
 		imagecopyresampled($dst_r,$img_r,0,0,$_POST['jcrop-x'],$_POST['jcrop-y'],
 		    $targ_w,$targ_h,$_POST['jcrop-w'],$_POST['jcrop-h']);
 
-		imagejpeg($dst_r, $_SERVER["DOCUMENT_ROOT"] . "/app/data/avatars/" . $id . "/jcropped.jpg", $jpeg_quality);
+		imagejpeg($dst_r, $_SERVER["DOCUMENT_ROOT"] . $_SERVER["DOCUMENT_ROOT"] . $target_dir . "/jcropped.jpg", $jpeg_quality);
+
+		$profile->set($column, $target_file, $id);
 	}
 	
 	if ( !empty($_FILES["photo"]["name"]) ) {
