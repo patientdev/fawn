@@ -163,7 +163,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 		<?php if(!empty($photo)) { ?>
-			<h3><?php echo $photo; ?></h3>
+			<h3><?php echo "<img src=\"" . $photo . "\" id=\"jcrop\">"; ?></h3>
 		<?php } ?>
 </div>
 <div id="info">

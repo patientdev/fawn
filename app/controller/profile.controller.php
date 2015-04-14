@@ -31,7 +31,7 @@ if ( !empty($_POST) ) {
 		$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
 
 		$target_dir = "app/data/avatars/" . $id . "/";
-		$target_file = $target_dir . "jcropped.jpg";
+		$target_file = "/" . $target_dir . "jcropped.jpg";
 
 		imagecopyresampled($dst_r,$img_r,0,0,$_POST['jcrop-x'],$_POST['jcrop-y'],
 		    $targ_w,$targ_h,$_POST['jcrop-w'],$_POST['jcrop-h']);
@@ -51,7 +51,7 @@ if ( !empty($_POST) ) {
 
 		if ( !is_dir($_SERVER["DOCUMENT_ROOT"] . $target_dir) ) { mkdir($_SERVER["DOCUMENT_ROOT"] . $target_dir); }
 
-		$target_file = $target_dir . basename($datum);
+		$target_file = "/" . $target_dir . basename($datum);
 		move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . $target_dir . $datum);
 
 		$profile->set($column, $target_file, $id);
