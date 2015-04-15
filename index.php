@@ -1,13 +1,27 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
+
 $styles = "
-header {
+body {
 	background-image: url(/img/header-background.jpg);
-	background-size: 110%;	color: white;
+	background-size: 110%;
 	background-color: transparent;
-	padding-bottom: 175px;
+	background-repeat: no-repeat;
 	-webkit-transition: background-position 0s linear;
 	webkit-transform: translate3d(0, 0, 0);
+}
+
+header {
+	background-color: transparent;
+}
+
+#intro {
+	color: white;
+}
+
+#who-we-are {
+	background-color: white;
 }
 
 #who-we-are h3, #what-were-up-to h3, #who-we-are h4 {
@@ -58,71 +72,58 @@ header {
 ";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
-<header>
+<div id="intro">
 
-<div id="background-image" style="display: none;">
-	<img src="/img/header-background.jpg">
-</div>
-
-<div id="top-bar">
-	<div id="heart">
-		<h1><a href="/">Forger</a></h1>
+	<div id="headline">
+		<h2>A Worldwide Network</h2>
+		<h3>Elevating Creativity That Makes A Difference</h3>
 	</div>
-	<div id="actions">
-		<a href="/sign-in" id="sign-in-button">Sign In</a>
-		<a href="/join-us" id="join-us-button">Join Us</a>
-	</div>
-</div>
 
-<div id="headline">
-	<h2>A Worldwide Network</h2>
-	<h3>Elevating Creativity That Makes A Difference</h3>
-</div>
+	<div id="search">
+		<h3>I&rsquo;m searching for a...</h3>
 
-<div id="search">
-	<h3>I&rsquo;m searching for a...</h3>
+		<div id="sentence">
+			<div class="drop-down" id="search-occupation">
+				<h5>Occupation</h5>
+				<ul>
+					<li class="option">Photographer</li>
+					<li class="option">Musician</li>
+					<li class="option">Graphic Designer</li>
+				</ul>
+			</div>
 
-	<div id="sentence">
-		<div class="drop-down" id="search-occupation">
-			<h5>Occupation</h5>
-			<ul>
-				<li class="option">Photographer</li>
-				<li class="option">Musician</li>
-				<li class="option">Graphic Designer</li>
-			</ul>
+			<p>who supports</p>
+
+			<div class="drop-down" id="search-cause">
+				<h5>Cause</h5>
+				<ul>
+					<li class="option">Conservation</li>
+					<li class="option">Local Food</li>
+					<li class="option">Local Culture</li>
+				</ul>
+			</div>
+
+			<p>in</p>
+
+			<div class="drop-down" id="search-location">
+				<h5>Location</h5>
+				<ul>
+					<li class="option">Ithaca, NY</li>
+					<li class="option">New York, New York</li>
+					<li class="option">Bhangra, India</li>
+				</ul>
+			</div>
 		</div>
 
-		<p>who supports</p>
-
-		<div class="drop-down" id="search-cause">
+		<!-- <div class="drop-down">
 			<h5>Cause</h5>
-			<ul>
-				<li class="option">Conservation</li>
-				<li class="option">Local Food</li>
-				<li class="option">Local Culture</li>
-			</ul>
 		</div>
-
-		<p>in</p>
-
-		<div class="drop-down" id="search-location">
+		<div class="drop-down">
 			<h5>Location</h5>
-			<ul>
-				<li class="option">Ithaca, NY</li>
-				<li class="option">New York, New York</li>
-				<li class="option">Bhangra, India</li>
-			</ul>
-		</div>
+		</div> -->
 	</div>
 
-	<!-- <div class="drop-down">
-		<h5>Cause</h5>
-	</div>
-	<div class="drop-down">
-		<h5>Location</h5>
-	</div> -->
 </div>
-</header>
 
 <div id="content">
 
@@ -165,9 +166,9 @@ $(window).scroll(function() {
 	$windowScroll = $(window).scrollTop();
 
 	if ( $windowScroll <= 0 ) { $parallax = 0; }
-	else { $parallax = $windowScroll/5; }
+	else { $parallax = $windowScroll/3; }
 
-	$('header').css('background-position', '0 ' + $parallax + 'px');
+	$('body').css('background-position', '0 ' + $parallax + 'px');
 
 })
 </script>

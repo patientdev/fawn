@@ -176,18 +176,6 @@ h3 {
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
-
-
-<header>
-
-	<div id="heart">
-		<h1><a href="/">Forger</a></h1>
-	</div>
-
-</header>
-
-<div id="content">
-
 <div id="status"></div>
 
 <form id="profile" name="profile-edit" method="post" action="/app/controller/profile.controller.php" class="editing" enctype="multipart/form-data">

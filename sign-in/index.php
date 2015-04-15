@@ -160,18 +160,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
  ?>
 
-<header>
-
-	<div id="heart">
-		<h1><a href="/">Forger</a></h1>
-	</div>
-
-</header>
-
-<div id="content">
-
-<div id="status"><?php echo $_SESSION["status"]; ?></div>
-
 <h2>Sign In Below</h2>
 
 <hr>

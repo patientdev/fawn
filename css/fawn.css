@@ -20,7 +20,7 @@ body {
 
 header {
 	background-color: rgba(32, 121, 209, 1);
-	padding: 20px;
+	padding: 20px 40px;
 }
 
 header:after {
@@ -30,42 +30,22 @@ header:after {
 	overflow: visible;
 }
 
-#top-bar {
-	text-transform: uppercase;
-	padding: 20px 40px;
-}
-
-#top-bar:after {
-	content: "";
-	display: block;
-	clear: both;
-	overflow: visible;
+#logo {
+	width: 250px;
+	float: left;
 }
 
 h1 {
-	letter-spacing: 8px;
-	font-weight: 600;
 	margin: 0;
-	line-height: 35px;
 }
 
-#heart {
-	float: left;
-	background-image: url(/img/heart-icon.png);
-	background-size: 35px;
-	background-position: 0 5px;
-	background-repeat: no-repeat;
-}
-
-#heart a {
-	display: block;
-	color: white;
-	text-decoration: none;
-	padding: 5px 0 5px 60px;
+h1 img {
+	width: 250px;
 }
 
 #actions {
 	float: right;
+	line-height: 64px;
 }
 
 #actions a {

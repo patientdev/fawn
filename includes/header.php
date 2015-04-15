@@ -17,3 +17,21 @@
 	<body>
 
 	<?php if ( $debug === 1 ) { ?><div id="debug"><?php echo var_dump($_SESSION); ?></div> <?php } ?>
+
+	<header>
+		<div id="logo">
+			<h1><a href="/"><img src="/img/fawn-logo-transparent.png"></a></h1>
+		</div>
+
+		<div id="actions">
+			<?php if ( isset($_SESSION["id"]) ) { ?>
+				<a href="/profile/signout" id="sign-in-button">Sign&ndash;Out</a>
+				<a href="/profile" id="sign-in-button">Profile</a>
+			<?php } else { ?>
+				<a href="/sign-in" id="sign-in-button">Sign In</a>
+				<a href="/join-us" id="join-us-button">Join Us</a>
+			<?php } ?>
+		</div>
+	</header>
+
+	<div id="content">
