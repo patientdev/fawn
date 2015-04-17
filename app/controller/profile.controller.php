@@ -24,6 +24,10 @@ if ( !empty($_POST) ) {
 	
 	$id = $_SESSION["id"];
 
+	if ( !empty($_POST["jcrop-x"]) ) {
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/photo-upload.controller.php";
+	}
+
 	// Unset all the jcrop values. They don't need to go in the database.
 	unset($_POST["jcrop-x"]);
 	unset($_POST["jcrop-y"]);
