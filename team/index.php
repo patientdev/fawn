@@ -52,14 +52,6 @@ p {
 ";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
-<header>
-
-	<div id="heart">
-		<h1><a href="/">Forger</a></h1>
-	</div>
-
-</header>
-
 <content>
 
 <h2>Meet Our Team</h2>
