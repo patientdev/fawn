@@ -23,41 +23,41 @@ if ( !isset($_SESSION) ) {
 if ( !empty($_POST) ) {
 	
 	$id = $_SESSION["id"];
-
-	if ( !empty($_POST["jcrop-x"]) ) {
-		$targ_w = $targ_h = 255;
-		$jpeg_quality = 90;
-
-		$src = $_SERVER["DOCUMENT_ROOT"] . $profile->gimme("photo", "id", $id);
-		$img_r = imagecreatefromjpeg($src);
-		$dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
-
-		$target_dir = "app/data/avatars/" . $id . "/";
-		$target_file = "/" . $target_dir . "jcropped.jpg";
-
-		imagecopyresampled($dst_r,$img_r,0,0,$_POST['jcrop-x'],$_POST['jcrop-y'],
-		    $targ_w,$targ_h,$_POST['jcrop-w'],$_POST['jcrop-h']);
-
-		imagejpeg($dst_r, $_SERVER["DOCUMENT_ROOT"] . $_SERVER["DOCUMENT_ROOT"] . $target_dir . "/jcropped.jpg", $jpeg_quality);
-
-		$profile->set($column, $target_file, $id);
-	}
 	
 	if ( !empty($_FILES["photo"]["name"]) ) {
+
+		// Put into user's photo column
 		$column = "photo";
+
+		// Get the filename
 		$datum = $_FILES["photo"]["name"];
 
+		// Put into this directory based on users ID #
 		$target_dir = "app/data/avatars/" . $id . "/";
 
+		// Debug info
 		$_SESSION["status"] = $_FILES["photo"];
 
+		// Create the target_dir if it doesn't exist
 		if ( !is_dir($_SERVER["DOCUMENT_ROOT"] . $target_dir) ) { mkdir($_SERVER["DOCUMENT_ROOT"] . $target_dir); }
 
+		// Name it 
 		$target_file = "/" . $target_dir . basename($datum);
+
+		// Copy it from tmp to destination directory
 		move_uploaded_file($_FILES["photo"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . $target_dir . $datum);
 
+		// Put the IMG path in the database
 		$profile->set($column, $target_file, $id);
 	}
+
+	// Unset all the jcrop values. They don't need to go in the database.
+	unset($_POST["jcrop-x"]);
+	unset($_POST["jcrop-y"]);
+	unset($_POST["jcrop-x2"]);
+	unset($_POST["jcrop-y2"]);
+	unset($_POST["jcrop-h"]);
+	unset($_POST["jcrop-w"]);
 
 	foreach ($_POST as $key => $value) {
 		if ( !empty($value) ) {

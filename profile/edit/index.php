@@ -224,7 +224,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<?php } else { ?> 
 			<h3>Change Photo</h3>
 		<?php } ?>
-		<input type="file" name="photo">
+		<input type="file" name="photo" id="photo-input">
 	</div>
 </div>
 
@@ -290,6 +290,7 @@ $foot .= <<<'JS'
 			aspectRatio: 1
 		});
 	});
+
 </script>
 JS;
 
