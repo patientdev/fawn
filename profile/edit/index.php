@@ -291,6 +291,14 @@ $foot .= <<<'JS'
 		});
 	});
 
+
+	$('#photo-input').change(function() {
+		$.post("/app/controller/photo-upload.controller.php", { 'photo': $(this).val() }, function(data) {
+			console.log(data);
+			$('#profile-photo img').attr('src', data);
+		})
+	})
+
 </script>
 JS;
 
