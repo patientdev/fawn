@@ -52,6 +52,7 @@ p {
 ";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
+
 <content>
 
 <h2>Meet Our Team</h2>
