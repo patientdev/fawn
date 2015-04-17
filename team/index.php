@@ -110,6 +110,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
+		
 		<img src="img/evie.jpg">
 	</div>
 
