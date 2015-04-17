@@ -20,7 +20,7 @@ body {
 
 header {
 	background-color: rgba(32, 121, 209, 1);
-	padding: 20px 40px;
+	padding: 20px 10%;
 }
 
 header:after {
@@ -31,7 +31,7 @@ header:after {
 }
 
 #logo {
-	width: 250px;
+	width: 200px;
 	float: left;
 }
 
@@ -39,8 +39,10 @@ h1 {
 	margin: 0;
 }
 
+h1 a { line-height: 1em; }
+
 h1 img {
-	width: 250px;
+	width: 200px;
 }
 
 #actions {

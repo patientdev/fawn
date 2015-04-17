@@ -3,10 +3,12 @@
 $styles = "
 
 h2 {
-	margin: 60px 0;
-	font-weight: 600;
+	margin: 20px 0 60px 0;
+	font-weight: bold;
+	text-transform: uppercase;
 	letter-spacing: 14px;
 	text-align: center;
+	font-size: 2em;
 }
 
 #team {
@@ -25,7 +27,6 @@ h2 {
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	border: 1px solid black;
 	margin: 0 auto 20px auto;
 }
 
@@ -46,6 +47,12 @@ h2 {
 	font-size: 0.9em;
 }
 
+.teammate-website a {
+	color: black;
+	font-size: 0.8em;
+	text-decoration: underline;
+}
+
 p {
 	width: 100%;
 }
@@ -53,7 +60,6 @@ p {
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 
-<content>
 
 <h2>Meet Our Team</h2>
 
@@ -68,6 +74,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div class="teammate-info">
 		<span class="teammate-name">Lydia Billings</span>
 		<span class="teammate-job">Team Leader</span>
+		<span class="teammate-website"><a href="http://lydiabillings.com">lydiabillings.com</a></span>
 	</div>
 
 </div>
@@ -75,12 +82,13 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/shane.jpg">
 	</div>
 
 	<div class="teammate-info">
 		<span class="teammate-name">Shane Cavanaugh</span>
 		<span class="teammate-job">Web Development</span>
+		<span class="teammate-website"><a href="http://shanecav.net">shanecav.net</a></span>
 	</div>
 
 </div>
@@ -94,6 +102,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div class="teammate-info">
 		<span class="teammate-name">Gayle Damiano</span>
 		<span class="teammate-job">Partner Outreach</span>
+		<span class="teammate-website"><a href="http://YourHappinessMatters.org">YourHappinessMatters.org</a></span>
 	</div>
 
 </div>
@@ -101,12 +110,13 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/evie.jpg">
 	</div>
 
 	<div class="teammate-info">
 		<span class="teammate-name">Evie Cheung</span>
 		<span class="teammate-job">Design</span>
+		<span class="teammate-website"><a href="http://www.eviecheung.com">www.eviecheung.com</a></span>
 	</div>
 
 </div>
@@ -133,12 +143,11 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	<div class="teammate-info">
 		<span class="teammate-name">Megan Jordan</span>
 		<span class="teammate-job">Admin Guru</span>
+		<span class="teammate-website"><a href="http://meghanjordan.com">meghanjordan.com</a></span>
 	</div>
 
 </div>
 
 </div>
-
-</content>
 
 <?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
