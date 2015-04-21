@@ -294,24 +294,20 @@ $foot .= <<<'JS'
 
 	$('#photo-input').change(function() {
 
-		// $.post('/app/controller/photo-upload.controller.php', { 'photo' : $(this).val() }, function(success) {
-		// 	console.log(success);
-		// })
-
-		$.ajax({
-			url: '/app/controller/photo-upload.controller.php',
-			type: 'POST',
-			data: { 'photo': $(this).val() },
-	        contentType: false,
-	        processData: false,
-			success: function(data) {
-						console.log("Success: " + data);
-						$('#profile-photo img').attr('src', data);
-			},
-			error: function(error) {
-				console.log("Error: " + error);
+		// Get photo object
+		photo = $(this)[0].files[0];
+		reader = new FileReader();
+		reader.onload = imageIsLoaded;
+		reader.readAsDataURL(photo);
+		function imageIsLoaded(e) {
+			if ( photo.size < 2000000 ) {
+				$('#profile-photo img').attr('src', e.target.result);
 			}
-		});
+			else { console.log("Photo too big"); }
+		}
+		var imagefile = photo.type;
+		var match= ["image/jpeg","image/png","image/jpg"];
+		if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
 	})
 
 </script>
