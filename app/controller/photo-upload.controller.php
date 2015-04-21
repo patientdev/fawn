@@ -9,9 +9,10 @@ if ( !isset($_SESSION) ) {
 	$profile = new Profile;
 
 	$id = $_SESSION["id"];
+
+	echo var_dump($_FILES);
 	
 	if ( !empty($_POST["photo"]) ) {
-
 
 		// Put into user's photo column
 		$column = "photo";
@@ -32,12 +33,10 @@ if ( !isset($_SESSION) ) {
 		$target_file = "/" . $target_dir . basename($datum);
 
 		// Copy it from tmp to destination directory
-		move_uploaded_file($_POST["photo"], $_SERVER["DOCUMENT_ROOT"] . $target_dir . $datum);
+		move_uploaded_file($_FILES["photo"], $_SERVER["DOCUMENT_ROOT"] . $target_dir . $datum);
 
 		// Put the IMG path in the database
 		$profile->set($column, $target_file, $id);
-
-		echo $target_file;
 	}
 	
 	if ( !empty($_POST["jcrop-x"]) ) {

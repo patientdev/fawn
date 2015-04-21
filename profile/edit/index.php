@@ -293,10 +293,25 @@ $foot .= <<<'JS'
 
 
 	$('#photo-input').change(function() {
-		$.post("/app/controller/photo-upload.controller.php", { 'photo': $(this).val() }, function(data) {
-			console.log(data);
-			$('#profile-photo img').attr('src', data);
-		})
+
+		// $.post('/app/controller/photo-upload.controller.php', { 'photo' : $(this).val() }, function(success) {
+		// 	console.log(success);
+		// })
+
+		$.ajax({
+			url: '/app/controller/photo-upload.controller.php',
+			type: 'POST',
+			data: { 'photo': $(this).val() },
+	        contentType: false,
+	        processData: false,
+			success: function(data) {
+						console.log("Success: " + data);
+						$('#profile-photo img').attr('src', data);
+			},
+			error: function(error) {
+				console.log("Error: " + error);
+			}
+		});
 	})
 
 </script>
