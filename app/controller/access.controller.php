@@ -8,7 +8,10 @@ if ( !isset($_SESSION) ) {
 // 	header("Location: /sign-in/");
 // }
 
-$id = $_SESSION["id"];
+
+if ( isset($_SESSION["id"]) ) {
+	$id = $_SESSION["id"];
+}
 
 if ( isset($_SESSION["id"]) && !empty($_SESSION["id"]) && $_SERVER["REQUEST_URI"] === "/sign-in/" )  {
 	header("Location: /profile/");

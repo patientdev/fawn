@@ -23,6 +23,10 @@ header {
 	padding: 20px 10%;
 }
 
+footer {
+	height: 200px;
+}
+
 header:after {
 	content: "";
 	display: block;
