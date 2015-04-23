@@ -37,13 +37,14 @@ if ( !empty($_POST) ) {
 		$datum = $_FILES["photo"]["name"];
 
 		// Put into this directory based on users ID #
-		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+		$target_dir = "/Users/shanecav/Sites/protected/avatars/" . $id . "/";
 
 		// Debug info
-		$_SESSION["status"] = $_FILES["photo"];
+		// $_SESSION["status"] = $_FILES["photo"];
 
 		// Create the target_dir if it doesn't exist
-		if ( !is_dir($target_dir) ) { mkdir($target_dir, 0777); }
+		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
+		$_SESSION["status"] = mkdir($target_dir);
 
 		// Name it 
 		$target_file = "/" . $target_dir . basename($datum);
@@ -85,12 +86,7 @@ if ( isset($_SESSION["id"]) ) {
 	$about = $profile->gimme("about", "id", $id);
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
-	$photo = function() {
-		$path = $profile->gimme("photo", "id", $id);
-
-		$mime = new finfo(FILEINFO_MIME, $path);
-		return $mime;
-	};
+	$photo = "/app/controller/avatar.controller.php?id=" . $id;
 
 	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: /profile/edit/"); }
 }

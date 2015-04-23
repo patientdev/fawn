@@ -301,7 +301,8 @@ $foot .= <<<'JS'
 		reader.readAsDataURL(photo);
 		function imageIsLoaded(e) {
 			if ( photo.size < 2000000 ) {
-				$('#profile-photo img').attr('src', e.target.result);
+				$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
+				$('.jcrop-holder').css({ 'height': '225px', 'width': '225px' });
 			}
 			else { console.log("Photo too big"); }
 		}
