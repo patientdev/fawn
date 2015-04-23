@@ -11,6 +11,7 @@ $avatar = $profile->gimme("photo", "id", $id);
 header("Content-type: image/jpeg");
 
 $image=imagecreatefromjpeg($avatar);
+
 imagejpeg($image);
 
 ?>
