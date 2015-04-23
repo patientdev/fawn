@@ -2,6 +2,13 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
+<<<<<<< HEAD
+=======
+if ( !isset($_SESSION) ) {
+	session_start();
+}
+
+>>>>>>> jcrop
 $styles = "
 
 h2 {

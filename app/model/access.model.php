@@ -10,8 +10,8 @@ class Gatekeeper {
 
 	public function checksOut($email, $password) {
 		$password = password_hash($password, PASSWORD_DEFAULT);
-		$stmt = $this->con->prepare("SELECT email FROM artists WHERE email = '$email' AND password = '$password' LIMIT 1");
-		$stmt->execute();
+		$stmt = $this->con->prepare("SELECT email FROM artists WHERE email = :email AND password = :password LIMIT 1");
+		$stmt->execute(array("email" => $email, "password" => $password));
 		$result = $stmt->fetch();
 
 		if ( $result["email"] === $email) {

@@ -12,10 +12,10 @@ class Profile {
 	// Gimme the info about the user that I ask for
 
 		$sql = "SELECT $datum
-				FROM `artists` 
-				WHERE $column = '$id' LIMIT 1";
+				FROM artists 
+				WHERE $column = :id LIMIT 1";
 		$stmt = $this->con->prepare($sql);
-		$stmt->execute();
+		$stmt->execute(array("id" => $id));
 		$result = $stmt->fetchColumn();
 		return $result;
 	}
@@ -30,9 +30,7 @@ class Profile {
 				WHERE 
 					id = :id";
 		$stmt = $this->con->prepare($sql);
-		$stmt->bindValue(':datum', $datum, PDO::PARAM_STR);
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();		
+		$stmt->execute(array("datum" => $datum, "id" => $id));
 	}
 }
 
