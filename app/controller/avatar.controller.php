@@ -6,11 +6,31 @@ $profile = new Profile();
 
 $id = $_GET["id"];
 
-$avatar = $profile->gimme("photo", "id", $id);
+$md5filename = $profile->gimme("photo", "id", $id);
 
-header("Content-type: image/jpeg");
+// Get the file extension
+$extension = end((explode(".", $md5filename)));
 
-$image=imagecreatefromjpeg($avatar);
-imagejpeg($image);
+$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $md5filename;
+
+
+if ( $extension == "jpg" || $extension == "jpeg" ) {
+	header("Content-type: image/jpeg");
+	$image=imagecreatefromjpeg($avatar);
+	imagejpeg($image);
+}
+
+else if ( $extension == "png" ) {
+	header("Content-type: image/png");
+	$image=imagecreatefrompng($avatar);
+	imagepng($image);
+}
+
+else if ( $extension == "gif" ) {
+	header("Content-type: image/gif");
+	$image=imagecreatefromgif($avatar);
+	imagegif($image);
+}
+
 
 ?>

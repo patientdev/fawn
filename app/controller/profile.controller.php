@@ -28,32 +28,40 @@ if ( !empty($_POST) ) {
 		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/photo-upload.controller.php";
 	}
 
+
 	if ( !empty($_FILES) ) {
 
 		// Put into user's photo column
 		$column = "photo";
 
 		// Get the filename
-		$datum = $_FILES["photo"]["name"];
+		$filename = $_FILES["photo"]["name"];
+
+		// Get the extension
+		$extension = "." . end((explode(".", $filename)));
+
+		// Garble the filename
+		$md5filename = md5($datum) . $extension;
+
+		$_SESSION["extension"] = $md5filename;
 
 		// Put into this directory based on users ID #
-		$target_dir = "/Users/shanecav/Sites/protected/avatars/" . $id . "/";
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
 
 		// Debug info
 		// $_SESSION["status"] = $_FILES["photo"];
 
 		// Create the target_dir if it doesn't exist
 		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
-		$_SESSION["status"] = mkdir($target_dir);
 
 		// Name it 
-		$target_file = "/" . $target_dir . basename($datum);
+		$target_file = "/" . $target_dir . $md5filename;
 
 		// Copy it from tmp to destination directory
-		move_uploaded_file($_FILES["photo"]["tmp_name"], $target_dir . $datum);
+		move_uploaded_file($_FILES["photo"]["tmp_name"], $target_dir . $md5filename);
 
 		// Put the IMG path in the database
-		$profile->set($column, $target_file, $id);
+		$profile->set($column, $md5filename, $id);
 	}
 
 	// Unset all the jcrop values. They don't need to go in the database.
