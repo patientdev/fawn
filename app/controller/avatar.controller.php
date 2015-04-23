@@ -1,5 +1,6 @@
 <?php 
-
+error_reporting(-1);
+ini_set('display_errors', 'On');
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
 $profile = new Profile();
@@ -12,7 +13,6 @@ $md5filename = $profile->gimme("photo", "id", $id);
 $extension = end((explode(".", $md5filename)));
 
 $avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $md5filename;
-
 
 if ( $extension == "jpg" || $extension == "jpeg" ) {
 	header("Content-type: image/jpeg");
