@@ -16,20 +16,16 @@ $avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $md5
 
 if ( $extension == "jpg" || $extension == "jpeg" ) {
 	header("Content-type: image/jpeg");
-	$image=imagecreatefromjpeg($avatar);
-	imagejpeg($image);
 }
 
 else if ( $extension == "png" ) {
 	header("Content-type: image/png");
-	$image=imagecreatefrompng($avatar);
-	imagepng($image);
 }
 
 else if ( $extension == "gif" ) {
 	header("Content-type: image/gif");
-	$image=imagecreatefromgif($avatar);
-	imagegif($image);
 }
+
+readfile($avatar);
 
 ?>
