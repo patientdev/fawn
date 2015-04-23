@@ -14,7 +14,6 @@ $extension = end((explode(".", $md5filename)));
 
 $avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $md5filename;
 
-
 if ( $extension == "jpg" || $extension == "jpeg" ) {
 	header("Content-type: image/jpeg");
 	$image=imagecreatefromjpeg($avatar);
@@ -32,6 +31,5 @@ else if ( $extension == "gif" ) {
 	$image=imagecreatefromgif($avatar);
 	imagegif($image);
 }
-
 
 ?>
