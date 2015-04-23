@@ -49,10 +49,9 @@ h2 {
 	font-size: 0.9em;
 }
 
-.teammate-website a {
+.teammate-name a {
 	color: black;
-	font-size: 0.8em;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 p {
@@ -74,9 +73,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Lydia Billings</span>
+		<span class="teammate-name"><a href="http://lydiabillings.com" target="_blank" alt="lydiabillings.com">Lydia Billings</a></span>
 		<span class="teammate-job">Team Leader</span>
-		<span class="teammate-website"><a href="http://lydiabillings.com">lydiabillings.com</a></span>
 	</div>
 
 </div>
@@ -88,9 +86,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Shane Cavanaugh</span>
+		<span class="teammate-name"><a href="http://shanecav.net" target="_blank" alt="shanecav.net">Shane Cavanaugh</a></span>
 		<span class="teammate-job">Web Development</span>
-		<span class="teammate-website"><a href="http://shanecav.net">shanecav.net</a></span>
 	</div>
 
 </div>
@@ -102,9 +99,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Gayle Damiano</span>
+		<span class="teammate-name"><a href="http://YourHappinessMatters.org" target="_blank" alt="YourHappinessMatters.org">Gayle Damiano</a></span>
 		<span class="teammate-job">Partner Outreach</span>
-		<span class="teammate-website"><a href="http://YourHappinessMatters.org">YourHappinessMatters.org</a></span>
 	</div>
 
 </div>
@@ -116,9 +112,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Evie Cheung</span>
+		<span class="teammate-name"><a href="http://www.eviecheung.com" target="_blank" alt="www.eviecheung.com">Evie Cheung</a></span>
 		<span class="teammate-job">Design</span>
-		<span class="teammate-website"><a href="http://www.eviecheung.com">www.eviecheung.com</a></span>
 	</div>
 
 </div>
@@ -143,9 +138,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Megan Jordan</span>
+		<span class="teammate-name"><a href="http://meghanjordan.com">Megan Jordan</a></span>
 		<span class="teammate-job">Admin Guru</span>
-		<span class="teammate-website"><a href="http://meghanjordan.com">meghanjordan.com</a></span>
 	</div>
 
 </div>
