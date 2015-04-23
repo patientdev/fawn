@@ -28,7 +28,7 @@ if ( !empty($_POST) ) {
 		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/photo-upload.controller.php";
 	}
 
-
+	// Photo upload
 	if ( !empty($_FILES) ) {
 
 		// Put into user's photo column
@@ -48,11 +48,15 @@ if ( !empty($_POST) ) {
 		// Put into this directory based on users ID #
 		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
 
-		// Debug info
-		// $_SESSION["status"] = $_FILES["photo"];
-
 		// Create the target_dir if it doesn't exist
 		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
+
+		// Delete whatevers int there
+		$files = glob($_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/*"); // get all file names
+		foreach($files as $file){ // iterate files
+		  if(is_file($file))
+		    unlink($file); // delete file
+		}
 
 		// Name it 
 		$target_file = "/" . $target_dir . $md5filename;
