@@ -20,6 +20,45 @@ header {
 	color: white;
 }
 
+#search {
+	text-align: center;
+	margin-top: 120px;
+	padding: 50px 0;
+	background-color: rgba(255, 255, 255, 0.15);
+	border-top: 2px solid rgba(0, 0, 0, 0.5);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+	overflow: visible;
+	white-space: nowrap;
+}
+
+#search h3 {
+	letter-spacing: 9px;
+	font-size: 1.8em;
+	margin-top: 0; margin-bottom: 40px;
+}
+
+#search select {
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	height: 50px;
+	background-color: white;
+	font-size: 1.1em;
+	font-style: italic;
+	letter-spacing: 4px;
+	background-color: rgba(240, 240, 240, 1);
+	font-weight: 200;
+}
+
+#search p {
+	display: inline-block;
+	margin: 0 30px;
+	font-size: 1.4em;
+	font-style: italic;
+	letter-spacing: 4px;
+	line-height: 1.3em;
+}
+
 #who-we-are {
 	background-color: white;
 }
