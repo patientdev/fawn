@@ -1,7 +1,20 @@
 <?php 
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
+
+$profile = new Profile();
+
+$forger = intval($_GET["forger"]);
+
+$username = $profile->gimme("name", "id", $forger);
+$userlocation = $profile->gimme("location", "id", $forger);
+$userwebsite = $profile->gimme("website", "id", $forger);
+$useroccupation = $profile->gimme("occupation", "id", $forger);
+$userabout = $profile->gimme("about", "id", $forger);
+$usersummary = $profile->gimme("summary", "id", $forger);
+$usercurrentprojects = $profile->gimme("currentprojects", "id", $forger);
+$userphoto = "/app/controller/avatar.controller.php?id=" . $forger;
 
 $styles = "
 
@@ -145,44 +158,44 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="profile">
 
 	<?php 
-	if ( $id == intval(basename($_SERVER['REQUEST_URI'])) ) { ?>
+	if ( $forger == intval(basename($_SERVER['REQUEST_URI'])) ) { ?>
 		<div id="profile-edit">
 			&#x270e; <button type="button" id="edit">Edit Your Profile</button>
 		</div>
 	<?php } ?>
 
 	<div id="profile-photo">
-		<?php if(!empty($photo)) { ?>
-			<h3><?php echo "<img src=\"" . $photo . "\">"; ?></h3>
+		<?php if(!empty($userphoto)) { ?>
+			<h3><?php echo "<img src=\"" . $userphoto . "\">"; ?></h3>
 		<?php } else { ?>
 			<?php } ?>
 	</div>
 
 	<div id="info">
 			<div id="profile-name">
-				<?php if(!empty($name)) { ?>
-					<h2 class="saved"><?php echo $name ?></h2>
+				<?php if(!empty($username)) { ?>
+					<h2 class="saved"><?php echo $username ?></h2>
 				<?php } else { ?>
 				<?php } ?>
 			</div>
 
 			<div id="profile-occupation">
-				<?php if(!empty($occupation)) { ?>
-					<h3 class="saved"><?php echo $occupation ?></h3>
+				<?php if(!empty($useroccupation)) { ?>
+					<h3 class="saved"><?php echo $useroccupation ?></h3>
 				<?php } else { ?>
 				<?php } ?>
 			</div>
 
 			<div id="profile-location">
-				<?php if(!empty($location)) { ?>
-					<h3 class="saved"><?php echo $location ?></h3>
+				<?php if(!empty($userlocation)) { ?>
+					<h3 class="saved"><?php echo $userlocation ?></h3>
 				<?php } else { ?>
 				<?php } ?>
 			</div>
 
 			<div id="profile-website">
-				<?php if(!empty($website)) { ?>
-					<h3><a href="http://<?php echo $website ?>" target="_blank"><?php echo $website ?></a></h3>
+				<?php if(!empty($userwebsite)) { ?>
+					<h3><a href="http://<?php echo $userwebsite ?>" target="_blank"><?php echo $userwebsite ?></a></h3>
 				<?php } ?>
 			</div>
 		</div>
@@ -190,24 +203,24 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<div style="clear: both;"></div>
 
 		<div id="profile-summary">
-			<?php if(!empty($summary)) { ?>
-				<div><?php echo $summary; ?></div>
+			<?php if(!empty($usersummary)) { ?>
+				<div><?php echo $usersummary; ?></div>
 			<?php } else { ?>
 			<?php } ?>
 		</div>
 
 		<div id="profile-about">
-			<?php if(!empty($about)) { ?>
+			<?php if(!empty($userabout)) { ?>
 				<h3 class="saved">About</h3>
-				<div class="saved"><?php echo $about; ?></div>
+				<div class="saved"><?php echo $userabout; ?></div>
 			<?php } else { ?>
 			<?php } ?>
 		</div>
 
 		<div id="profile-currentprojects">
-			<?php if(!empty($currentprojects)) { ?>
+			<?php if(!empty($usercurrentprojects)) { ?>
 				<h3 class="saved">Current Projects</h3>
-				<div class="saved"><?php echo $currentprojects ?></div>
+				<div class="saved"><?php echo $usercurrentprojects ?></div>
 			<?php } else { ?>
 			<?php } ?>
 		</div>
