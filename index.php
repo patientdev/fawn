@@ -89,6 +89,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li class="option">Photographer</li>
 					<li class="option">Musician</li>
 					<li class="option">Graphic Designer</li>
+					<li class="option">Web developer</li>
 				</ul>
 			</div>
 
