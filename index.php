@@ -29,10 +29,13 @@ header {
 }
 
 #search {
+	position: absolute;
+	top: 50%;
+	width: 100%;
 	text-align: center;
 	margin-top: 120px;
 	padding: 50px 0;
-	background-color: rgba(255, 255, 255, 0.15);
+	background-color: rgba(255, 255, 255, 0.35);
 	border-top: 2px solid rgba(0, 0, 0, 0.5);
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 	overflow: visible;

@@ -6,7 +6,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php"
 $styles = "
 
 #profile {
-	width: 60%; min-width: 715px;
+	width: 60%; min-width: 960px;
 	margin: auto;
 	position: relative;
 	overflow: visible;

@@ -144,6 +144,14 @@ $styles = <<< CSS
 	background-image: url('empty.gif');
 }
 
+.result img {
+	-webkit-transition: -webkit-transform .4s ease-out;
+}
+
+.result:hover img {
+	-webkit-transform: scale(1.2);
+}
+
 .photo {
 	width: 150px;
 	height: 150px;
