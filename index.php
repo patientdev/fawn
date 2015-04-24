@@ -2,7 +2,7 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
-$styles = "
+$styles = <<<CSS
 body {
 	background-image: url(/img/header-background.jpg);
 	background-size: 110%;
@@ -16,8 +16,16 @@ header {
 	background-color: transparent;
 }
 
+#content {
+	padding-top: 0;
+	top: 0;
+}
+
 #intro {
+	height: 100vh;
 	color: white;
+	position: relative;
+	padding-top: 150px;
 }
 
 #search {
@@ -58,6 +66,62 @@ header {
 	letter-spacing: 4px;
 	line-height: 1.3em;
 }
+.drop-down {
+	background-color: white;
+	display: inline-block;
+	position: relative;
+}
+
+.drop-down:hover {
+	cursor: pointer;
+}
+
+.drop-down h5 {
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 1);
+	padding: 14px 0 13px 15px;
+	color: black;
+	font-size: 1.4em;
+	font-weight: 300;
+	font-style: italic;
+	letter-spacing: 8px;
+	margin: 0;
+}
+
+.drop-down h5:after {
+	content: "\\25BE";
+	font-style: normal;
+	padding: 10px 15px 10px 22px;
+	margin-left: 10px;
+	background-color: rgba(235, 235, 235, 1);
+	color: rgba(137, 137, 137, 1);
+}
+
+.drop-down ul {
+	display: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border-top: 2px solid rgba(235, 235, 235, 1);
+	position: absolute;
+	width: 100%;
+}
+
+.drop-down li {
+	font-style: normal;
+	padding: 15px 15px 15px 22px;
+	background-color: rgba(255, 255, 255, 1);
+	color: black;
+	text-align: left;
+	font-size: 1.2em;
+	line-height: 1.4em;
+	border-bottom: 2px solid rgba(235, 235, 235, 1);
+}
+
+.drop-down li:hover {
+	background-color: rgba(125, 164, 221, 1);
+	color: white;
+}
 
 #who-we-are {
 	background-color: white;
@@ -90,7 +154,6 @@ header {
 
 #headline {
 	text-align: center;
-	margin-top: 150px;
 }
 
 #headline h2 {
@@ -108,7 +171,11 @@ header {
 	letter-spacing: 5px;
 }
 
-";
+footer {
+	display: none;
+}
+
+CSS;
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="intro">
@@ -154,43 +221,36 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				</ul>
 			</div>
 		</div>
-
-		<!-- <div class="drop-down">
-			<h5>Cause</h5>
-		</div>
-		<div class="drop-down">
-			<h5>Location</h5>
-		</div> -->
 	</div>
 
 </div>
 
-<div id="content">
+<div id="about">
 
-<div id="who-we-are">
+	<div id="who-we-are">
 
-	<h3>Who We Are</h3>
-	<h4>Forger: A Worldwide Network (FAWN)</h4>
+		<h3>Who We Are</h3>
+		<h4>Forger: A Worldwide Network (FAWN)</h4>
 
-	<p>A united team of passionate individuals using creativity and artistic expression to propel humanity forward, and to empower others to make THE difference they want to make!</p>
+		<p>A united team of passionate individuals using creativity and artistic expression to propel humanity forward, and to empower others to make THE difference they want to make!</p>
 
-	<p class="call-to-action"><a href="/team/">Meet Our Team</a></p>
+		<p class="call-to-action"><a href="/team/">Meet Our Team</a></p>
 
-</div>
+	</div>
 
-<div id="what-were-up-to">
+	<div id="what-were-up-to">
 
-	<h3>What We&rsquo;re Up To</h3>
+		<h3>What We&rsquo;re Up To</h3>
 
-	<p>We&rsquo;ve created Forger: A Worldwide Network (FAWN) as a space for artists and social activists around the world to connect and collaborate &mdash; via a simple web&ndash;based platform.</p>
+		<p>We&rsquo;ve created Forger: A Worldwide Network (FAWN) as a space for artists and social activists around the world to connect and collaborate &mdash; via a simple web&ndash;based platform.</p>
 
-	<p>FAWN is a network for communication and collaboration among individuals, as well as businesses and organizations to accomplish their missions through impactful artistic statements.</p>
+		<p>FAWN is a network for communication and collaboration among individuals, as well as businesses and organizations to accomplish their missions through impactful artistic statements.</p>
 
-	<p>At FAWN, we&rsquo;re creating opportunities to build community, both online and offline, that will foster inspiration, beginnings, partnerships, and more!</p>
+		<p>At FAWN, we&rsquo;re creating opportunities to build community, both online and offline, that will foster inspiration, beginnings, partnerships, and more!</p>
 
-	<p class="call-to-action"><a href="/join-us/">Join Our Network</a></p>
+		<p class="call-to-action"><a href="/join-us/">Join Our Network</a></p>
 
-</div>
+	</div>
 
 </div>
 
