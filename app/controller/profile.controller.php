@@ -56,6 +56,10 @@ if ( !empty($_POST) ) {
 
 	foreach ($_POST as $key => $value) {
 		if ( !empty($value) && $key != "photo" ) {
+
+			// Remove "http://" from website value
+			if ( $key == "website" ) { $value = str_replace("http://", "", $value); }
+
 			$column = $key;
 			$datum = $value;
 			$profile->set($column, $datum, $id);

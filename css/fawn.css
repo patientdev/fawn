@@ -27,6 +27,12 @@ header {
 	z-index: 1;
 }
 
+#actions img {
+	width: 50px;
+	vertical-align: middle;
+	border-radius: 50%;
+}
+
 footer {
 	height: 200px;
 }
