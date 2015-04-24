@@ -10,7 +10,7 @@ if ( !isset($_SESSION) ) {
 	session_start();
 }
 
-if ( !empty($_POST) ) {
+if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	
 	$id = $_SESSION["id"];
 
