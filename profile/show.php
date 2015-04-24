@@ -144,7 +144,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile">
 
-	<?php if ( $id == intval(basename($_SERVER['REQUEST_URI'])) ) { ?>
+	<?php 
+	if ( $id == intval(basename($_SERVER['REQUEST_URI'])) ) { ?>
 		<div id="profile-edit">
 			&#x270e; <button type="button" id="edit">Edit Your Profile</button>
 		</div>
