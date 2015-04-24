@@ -43,8 +43,6 @@ if ( !empty($_POST) ) {
 		// Garble the filename
 		$md5filename = md5($datum) . $extension;
 
-		$_SESSION["extension"] = $md5filename;
-
 		// Put into this directory based on users ID #
 		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
 
@@ -66,6 +64,52 @@ if ( !empty($_POST) ) {
 
 		// Put the IMG path in the database
 		$profile->set($column, $md5filename, $id);
+	}
+
+	if ( !empty($_POST["jcrop-x"]) ) {
+		$x = $_POST["jcrop-x"];
+		$y = $_POST["jcrop-y"];
+		$x2 = $_POST["jcrop-x2"];
+		$y2 = $_POST["jcrop-y2"];
+		$h = $_POST["jcrop-h"];
+		$w = $_POST["jcrop-w"];
+
+		$targ_w = $targ_h = 250;
+
+		$src = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" > $id . "/" . $profile->gimme("photo", "id", $id);
+
+		$extension = ((end(explode(".", $src))));
+		$uncroppedImage;
+
+		if ( $extension == "jpg" || $extension == "jpeg" ) {
+			$uncroppedImage = imagecreatefromjpeg($src);
+		}
+
+		else if ( $extension == "png" ) {
+			$uncroppedImage = imagecreatefrompng($src);
+		}
+
+		else if ( $extension == "gif" ) {
+			$uncroppedImage = imagecreatefromgif($src);
+		}
+
+		$croppedImage = ImageCreateTrueColor( $targ_w, $targ_h );
+		imagecopyresampled($croppedImage, $uncroppedImage, 0, 0, $x, $y, $targ_w, $targ_h, $w, $h);
+
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+
+		if ( $extension == "jpg" || $extension == "jpeg" ) {
+			imagejpeg($croppedImage, $src, 0);
+		}
+
+		else if ( $extension == "png" ) {
+			imagepng($croppedImage, $src, 0);
+		}
+
+		else if ( $extension == "gif" ) {
+			imagejpeg($croppedImage, $src, 0);
+		}
+
 	}
 
 	// Unset all the jcrop values. They don't need to go in the database.
