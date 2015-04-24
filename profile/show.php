@@ -5,7 +5,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php"
 
 $styles = "
 
-##profile {
+#profile {
 	width: 60%; min-width: 715px;
 	margin: auto;
 	position: relative;
@@ -144,6 +144,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile">
 
+	<?php if ( $id == intval(basename($_SERVER['REQUEST_URI'])) ) { ?>
+		<div id="profile-edit">
+			&#x270e; <button type="button" id="edit">Edit Your Profile</button>
+		</div>
+	<?php } ?>
+
 	<div id="profile-photo">
 		<?php if(!empty($photo)) { ?>
 			<h3><?php echo "<img src=\"" . $photo . "\">"; ?></h3>
@@ -175,8 +181,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 			<div id="profile-website">
 				<?php if(!empty($website)) { ?>
-					<h3 class="saved"><?php echo $website ?></h3>
-				<?php } else { ?>
+					<h3><a href="http://<?php echo $website ?>" target="_blank"><?php echo $website ?></a></h3>
 				<?php } ?>
 			</div>
 		</div>
