@@ -20,6 +20,9 @@ foreach ( $results as $key => $id ) {
 	$summary = $profile->gimme("summary", "id", $id);
 
 	$result = "<div class=\"result\">";
+
+	// Profile URL
+	$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
 		
 		//Photo
 		$result .= "<div class=\"photo\">";

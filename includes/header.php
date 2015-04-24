@@ -7,7 +7,7 @@
 		<title>Forger: A Worldwide Network</title>
         <meta name="description" content="Elevating Creativity That Makes A Difference">
 
-		<link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/fawn.css" media="screen">
 
 		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
