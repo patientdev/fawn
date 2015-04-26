@@ -34,7 +34,44 @@ header {
 }
 
 footer {
-	height: 200px;
+	background-color: white;
+	position: relative;
+	top: 105px;
+	padding: 30px 40px;
+	width: 100%;
+}
+
+footer:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#contact {
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 3px;
+	display: inline-block;
+	float: left;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+#contact a {
+	color: #444;
+	text-decoration: none;
+	margin-right: 40px;
+}
+
+#social {
+	display: inline-block;
+	float: right;
+}
+
+#social img {
+	vertical-align: bottom;
+	width: 30px;
+	margin-left: 15px;
 }
 
 header:after {
@@ -70,7 +107,6 @@ h1 img {
 	font-size: 1.2em;
 	padding: 10px 20px;
 	color: white;
-	border: none;
 	font-family: Raleway;
 	text-transform: uppercase;
 	text-decoration: none;

@@ -16,6 +16,11 @@ header {
 	background-color: transparent;
 }
 
+#join-us-button {
+	border: 4px solid rgba(125, 164, 221, 1);
+	background-color: transparent;
+}
+
 #content {
 	padding-top: 0;
 	top: 0;
@@ -175,7 +180,7 @@ header {
 }
 
 footer {
-	display: none;
+	top: 0;
 }
 
 CSS;
@@ -254,6 +259,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<p class="call-to-action"><a href="/join-us/">Join Our Network</a></p>
 
 	</div>
+
+</div>
 
 </div>
 
