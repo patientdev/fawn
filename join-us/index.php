@@ -13,6 +13,14 @@ form {
 	margin: 40px auto;
 }
 
+form div {
+  font-size: 1.4em;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
 input[type=\"email\"], input[type=\"password\"] {
 	background-color: rgba(235, 232, 232, 1);
 	padding: 20px;
@@ -121,15 +129,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
     }
   }
 
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '1560529120863841',
@@ -171,12 +170,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
+<button type="button" id="facebook-login">Sign Up with Facebook</button>
+<div>Or with your email:</div>
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
 
 <button type="submit" id="join-us-submit">Submit</button>
-<button type="button" id="facebook-login">Sign Up with Facebook</button>
 </form>
 
 </div>
@@ -198,7 +198,6 @@ $('#join-us-submit').click(function(e) {
 $('#facebook-login').click(function(e) {
   e.preventDefault();
   FB.login(function(response){
-    if ( response['status'] === )
   });
 })
 
