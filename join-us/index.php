@@ -57,7 +57,7 @@ input:focus {
 	font-family: Raleway;
 }
 
-#sign-up button {
+#sign-up button, #facebook-login {
 	background-color: rgba(125, 164, 221, 1);
 	font-weight: 500;
 	letter-spacing: 8px;
@@ -71,6 +71,15 @@ input:focus {
 	text-decoration: none;
 	width: 100%;
 	margin-bottom: 20px;
+}
+
+button#facebook-login {
+  background-color: #3b5998;
+  background-color: rgba(59, 89, 152, 1);
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 ";
@@ -166,10 +175,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <input type="password" id="password" name="password" placeholder="Password">
 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
 
-<button>Submit</button>
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<button type="submit" id="join-us-submit">Submit</button>
+<button type="button" id="facebook-login">Sign Up with Facebook</button>
 </form>
 
 </div>
@@ -179,13 +186,20 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 $foot = <<<'DOC'
 <script>
 
-$('#sign-up button').click(function(e) {
-	e.preventDefault();
-	if ($('#password').val() !== $('#confirm-password').val() ) {
-		$('#content').append('<p>Whoops! Please retry confirming your password.</p>');
-	}
+$('#join-us-submit').click(function(e) {
+  e.preventDefault();
+  if ($('#password').val() !== $('#confirm-password').val() ) {
+    $('#content').append('<p>Whoops! Please retry confirming your password.</p>');
+  }
 
-	else $('#sign-up').submit();
+  else $('#sign-up').submit();
+})
+
+$('#facebook-login').click(function(e) {
+  e.preventDefault();
+  FB.login(function(response){
+    if ( response['status'] === )
+  });
 })
 
 
