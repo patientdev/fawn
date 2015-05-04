@@ -197,13 +197,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo $photo; ?></h3>
+		<p><?php echo $photo; ?></p>
 	<?php } ?>
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
-			<h3>Update Photo</h3>
+			<button>Update Photo</button>
 		<?php } else { ?> 
-			<h3>Change Photo</h3>
+			<button>Change Photo</button>
 		<?php } ?>
 		<input type="file" name="photo" id="photo-input">
 	</div>
@@ -258,24 +258,30 @@ $foot .= <<<'JS'
 <script>
 	$(function() {
 
-	$('#photo-input').change(function() {
+		$('#photo-input').change(function() {
 
-		// Get photo object
-		photo = $(this)[0].files[0];
-		reader = new FileReader();
-		reader.onload = imageIsLoaded;
-		reader.readAsDataURL(photo);
-		function imageIsLoaded(e) {
-			if ( photo.size < 2000000 ) {
-				$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
-				$('.jcrop-holder').css({ 'height': '225px', 'width': '225px' });
+			// Get photo object
+			photo = $(this)[0].files[0];
+			reader = new FileReader();
+			reader.onload = imageIsLoaded;
+			reader.readAsDataURL(photo);
+			function imageIsLoaded(e) {
+				if ( photo.size < 2000000 ) {
+					if ( $('#profile-photo img').length > 0 ) {
+						$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
+					}
+					else {
+						$('#profile-photo').prepend('<p><img src="' + e.target.result + '"></p>');
+						$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
+					}
+				}
+				else { console.log("Photo too big"); }
 			}
-			else { console.log("Photo too big"); }
-		}
-		var imagefile = photo.type;
-		var match= ["image/jpeg","image/png","image/jpg"];
-		if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
-	})
+			var imagefile = photo.type;
+			var match= ["image/jpeg","image/png","image/jpg"];
+			if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
+		})
+	});
 
 </script>
 JS;
