@@ -47,7 +47,8 @@ $styles = "
 }
 
 #profile-photo img {
-	width: 225px;
+	max-width: 225px;
+	max-height: 225px;
 }
 
 #profile-photo input {
@@ -197,18 +198,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo "<img src=\"" . $photo . "\" id=\"jcrop\">"; ?></h3>
-		<input type="hidden" name="jcrop-x" id="jcrop-x">
+		<h3><?php echo $photo; ?></h3>
+	<?php } ?>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
-		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
-		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
+		<input type="hidden" name="jcrop-x" id="jcrop-x">
+		<input type="hidden" name="jcrop-x2" id="jcrop-y2">
+		<input type="hidden" name="jcrop-y2" id="jcrop-x2">
 		<input type="hidden" name="jcrop-w" id="jcrop-w">
 		<input type="hidden" name="jcrop-h" id="jcrop-h">
-
-	<?php } ?>
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
-			<h3>Change Photo</h3>
+			<h3>Update Photo</h3>
 		<?php } else { ?> 
 			<h3>Change Photo</h3>
 		<?php } ?>
@@ -264,6 +264,7 @@ $foot .= <<<'JS'
 
 <script>
 	$(function() {
+
 		function giveCoords(c) {
 			$('#jcrop-y').val(c.y);
 			$('#jcrop-x').val(c.x);
@@ -273,31 +274,36 @@ $foot .= <<<'JS'
 			$('#jcrop-h').val(c.h);
 		}
 
-		$('#jcrop').Jcrop({
-			onChange: giveCoords,
-			aspectRatio: 1
-		});
-	});
+		$('#photo-input').change(function() {
 
+			// Get photo object
+			photo = $(this)[0].files[0];
+			reader = new FileReader();
+			reader.onload = imageIsLoaded;
+			reader.readAsDataURL(photo);
+			function imageIsLoaded(e) {
+				if ( photo.size < 2000000 ) {
+					if ( $('#profile-photo img').length > 0 ) {
+						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+					}
+					else {
+						$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
+						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+					}
 
-	$('#photo-input').change(function() {
-
-		// Get photo object
-		photo = $(this)[0].files[0];
-		reader = new FileReader();
-		reader.onload = imageIsLoaded;
-		reader.readAsDataURL(photo);
-		function imageIsLoaded(e) {
-			if ( photo.size < 2000000 ) {
-				$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
-				$('.jcrop-holder').css({ 'height': '225px', 'width': '225px' });
+					$('#profile-photo img').Jcrop({
+						'onChange': giveCoords,
+						'aspectRatio': 1,
+						'setSelect': [0,0,255,255]
+					});
+				}
+				else { console.log("Photo too big"); }
 			}
-			else { console.log("Photo too big"); }
-		}
-		var imagefile = photo.type;
-		var match= ["image/jpeg","image/png","image/jpg"];
-		if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
-	})
+			var imagefile = photo.type;
+			var match= ["image/jpeg","image/png","image/jpg"];
+			if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
+		})
+	});
 
 </script>
 JS;

@@ -34,10 +34,7 @@ $styles = "
 }
 
 #profile-photo {
-	width: 225px;
-	height: 225px;
 	background-color: transparent;
-	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
 	float: left;
@@ -45,7 +42,8 @@ $styles = "
 }
 
 #profile-photo img {
-	width: 225px;
+	max-width: 225px;
+	max-height: 225px;
 	border-radius: 50%;
 }
 
@@ -151,9 +149,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 </div>
 
 <div id="profile-photo">
-		<?php if(!empty($photo)) { ?>
-		<h3><?php echo "<img src=\"" . $photo . "\">"; ?></h3>
-		<?php } ?>
+		<?php echo $photo; ?>
 </div>
 <div id="info">
 	<div id="profile-name">

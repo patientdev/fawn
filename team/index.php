@@ -121,11 +121,11 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div class="teammate">
 
 	<div class="teammate-image">
-
+		<img src="img/sari.jpg">
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name">Samantha Addeo</span>
+		<span class="teammate-name"><a href="" target="_blank" alt="">Sari Murphy</a></span>
 		<span class="teammate-job">Partner Outreach</span>
 	</div>
 
