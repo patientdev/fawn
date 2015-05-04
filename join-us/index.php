@@ -116,7 +116,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+     // logIn();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -158,15 +158,16 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
+  function logIn() {
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      $.post("/app/controller/sign-in.controller.php", { facebook: 'true', response: response }, function( success ) {
+        console.log(success);
+      });
     });
   }
 </script>
+
+<div id="status"></div>
 
 <form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
@@ -198,6 +199,13 @@ $('#join-us-submit').click(function(e) {
 $('#facebook-login').click(function(e) {
   e.preventDefault();
   FB.login(function(response){
+    if ( response.status == 'connected') {
+      FB.api('/me?fields=id,name,email,picture', function(user) {
+        $.post('/app/controller/sign-up.controller.php', { facebook: 'true', user: user }, function(success) {
+        window.location.replace('/profile/edit/');
+      } );
+      })
+    }
   });
 })
 
