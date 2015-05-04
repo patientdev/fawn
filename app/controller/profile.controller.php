@@ -80,7 +80,7 @@ if ( isset($_SESSION["id"]) ) {
 	$about = $profile->gimme("about", "id", $id);
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
-	$photo = "/app/controller/avatar.controller.php?id=" . $id;
+	$photo = ( !empty($profile->gimme("photo", "id", $id)) ) ? "<img src=\"/app/controller/avatar.controller.php?id=" . $id . "\"" : "";
 
 	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: /profile/edit/"); }
 }

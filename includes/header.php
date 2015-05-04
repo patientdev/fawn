@@ -30,7 +30,7 @@
 			<?php if ( isset($_SESSION["id"]) ) { 
 				include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php"; ?>
 				<a href="/profile/signout" id="sign-in-button">Sign&ndash;Out</a>
-				<a href="/profile" id="sign-in-button">Profile <img src="<?php echo $photo; ?>"></a>
+				<a href="/profile" id="sign-in-button">Profile <?php echo $photo; ?></a>
 			<?php } else { ?>
 				<a href="/sign-in" id="sign-in-button">Sign In</a>
 				<a href="/join-us" id="join-us-button">Join Us</a>
