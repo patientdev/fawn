@@ -46,6 +46,28 @@ class Avatar {
 	public function resize() {}
 	public function save() {}
 	public function crop() {}
+	public function show($id) {
+		$photo = $profile->gimme("photo", "id", $id);
+
+		// Get the file extension
+		$extension = end((explode(".", $photo)));
+
+		$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photo;
+
+		if ( $extension == "jpg" || $extension == "jpeg" ) {
+			header("Content-type: image/jpeg");
+		}
+
+		else if ( $extension == "png" ) {
+			header("Content-type: image/png");
+		}
+
+		else if ( $extension == "gif" ) {
+			header("Content-type: image/gif");
+		}
+
+		readfile($avatar);
+	}
 }
 
 ?>
