@@ -47,7 +47,8 @@ $styles = "
 }
 
 #profile-photo img {
-	width: 225px;
+	max-width: 225px;
+	max-height: 225px;
 }
 
 #profile-photo input {
@@ -197,13 +198,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<p><?php echo $photo; ?></p>
+		<h3><?php echo $photo; ?></h3>
 	<?php } ?>
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
-			<button>Update Photo</button>
+			<h3>Update Photo</h3>
 		<?php } else { ?> 
-			<button>Change Photo</button>
+			<h3>Change Photo</h3>
 		<?php } ?>
 		<input type="file" name="photo" id="photo-input">
 	</div>
@@ -271,9 +272,14 @@ $foot .= <<<'JS'
 						$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
 					}
 					else {
-						$('#profile-photo').prepend('<p><img src="' + e.target.result + '"></p>');
+						$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
 						$('#profile-photo img').attr('src', e.target.result).css({ 'height': '225px', 'width': '225px' });
 					}
+
+					$('#profile-photo img').Jcrop({
+						'aspectRatio': 1,
+						'setSelect': [0,0,255,255]
+					});
 				}
 				else { console.log("Photo too big"); }
 			}

@@ -2,31 +2,38 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+if ( isset($_GET["id"]) ) {
+	include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
-$profile = new Profile();
+	$profile = new Profile();
 
-$id = $_GET["id"];
+	$id = $_GET["id"];
 
-$photo = $profile->gimme("photo", "id", $id);
+	$photo = $profile->gimme("photo", "id", $id);
 
-// Get the file extension
-$extension = end((explode(".", $photo)));
+	// Get the file extension
+	$extension = end((explode(".", $photo)));
 
-$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photo;
+	$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photo;
 
-if ( $extension == "jpg" || $extension == "jpeg" ) {
-	header("Content-type: image/jpeg");
+	if ( $extension == "jpg" || $extension == "jpeg" ) {
+		header("Content-type: image/jpeg");
+	}
+
+	else if ( $extension == "png" ) {
+		header("Content-type: image/png");
+	}
+
+	else if ( $extension == "gif" ) {
+		header("Content-type: image/gif");
+	}
+
+	readfile($avatar);
+
 }
 
-else if ( $extension == "png" ) {
-	header("Content-type: image/png");
+if ( isset($_POST["jcrop-x"]) ) {
+	
 }
-
-else if ( $extension == "gif" ) {
-	header("Content-type: image/gif");
-}
-
-readfile($avatar);
 
 ?>
