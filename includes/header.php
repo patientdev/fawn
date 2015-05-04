@@ -1,4 +1,4 @@
-<?php $debug = 0; ?>
+<?php $debug = 1; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -15,7 +15,7 @@
 		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
 		<?php if (isset($head)) { echo $head; } ?>
 
-		<?php include $_SERVER["DOCUMENT_ROOT"] . "/js/analytics.js" ?>
+		<?php // include $_SERVER["DOCUMENT_ROOT"] . "/js/analytics.js" ?>
 	</head>
 	<body>
 
