@@ -197,18 +197,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo "<img src=\"" . $photo . "\" id=\"jcrop\">"; ?></h3>
-		<input type="hidden" name="jcrop-x" id="jcrop-x">
-		<input type="hidden" name="jcrop-y" id="jcrop-y">
-		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
-		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
-		<input type="hidden" name="jcrop-w" id="jcrop-w">
-		<input type="hidden" name="jcrop-h" id="jcrop-h">
-
+		<h3><?php echo $photo; ?></h3>
 	<?php } ?>
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
-			<h3>Change Photo</h3>
+			<h3>Update Photo</h3>
 		<?php } else { ?> 
 			<h3>Change Photo</h3>
 		<?php } ?>
@@ -264,21 +257,6 @@ $foot .= <<<'JS'
 
 <script>
 	$(function() {
-		function giveCoords(c) {
-			$('#jcrop-y').val(c.y);
-			$('#jcrop-x').val(c.x);
-			$('#jcrop-y2').val(c.y2);
-			$('#jcrop-x2').val(c.x2);
-			$('#jcrop-w').val(c.w);
-			$('#jcrop-h').val(c.h);
-		}
-
-		$('#jcrop').Jcrop({
-			onChange: giveCoords,
-			aspectRatio: 1
-		});
-	});
-
 
 	$('#photo-input').change(function() {
 
