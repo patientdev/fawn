@@ -14,6 +14,32 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	
 	$id = $_SESSION["id"];
 
+	if ( !empty($_POST["jcrop-x"]) ) {
+
+		// Get jcrop values
+		$x = $_POST["jcrop-x"];
+		$y = $_POST["jcrop-y"];
+		$x2 = $_POST["jcrop-x2"];
+		$y2 = $_POST["jcrop-y2"];
+		$w = $_POST["jcrop-w"];
+		$h = $_POST["jcrop-h"];
+
+
+		// Create photo object from image file path in database
+		$photo = imagecreatefromstring( file_get_contents($profile->gimme("photo", "id", $id)) );
+
+		$croppedPhoto = ImageCreateTrueColor( 225, 225 );
+
+		imagecopyresampled($croppedPhoto,$photo,$x,$y,$x2,$y2, 225, 225,$w,$h);
+
+		$filename = $profile->gimme("photo", "id", $id);
+		$quality = 90;
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+
+		imagejpeg($target_dir, $filname, 90);
+
+	}
+
 	// Photo upload
 	if ( !empty($_FILES["photo"]["name"]) ) {
 
