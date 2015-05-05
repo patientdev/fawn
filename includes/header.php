@@ -1,4 +1,4 @@
-<?php $debug = 1; ?>
+<?php $debug = true; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -19,7 +19,14 @@
 	</head>
 	<body>
 
-	<?php if ( $debug === 1 ) { ?><div id="debug"><?php echo var_dump($_SESSION); ?></div> <?php } ?>
+	<?php if ( $debug === true ) { 
+		ini_set('display_errors', 'On');
+		error_reporting(E_ALL); 
+		?>
+		
+		<div id="debug"><?php echo var_dump($_SESSION); ?></div> 
+	
+	<?php } ?>
 
 	<header>
 		<div id="logo">
@@ -30,7 +37,7 @@
 			<?php if ( isset($_SESSION["id"]) ) { 
 				include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php"; ?>
 				<a href="/profile/signout" id="sign-in-button">Sign&ndash;Out</a>
-				<a href="/profile" id="sign-in-button">Profile <?php echo $photo; ?></a>
+				<a href="/profile" id="sign-in-button">Profile <img src="<?php echo $photo; ?>"></a>
 			<?php } else { ?>
 				<a href="/sign-in" id="sign-in-button">Sign In</a>
 				<a href="/join-us" id="join-us-button">Join Us</a>

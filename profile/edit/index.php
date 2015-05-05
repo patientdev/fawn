@@ -2,6 +2,9 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
+
+unset($_SESSION["facebookUser"]);
+
 $head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";
 
 $styles = "
@@ -198,7 +201,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<?php if(!empty($photo)) { ?>
-		<h3><?php echo $photo; ?></h3>
+		<h3><img src="<?php echo $photo; ?>" id="jcrop"></h3>
 	<?php } ?>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
@@ -273,6 +276,12 @@ $foot .= <<<'JS'
 			$('#jcrop-w').val(c.w);
 			$('#jcrop-h').val(c.h);
 		}
+
+					$('#profile-photo img').Jcrop({
+						'onChange': giveCoords,
+						'aspectRatio': 1,
+						'setSelect': [0,0,255,255]
+					});
 
 		$('#photo-input').change(function() {
 

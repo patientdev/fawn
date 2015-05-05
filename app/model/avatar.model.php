@@ -8,7 +8,7 @@ class Avatar {
 		$this->con = $db->connect();
 
 		require_once $_SERVER["DOCUMENT_ROOT"] . "app/model/profile.model.php";
-		$profile = new Profile;
+		$this->profile = new Profile;
 	}
 
 	public function approve($photo) {
@@ -44,10 +44,45 @@ class Avatar {
 		return $image;
 	}
 	public function resize() {}
-	public function save() {}
+	public function save($photo, $id) {
+		if ( !is_array($photo) ) {
+			copy($photo, $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/facebook.jpg");
+		}
+		else {
+
+			$tmp = $_FILES["photo"]["tmp_name"];
+
+			// Put into user's photo column
+			$column = "photo";
+
+			// Get the filename
+			$filename = $_FILES["photo"]["name"];
+
+			// Get the extension
+			$extension = "." . end((explode(".", $filename)));
+
+			// Garble the filename
+			$md5filename = md5($filename) . $extension;
+
+			// Put into this directory based on users ID #
+			$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+
+			// Create the target_dir if it doesn't exist
+			if ( !is_dir($target_dir) ) { mkdir($target_dir); }
+
+			// Delete whatevers in there
+			$files = glob($_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/*"); // get all file names
+			foreach($files as $file){ // iterate files
+			  if(is_file($file))
+			    unlink($file); // delete file
+			}
+
+			// Copy it from tmp to destination directory
+			move_uploaded_file($tmp, $target_dir . $md5filename);
+	}
 	public function crop() {}
 	public function show($id) {
-		$photo = $profile->gimme("photo", "id", $id);
+		$photo = $this->profile->gimme("photo", "id", $id);
 
 		// Get the file extension
 		$extension = end((explode(".", $photo)));
@@ -66,9 +101,7 @@ class Avatar {
 			header("Content-type: image/gif");
 		}
 
-		$img = "<img src=\"" . readfile($avatar) . "\" id=\"jcrop\"">;
-
-		return $img;
+		readfile($avatar);
 	}
 }
 

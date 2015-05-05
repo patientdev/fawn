@@ -6,10 +6,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
 	$profile = new Profile();
 
-if ( !isset($_SESSION) ) {
-	session_start();
-}
-
 if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	
 	$id = $_SESSION["id"];
@@ -116,9 +112,9 @@ if ( isset($_SESSION["id"]) ) {
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 
-	include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/avatar.controller.php";
+	include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
 	$avatar = new Avatar;
-	$photo = $avatar->show($id);
+	$photo = "/app/controller/avatar.controller.php?id=" . $id;
 
 	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: /profile/edit/"); }
 }

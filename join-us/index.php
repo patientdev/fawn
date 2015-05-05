@@ -1,10 +1,7 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
-
-if ( !isset($_SESSION) ) {
-	session_start();
-}
 
 $styles = "
 
@@ -172,6 +169,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
 <button type="button" id="facebook-login">Sign Up with Facebook</button>
+<button type="button" id="facebook-logout">Log out of Facebook</button>
 <div>Or with your email:</div>
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
@@ -201,11 +199,18 @@ $('#facebook-login').click(function(e) {
   FB.login(function(response){
     if ( response.status == 'connected') {
       FB.api('/me?fields=id,name,email,picture', function(user) {
-        $.post('/app/controller/sign-up.controller.php', { facebook: 'true', user: user }, function(success) {
+        $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+        console.log(success);
         window.location.replace('/profile/edit/');
       } );
       })
     }
+  });
+})
+
+$('#facebook-logout').click(function() {
+  FB.logout(function(response) {
+    console.log(response);
   });
 })
 

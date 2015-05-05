@@ -1,33 +1,13 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.model.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
-
-session_start();
 
 $signUp = new signUp();
 
 
-if ( !empty($_POST["facebook"]) ) {
-	if ( $signUp->emailExists($_POST["response"]["email"]) ) {
-		$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Do you need to <a href=\"\">reset your password</a>?";
-		header("Location: /join-us/");
-	}
-
-	else {
-		$signUp->activateFacebook($_POST["user"]);
-
-		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
-		$profile = new Profile();
-
-		$_SESSION["id"] = $profile->gimme("id", "email", $_POST["user"]["email"]);
-		$_SESSION["facebookID"] = $_POST["user"]["id"]; 
-
-		header("Location: /profile/edit/");
-	}
-}
-
-else if (isset($_POST["email"]) && isset($_POST["password"])) {
+if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 	$email = $_POST["email"];
 	$hash = password_hash($_POST["password"], PASSWORD_DEFAULT);

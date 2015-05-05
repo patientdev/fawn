@@ -149,7 +149,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 </div>
 
 <div id="profile-photo">
-		<?php echo $photo; ?>
+	<?php if(!empty($photo)) { ?>
+		<h3><img src="<?php echo $photo; ?>"></h3>
+	<?php } ?>
 </div>
 <div id="info">
 	<div id="profile-name">
