@@ -74,62 +74,6 @@ header {
 	letter-spacing: 4px;
 	line-height: 1.3em;
 }
-.drop-down {
-	background-color: white;
-	display: inline-block;
-	position: relative;
-}
-
-.drop-down:hover {
-	cursor: pointer;
-}
-
-.drop-down h5 {
-	display: inline-block;
-	background-color: rgba(255, 255, 255, 1);
-	padding: 14px 0 13px 15px;
-	color: black;
-	font-size: 1.4em;
-	font-weight: 300;
-	font-style: italic;
-	letter-spacing: 8px;
-	margin: 0;
-}
-
-.drop-down h5:after {
-	content: "\\25BE";
-	font-style: normal;
-	padding: 10px 15px 10px 22px;
-	margin-left: 10px;
-	background-color: rgba(235, 235, 235, 1);
-	color: rgba(137, 137, 137, 1);
-}
-
-.drop-down ul {
-	display: none;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	border-top: 2px solid rgba(235, 235, 235, 1);
-	position: absolute;
-	width: 100%;
-}
-
-.drop-down li {
-	font-style: normal;
-	padding: 15px 15px 15px 22px;
-	background-color: rgba(255, 255, 255, 1);
-	color: black;
-	text-align: left;
-	font-size: 1.2em;
-	line-height: 1.4em;
-	border-bottom: 2px solid rgba(235, 235, 235, 1);
-}
-
-.drop-down li:hover {
-	background-color: rgba(125, 164, 221, 1);
-	color: white;
-}
 
 #who-we-are {
 	background-color: white;
@@ -281,6 +225,21 @@ $(window).scroll(function() {
 	$('body').css('background-position', '0 ' + $parallax + 'px');
 
 })
+
+//Drop-down search
+$('.drop-down li').click(function() {
+	
+	//Auto-submit search with selected parameters
+	if ( $('#search-occupation h5').text() != 'Occupation' && $('#search-cause h5').text() != 'Cause' && $('#search-location h5').text() != 'Location') {
+		
+		$occupation = $('#search-occupation h5').text();
+		$cause =  $('#search-cause h5').text();
+		$location =  $('#search-location h5').text();
+		$('<form action="/search/" method="POST">' + 
+    		'<input type="hidden" name="occupation" value="' + $occupation + '">' +'<input type="hidden" name="cause" value="' + $cause + '">' +'<input type="hidden" name="location" value="' + $location + '">' +
+    		'</form>').submit();
+	}
+});
 </script>
 
 JS;
