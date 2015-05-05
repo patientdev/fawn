@@ -277,11 +277,11 @@ $foot .= <<<'JS'
 			$('#jcrop-h').val(c.h);
 		}
 
-					$('#profile-photo img').Jcrop({
-						'onChange': giveCoords,
-						'aspectRatio': 1,
-						'setSelect': [0,0,255,255]
-					});
+		$('#profile-photo img').Jcrop({
+			'onChange': giveCoords,
+			'aspectRatio': 1,
+			'setSelect': [0,0,255,255]
+		});
 
 		$('#photo-input').change(function() {
 

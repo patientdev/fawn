@@ -47,16 +47,17 @@ class Avatar {
 	public function save($photo, $id) {
 		if ( !is_array($photo) ) {
 			copy($photo, $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/facebook.jpg");
+			$this->profile->set("photo", "facebook.jpg", $id);
 		}
 		else {
 
-			$tmp = $_FILES["photo"]["tmp_name"];
+			$tmp = $photo["tmp_name"];
 
 			// Put into user's photo column
 			$column = "photo";
 
 			// Get the filename
-			$filename = $_FILES["photo"]["name"];
+			$filename = $photo["name"];
 
 			// Get the extension
 			$extension = "." . end((explode(".", $filename)));
@@ -79,8 +80,49 @@ class Avatar {
 
 			// Copy it from tmp to destination directory
 			move_uploaded_file($tmp, $target_dir . $md5filename);
+
+			$this->profile->set("photo", $md5filename, $id);
+		}
 	}
-	public function crop() {}
+	public function crop($jcrop, $id) {
+
+			$photoFile = $this->profile->gimme("photo", "id", $id);
+
+			// Get jcrop values
+			$x = intval($_POST["jcrop-x"]);
+			$y = intval($_POST["jcrop-y"]);
+			$w = intval($_POST["jcrop-w"]);
+			$h = intval($_POST["jcrop-h"]);
+
+			// Get file path
+			$path = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photoFile;
+
+			// Create photo object from image file path
+			$photo = imagecreatefromjpeg($path);
+
+			// Get width and height of incoming photo
+			$size = getimagesize($path);
+			$width = $size[0];
+			$height = $size[1];
+
+			// Now we need to get multipliers for the width and height so we can convert the jcrop selection to the actual size of the image
+			$widthMultipler = $width/225;
+			$heightMultipler = $height/225;
+
+			// Create destination photo object
+			$croppedPhoto = ImageCreateTrueColor( 225, 225 );
+
+			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($w * $widthMultipler), ($h * $heightMultipler));
+
+			imagejpeg($croppedPhoto, $path, 90);			
+
+			unset($_POST["jcrop-x"]);
+			unset($_POST["jcrop-y"]);
+			unset($_POST["jcrop-x2"]);
+			unset($_POST["jcrop-y2"]);
+			unset($_POST["jcrop-w"]);
+			unset($_POST["jcrop-h"]);
+	}
 	public function show($id) {
 		$photo = $this->profile->gimme("photo", "id", $id);
 
