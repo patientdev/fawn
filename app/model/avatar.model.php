@@ -66,7 +66,9 @@ class Avatar {
 			header("Content-type: image/gif");
 		}
 
-		readfile($avatar);
+		$img = "<img src=\"" . readfile($avatar) . "\" id=\"jcrop\"">;
+
+		return $img;
 	}
 }
 
