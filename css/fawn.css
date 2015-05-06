@@ -280,3 +280,8 @@ input:focus {
 	background-color: rgba(125, 164, 221, 1);
 	color: white;
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

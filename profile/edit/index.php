@@ -7,7 +7,7 @@ unset($_SESSION["facebookUser"]);
 
 $head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";
 
-$styles = "
+$styles = <<<CSS
 
 #profile {
 	width: 60%; min-width: 960px;
@@ -211,9 +211,24 @@ h3 {
 
 #profile-occupation-input, #profile-location-input, #profile-cause-input { display: none; }
 
-input.other { width: 50%; }
+input.other { width: 50%; display: none; }
 
-";
+.add-input {
+	display: inline-block;
+	font-size: 2em;
+	vertical-align: middle;
+	color: white;
+	background-color: #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+.add-input:hover {
+	background-color: #777;
+	cursor: pointer;
+}
+
+CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
@@ -275,10 +290,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Metal Artist</li>
 				<li class="option">Glass Artist</li>
 				<li class="option">Textile Artist</li>
+				<li class="option other">Other...</li>
 			</ul>
 		</div>
-		<input class="other" type="text" name="occupation-other" placeholder="Other Occupations...">
-		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
+		<span class="add-input">+</span>
+		<input class="other" type="text" name="occupation[]" placeholder="Other Occupations...">
+		<input id="profile-occupation-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
 	</div>
 
 	<div id="profile-location">
@@ -316,10 +333,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Bangladesh</li>
 				<li class="option">Bangkok</li>
 				<li class="option">Moscow</li>
+				<li class="option other">Other</li>
 			</ul>
 		</div>
-		<input class="other" type="text" name="location-other" placeholder="Other Locations...">
-		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+		<span class="add-input">+</span>
+		<input class="other" type="text" name="location[]" placeholder="Other Locations...">
+		<input id="profile-location-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 	</div>
 
 	<div id="profile-cause">
@@ -340,14 +359,16 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Sustainability</li>
 				<li class="option">World Peace</li>
 				<li class="option">Human Trafficking</li>
+				<li class="option other">Other...</li>
 			</ul>
 		</div>
-		<input class="other" type="text" name="cause-other" placeholder="Other Causes...">
-		<input id="profile-cause-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+		<span class="add-input">+</span>
+		<input class="other" type="text" name="cause[]" placeholder="Other Causes...">
+		<input id="profile-cause-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 	</div>
 
 	<div id="profile-website">
-		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
+		<input id="profile-website-input" type="text" name="website[]" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
 	</div>
 </div>
 
