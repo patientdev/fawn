@@ -128,7 +128,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<h3>I&rsquo;m searching for a...</h3>
 
 		<div id="sentence">
-			<div class="drop-down" id="search-occupation">
+			<div class="drop-down" id="search-occupation" tabindex="1">
 				<h5>Occupation</h5>
 			<ul>
 				<li class="option">Photographer</li>
@@ -156,7 +156,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<p>who supports</p>
 
-			<div class="drop-down" id="search-cause">
+			<div class="drop-down" id="search-cause" tabindex="2">
 				<h5>Cause</h5>
 			<ul>
 				<li class="option">Gender Equality</li>
@@ -178,7 +178,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 			<p>in</p>
 
-			<div class="drop-down" id="search-location">
+			<div class="drop-down" id="search-location" tabindex="3">
 				<h5>Location</h5>
 			<ul>
 				<li class="option">New York</li>
