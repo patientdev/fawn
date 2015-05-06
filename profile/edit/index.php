@@ -209,9 +209,9 @@ h3 {
   margin-left: 20px;
 }
 
-#profile-occupation-input, #profile-location-input, #profile-cause-input { display: none; }
+.drop-down-input { display: none; }
 
-input.other { width: 50%; display: none; }
+input.other { width: 50%; }
 
 .add-input {
 	display: inline-block;
@@ -221,6 +221,7 @@ input.other { width: 50%; display: none; }
 	background-color: #ccc;
 	padding: 10px;
 	text-align: center;
+	margin-left: 20px;
 }
 
 .add-input:hover {
@@ -292,10 +293,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Textile Artist</li>
 				<li class="option other">Other...</li>
 			</ul>
+
+		<input class="drop-down-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
+
 		</div>
+
 		<span class="add-input">+</span>
-		<input class="other" type="text" name="occupation[]" placeholder="Other Occupations...">
-		<input id="profile-occupation-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
 	</div>
 
 	<div id="profile-location">
@@ -335,10 +338,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Moscow</li>
 				<li class="option other">Other</li>
 			</ul>
+
+		<input class="drop-down-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+
 		</div>
+
 		<span class="add-input">+</span>
-		<input class="other" type="text" name="location[]" placeholder="Other Locations...">
-		<input id="profile-location-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 	</div>
 
 	<div id="profile-cause">
@@ -361,11 +366,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Human Trafficking</li>
 				<li class="option other">Other...</li>
 			</ul>
+
+		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+
 		</div>
-		<span class="add-input">+</span>
-		<input class="other" type="text" name="cause[]" placeholder="Other Causes...">
-		<input id="profile-cause-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
-	</div>
+
+		<span class="add-input">+</span>	</div>
 
 	<div id="profile-website">
 		<input id="profile-website-input" type="text" name="website[]" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
@@ -397,7 +403,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 $foot = "<script src=\"/js/jquery.Jcrop.min.js\"></script>";
 
-$foot .= <<<'JS'
+$foot .= <<<JS
 
 <script>
 	$(function() {
@@ -448,10 +454,28 @@ $foot .= <<<'JS'
 		})
 	});
 
-	$('.drop-down li').click(function() {
-		input = $(this).parents('.drop-down').next();
-		input.val($(this).text());
+	$('.add-input').click(function() {
+
+		parent = $(this).parent();
+		section = $(this).siblings('.drop-down:first').find('.drop-down-input:first').attr('placeholder');
+		dropDownClone = $(this).siblings('.drop-down:first').clone(true, true);
+
+		dropDownClone.find('input').val('');
+		dropDownClone.find('h5').text(section);
+		console.log(section);
+		dropDownClone.insertBefore($(this));
+
+		generateTabIndex();
+
 	});
+
+	function generateTabIndex() {
+		$(':input, .drop-down').each(function (i) { 
+			if ( $(this).attr('type') != 'hidden' ) {
+				$(this).attr('tabindex', i + 1); 
+			}
+		});
+	}
 
 </script>
 JS;

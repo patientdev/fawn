@@ -1,5 +1,9 @@
-//Drop-downs
-$('.drop-down').click(function() { 
+$(function() {
+	//Drop-downs
+	$('.drop-down').click(dropDownClick);
+});
+
+function dropDownClick() {
 	var topOfDiv = $(this).offset().top;
 	var bottomOfVisibleWindow = $(window).height();
 	var distanceFromBottom = bottomOfVisibleWindow - topOfDiv;
@@ -19,16 +23,26 @@ $('.drop-down').click(function() {
 
 	$('.drop-down').blur(function() {
 		$('ul', $(this)).slideUp('fast');
-		$(this).unbind('blur');
 		$('body').removeClass('stop-scrolling');
+
+		$(this).unbind('blur');
 	});
-})
 
-$('.drop-down li').click(function() {
-	$(this).parent().prev().text($(this).text());
-	$(this).parent().slideDown('fast');
+	$('.drop-down li').unbind('click');
+	$('.drop-down li').click(function() {
+		text = $(this).text();
+		ul = $(this).parent();
+		section = $(this).parents('.drop-down').find('.drop-down-input:first').attr('placeholder')
 
-	if ( $(this).hasClass('other') ) {
-		$(this).parents('.drop-down').next('input.other').css('display', 'inline');
-	}
-});
+		ul.prev().text(text);
+		ul.slideDown('fast');
+
+		input = ul.next();
+		input.val(text);
+
+		if ( $(this).hasClass('other') ) {
+			other = '<input class="other" type="text" name="location[]" placeholder="Other ' + section + 's ...">';
+			$(this).parents('.drop-down').replaceWith(other);
+		}
+	});
+}

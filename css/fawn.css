@@ -215,6 +215,7 @@ input:focus {
 	background-color: white;
 	display: inline-block;
 	position: relative;
+	margin-bottom: 10px;
 }
 
 .drop-down:hover {
