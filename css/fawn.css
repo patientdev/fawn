@@ -221,6 +221,14 @@ input:focus {
 	cursor: pointer;
 }
 
+.drop-down:focus {
+	outline: 1px solid #ccc;
+}
+
+.drop-down:focus ul {
+	outline: 1px solid #ccc;
+}
+
 .drop-down h5 {
 	display: inline-block;
 	background-color: rgba(255, 255, 255, 1);
@@ -249,9 +257,12 @@ input:focus {
 	margin: 0;
 	border-top: 2px solid rgba(235, 235, 235, 1);
 	position: absolute;
-	width: 100%;
+	min-width: 100%;
 	overflow: scroll;
 	z-index: 1;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .drop-down li {

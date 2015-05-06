@@ -84,7 +84,6 @@ $styles = "
 	width: 60%;
 	display: inline-block;
 	text-align: left;
-	white-space: nowrap;
 }
 
 input {
@@ -202,10 +201,17 @@ h3 {
 
 .drop-down h5 {
 	font-size: 0.9em;
-	padding: 9px 0 9px 22px;
+	padding-bottom: 14px;
 }
 
-#profile-occupation-input, #profile-location-input { display: none; }
+.drop-down h5:after {
+  padding: 15px 15px 15px 22px;
+  margin-left: 20px;
+}
+
+#profile-occupation-input, #profile-location-input, #profile-cause-input { display: none; }
+
+input.other { width: 50%; }
 
 ";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
@@ -242,11 +248,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="info">
 
 	<div id="profile-name">
-		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>">
+		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>" tabindex="1">
 	</div>
 
 	<div id="profile-occupation">
-		<div class="drop-down">
+		<div class="drop-down" tabindex="2">
 			<h5>Occupation</h5>
 			<ul>
 				<li class="option">Photographer</li>
@@ -271,11 +277,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Textile Artist</li>
 			</ul>
 		</div>
-		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" class="editing" value="<?php echo $occupation; ?>">
+		<input class="other" type="text" name="occupation-other" placeholder="Other Occupations...">
+		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
 	</div>
 
 	<div id="profile-location">
-		<div class="drop-down">
+		<div class="drop-down" tabindex="3">
 			<h5>Location</h5>
 			<ul>
 				<li class="option">New York</li>
@@ -311,11 +318,36 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Moscow</li>
 			</ul>
 		</div>
+		<input class="other" type="text" name="location-other" placeholder="Other Locations...">
 		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 	</div>
 
+	<div id="profile-cause">
+		<div class="drop-down" tabindex="4">
+			<h5>Cause</h5>
+			<ul>
+				<li class="option">Gender Equality</li>
+				<li class="option">LGBT Rights</li>
+				<li class="option">Race Relations</li>
+				<li class="option">Environmental/Preservation</li>
+				<li class="option">International Relations</li>
+				<li class="option">Animal Rights</li>
+				<li class="option">Food/Water Access</li>
+				<li class="option">Poverty</li>
+				<li class="option">Disease (HIV/Aids, etc)</li>
+				<li class="option">Religious Freedom</li>
+				<li class="option">Education</li>
+				<li class="option">Sustainability</li>
+				<li class="option">World Peace</li>
+				<li class="option">Human Trafficking</li>
+			</ul>
+		</div>
+		<input class="other" type="text" name="cause-other" placeholder="Other Causes...">
+		<input id="profile-cause-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+	</div>
+
 	<div id="profile-website">
-		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
 	</div>
 </div>
 
