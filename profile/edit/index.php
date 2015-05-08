@@ -370,11 +370,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
+		
+		<?php echo generateDropDowns($cause, "cause"); ?>
 
 		<span class="add-input">+</span>	</div>
 
 	<div id="profile-website">
-		<input id="profile-website-input" type="text" name="website[]" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
 	</div>
 </div>
 
