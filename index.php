@@ -53,19 +53,6 @@ header {
 	margin-top: 0; margin-bottom: 40px;
 }
 
-#search select {
-	width: 100%;
-	border: none;
-	border-radius: 0;
-	height: 50px;
-	background-color: white;
-	font-size: 1.1em;
-	font-style: italic;
-	letter-spacing: 4px;
-	background-color: rgba(240, 240, 240, 1);
-	font-weight: 200;
-}
-
 #search p {
 	display: inline-block;
 	margin: 0 30px;
@@ -73,62 +60,6 @@ header {
 	font-style: italic;
 	letter-spacing: 4px;
 	line-height: 1.3em;
-}
-.drop-down {
-	background-color: white;
-	display: inline-block;
-	position: relative;
-}
-
-.drop-down:hover {
-	cursor: pointer;
-}
-
-.drop-down h5 {
-	display: inline-block;
-	background-color: rgba(255, 255, 255, 1);
-	padding: 14px 0 13px 15px;
-	color: black;
-	font-size: 1.4em;
-	font-weight: 300;
-	font-style: italic;
-	letter-spacing: 8px;
-	margin: 0;
-}
-
-.drop-down h5:after {
-	content: "\\25BE";
-	font-style: normal;
-	padding: 10px 15px 10px 22px;
-	margin-left: 10px;
-	background-color: rgba(235, 235, 235, 1);
-	color: rgba(137, 137, 137, 1);
-}
-
-.drop-down ul {
-	display: none;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	border-top: 2px solid rgba(235, 235, 235, 1);
-	position: absolute;
-	width: 100%;
-}
-
-.drop-down li {
-	font-style: normal;
-	padding: 15px 15px 15px 22px;
-	background-color: rgba(255, 255, 255, 1);
-	color: black;
-	text-align: left;
-	font-size: 1.2em;
-	line-height: 1.4em;
-	border-bottom: 2px solid rgba(235, 235, 235, 1);
-}
-
-.drop-down li:hover {
-	background-color: rgba(125, 164, 221, 1);
-	color: white;
 }
 
 #who-we-are {
@@ -208,7 +139,7 @@ footer {
 	padding: 20px 0;
 }
 
-	#search h3 {
+	#search h3, #sentence p {
 	font-size: 1.2em;
 	letter-spacing: 3px;
 	font-weight: 300;
@@ -221,14 +152,18 @@ footer {
 }
 
 	.drop-down {
-	width: 265px;
+	width: 240px;
 }
 
 	.drop-down h5 {
-		font-size: 1.2em;
+		font-size: 1em;
 		width: 100%;
 		position: relative;
 		padding-right: 66px;
+	}
+
+	.drop-down li {
+		font-size: 1em;
 	}
 
 	.drop-down h5:after {
@@ -253,7 +188,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<h3>I&rsquo;m searching for a...</h3>
 
 		<div id="sentence">
-			<div class="drop-down" id="search-occupation">
+			<div class="drop-down" id="search-occupation" tabindex="1">
 				<h5>Occupation</h5>
 				<ul>
 					<li class="option">Photographer</li>
@@ -276,13 +211,12 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li class="option">Metal Artist</li>
 					<li class="option">Glass Artist</li>
 					<li class="option">Textile Artist</li>
-					<li class="option other">Other...</li>
 				</ul>
 			</div>
 
 			<p>who supports</p>
 
-			<div class="drop-down" id="search-cause">
+			<div class="drop-down" id="search-cause" tabindex="2">
 				<h5>Cause</h5>
 				<ul>
 					<li class="option">Gender Equality</li>
@@ -299,13 +233,12 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li class="option">Sustainability</li>
 					<li class="option">World Peace</li>
 					<li class="option">Human Trafficking</li>
-					<li class="option other">Other...</li>
 				</ul>
 			</div>
 
 			<p>in</p>
 
-			<div class="drop-down" id="search-location">
+			<div class="drop-down" id="search-location" tabindex="3">
 				<h5>Location</h5>
 				<ul>
 					<li class="option">New York</li>
@@ -339,7 +272,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 					<li class="option">Bangladesh</li>
 					<li class="option">Bangkok</li>
 					<li class="option">Moscow</li>
-					<li class="option other">Other</li>
 				</ul>
 			</div>
 		</div>
@@ -395,6 +327,21 @@ $(window).scroll(function() {
 	$('body').css('background-position', '0 ' + $parallax + 'px');
 
 })
+
+//Drop-down search
+$('.drop-down li').click(function() {
+
+	//Auto-submit search with selected parameters
+	if ( $('#search-occupation h5').text() != 'Occupation' && $('#search-cause h5').text() != 'Cause' && $('#search-location h5').text() != 'Location') {
+		
+		$occupation = $('#search-occupation h5').text();
+		$cause =  $('#search-cause h5').text();
+		$location =  $('#search-location h5').text();
+		$('<form action="/search/" method="POST">' + 
+    		'<input type="hidden" name="occupation" value="' + $occupation + '">' +'<input type="hidden" name="cause" value="' + $cause + '">' +'<input type="hidden" name="location" value="' + $location + '">' +
+    		'</form>').submit();
+	}
+});
 </script>
 
 JS;
