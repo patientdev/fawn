@@ -3,7 +3,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
-$styles = "
+$styles = <<<CSS
 
 #profile {
 	width: 60%; min-width: 960px;
@@ -136,7 +136,98 @@ h3 {
 	clear: both;
 }
 
-";
+@media only screen and (max-width: 840px) {
+
+	#profile {
+		width: 90%;
+		min-width: 0;
+		padding-top: 0;
+	}
+
+	#profile-edit {
+		position: relative;
+		width: 100%;
+		text-align: center;
+		right: 0;
+		margin: 20px 0;
+}
+
+	#profile-name {
+		margin-bottom: 30px;
+}
+
+	#profile-name h2 {
+		font-size: 1.2em;
+		line-height: 1em;
+		font-weight: 700;
+		letter-spacing: 5px;
+		text-transform: uppercase;
+		text-align: center;
+		display: block;
+		margin: 0;
+	}
+
+	#profile-photo {
+		width: 100%;
+		display: block;
+		float: none;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	#profile-photo h3 {
+		margin: 0;
+}
+
+	#profile-photo img {
+		width: 150px;
+		height: 150px;
+	}
+
+	#info {
+		display: block;
+		width: 100%;
+		margin: 20px 0;
+		text-align: center;
+	}
+
+	#info h3 {
+		margin-bottom: 0;
+	}
+
+	#profile-occupation {
+		font-size: .8em;
+	}
+
+	#profile-location {
+		margin-bottom: 20px;
+		font-size: .8em;
+	}
+
+	#profile-website {
+		font-size: .6em;
+}
+
+	#profile-summary {
+		margin-top: 0;
+		font-size: .8em;
+	}
+
+	#profile-summary, #profile-about, #profile-currentprojects {
+		margin: 30px 0;
+	}
+
+	textarea {
+		margin: 0;
+	}
+
+	h3 {
+		line-height: 1.4em;
+		letter-spacing: 5px;
+	}
+}
+
+CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
