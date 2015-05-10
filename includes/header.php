@@ -11,7 +11,7 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/fawn.css" media="screen">
-		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width: 568px), (max-width: 840px)">
+		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-width: 840px)">
 
 		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
 		<?php if (isset($head)) { echo $head; } ?>

@@ -183,7 +183,7 @@ footer {
 	top: 0;
 }
 
-@media only screen and (max-device-width: 568px), (max-width: 840px) {
+@media only screen and (max-width: 840px) {
 	#intro {
 		height: auto;
 		top: 0;
