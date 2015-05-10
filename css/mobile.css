@@ -44,3 +44,29 @@ header {
 #actions a {
 	display: none;
 }
+
+#about {
+	padding: 0 10px;
+	text-align: center;
+}
+
+#about p {
+	width: 100%;
+}
+
+#about h3 {
+	padding: 0 10px;
+	line-height: 1.2em;
+}
+
+footer {
+	padding: 20px;
+}
+
+#contact a {
+	margin-right: 10px;
+}
+
+#social img {
+	margin-left: 10px;
+}
