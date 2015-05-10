@@ -51,7 +51,6 @@ $styles = <<<CSS
 
 #profile-photo img {
 	max-width: 225px;
-	max-height: 225px;
 }
 
 #profile-photo input {
@@ -260,7 +259,6 @@ input.other { width: 50%; }
 
 	#profile-photo img {
 		width: 200px;
-		height: 200px;
 	}
 
 	#info {
@@ -508,36 +506,6 @@ $foot .= <<<JS
 				'setSelect': [0,0,255,255]
 			});
 
-			$('#photo-input').change(function() {
-
-				// Get photo object
-				photo = $(this)[0].files[0];
-				reader = new FileReader();
-				reader.onload = imageIsLoaded;
-				reader.readAsDataURL(photo);
-				function imageIsLoaded(e) {
-					if ( photo.size < 2000000 ) {
-						if ( $('#profile-photo img').length > 0 ) {
-							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-						}
-						else {
-							$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
-							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-						}
-
-						$('#profile-photo img').Jcrop({
-							'onChange': giveCoords,
-							'aspectRatio': 1,
-							'setSelect': [0,0,255,255]
-						});
-					}
-					else { console.log("Photo too big"); }
-				}
-				var imagefile = photo.type;
-				var match= ["image/jpeg","image/png","image/jpg"];
-				if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
-			})
-
 			$('.add-input').click(function() {
 
 				parent = $(this).parent();
@@ -561,6 +529,38 @@ $foot .= <<<JS
 				});
 			}
 		}
+
+		$('#photo-input').change(function() {
+
+				// Get photo object
+				photo = $(this)[0].files[0];
+				reader = new FileReader();
+				reader.onload = imageIsLoaded;
+				reader.readAsDataURL(photo);
+				function imageIsLoaded(e) {
+					if ( photo.size < 2000000 ) {
+						if ( $('#profile-photo img').length > 0 ) {
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
+						else {
+							$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
+
+						if ( $('#menu').css('display') === 'none' ) {
+							$('#profile-photo img').Jcrop({
+								'onChange': giveCoords,
+								'aspectRatio': 1,
+								'setSelect': [0,0,255,255]
+							});
+						}
+					}
+					else { console.log("Photo too big"); }
+				}
+				var imagefile = photo.type;
+				var match= ["image/jpeg","image/png","image/jpg"];
+				if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
+			})
 	});
 
 </script>

@@ -43,7 +43,6 @@ $styles = <<<CSS
 
 #profile-photo img {
 	max-width: 225px;
-	max-height: 225px;
 	border-radius: 50%;
 }
 
@@ -181,7 +180,6 @@ h3 {
 
 	#profile-photo img {
 		width: 150px;
-		height: 150px;
 	}
 
 	#info {
