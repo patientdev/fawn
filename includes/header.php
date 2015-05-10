@@ -36,7 +36,7 @@
 
 		<div id="actions">
 			<div id="menu">
-			<button>Menu</button>
+				<button>Menu</button>
 			</div>
 			<?php if ( isset($_SESSION["id"]) ) { 
 				include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php"; ?>
@@ -46,6 +46,19 @@
 				<a href="/sign-in" id="sign-in-button">Sign In</a>
 				<a href="/join-us" id="join-us-button">Join Us</a>
 			<?php } ?>
+		</div>
+
+		<div id="menu-options">
+			<div>
+				<?php if ( isset($_SESSION["id"]) ) { 
+					include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php"; ?>
+					<a href="/profile" id="sign-in-button"><img src="<?php echo $photo; ?>"> Profile</a>
+					<a href="/profile/signout" id="sign-in-button">Sign&ndash;Out</a>
+				<?php } else { ?>
+					<a href="/sign-in" id="sign-in-button">Sign In</a>
+					<a href="/join-us" id="join-us-button">Join Us</a>
+				<?php } ?>
+			</div>
 		</div>
 	</header>
 

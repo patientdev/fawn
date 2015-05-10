@@ -1,6 +1,12 @@
 $(function() {
 	//Drop-downs
 	$('.drop-down').click(dropDownClick);
+
+	if ( $('#menu').css('display') === "block" ) {
+		$('#menu button').click(function() {
+			$('#menu-options').toggle();
+		});
+	}
 });
 
 function dropDownClick() {
