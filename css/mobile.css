@@ -45,6 +45,16 @@ header {
 	display: none;
 }
 
+#sentence h5 {
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+#sentence ul {
+	z-index: 10;
+}
+
 #about {
 	padding: 0 10px;
 	text-align: center;
