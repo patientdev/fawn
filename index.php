@@ -183,6 +183,62 @@ footer {
 	top: 0;
 }
 
+@media only screen and (max-device-width: 568px), (max-width: 840px) {
+	#intro {
+		height: auto;
+		top: 0;
+		padding-top: 0;
+	}
+	
+	#headline h2 {
+	font-size: 1.4em;
+	font-weight: 500;
+	letter-spacing: 3px;
+	line-height: 1.6em;
+}	
+	#headline h3 { display: none; }
+
+	#search {
+	position: relative;
+	background-color: #296EBC;
+	font-size: 1em;
+	margin-top: 0;
+	text-align: center;
+	white-space: normal;
+	padding: 20px 0;
+}
+
+	#search h3 {
+	font-size: 1.2em;
+	letter-spacing: 3px;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+	#sentence p {
+	display: block;
+	margin: 10px 0;
+}
+
+	.drop-down {
+	width: 265px;
+}
+
+	.drop-down h5 {
+		font-size: 1.2em;
+		width: 100%;
+		position: relative;
+		padding-right: 66px;
+	}
+
+	.drop-down h5:after {
+		position: absolute;
+		right: 0; top: 0;
+		padding: 15px 15px 12px 22px;
+	}
+
+}
+
 CSS;
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 

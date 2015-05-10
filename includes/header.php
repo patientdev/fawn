@@ -11,6 +11,7 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/fawn.css" media="screen">
+		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-device-width: 568px), (max-width: 840px)">
 
 		<?php if (isset($styles)) { echo "<style>$styles</style>"; } ?>
 		<?php if (isset($head)) { echo $head; } ?>
@@ -34,6 +35,9 @@
 		</div>
 
 		<div id="actions">
+			<div id="menu">
+			<button>Menu</button>
+			</div>
 			<?php if ( isset($_SESSION["id"]) ) { 
 				include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php"; ?>
 				<a href="/profile/signout" id="sign-in-button">Sign&ndash;Out</a>
