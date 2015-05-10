@@ -87,7 +87,6 @@ button:hover {
   cursor: pointer;
 }
 
-
 @media only screen and (max-width: 840px) {
 
   #sign-up button, #facebook-login {

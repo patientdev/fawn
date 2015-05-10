@@ -45,6 +45,8 @@ header {
 	display: none;
 }
 
+#menu { display: block; }
+
 #sentence h5 {
 	overflow: hidden;
 	white-space: nowrap;

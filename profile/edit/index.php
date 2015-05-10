@@ -229,6 +229,90 @@ input.other { width: 50%; }
 	cursor: pointer;
 }
 
+
+@media only screen and (max-width: 840px) {
+
+	#profile {
+		width: 90%;
+		min-width: 0;
+		padding-top: 0;
+	}
+
+	#profile-edit {
+		position: relative;
+		width: 100%;
+		text-align: center;
+		right: 0;
+		margin: 20px 0;
+}
+
+	#profile-photo {
+		width: 100%;
+		display: block;
+		float: none;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	#profile-photo h3 {
+		margin: 0;
+}
+
+	#profile-photo img {
+		width: 200px;
+		height: 200px;
+	}
+
+	#info {
+		display: block;
+		width: 100%;
+		margin: 20px 0;
+	}
+
+	#info > div {
+		margin-bottom: 10px;
+	}
+
+	#info input {
+		width: 100%;
+}
+
+	.drop-down {
+		width: 100%;
+	}
+
+	.drop-down h5:after {
+		position: absolute;
+		right: 0; top: 0;
+		padding: 15px 15px 12px 22px;
+	}
+
+	.add-input {
+		margin-left: 0;
+		float: right;
+		vertical-align: middle;
+		padding: 15px;
+		display: none;
+	}
+
+	#profile-summary {
+		margin-top: 0;
+	}
+
+	#profile-summary, #profile-about, #profile-currentprojects {
+		margin-bottom: 30px;
+	}
+
+	textarea {
+		margin: 0;
+	}
+
+	h3 {
+		line-height: 1.4em;
+		letter-spacing: 5px;
+	}
+}
+
 CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
@@ -370,8 +454,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
-		
-		<?php echo generateDropDowns($cause, "cause"); ?>
 
 		<span class="add-input">+</span>	</div>
 
@@ -410,74 +492,76 @@ $foot .= <<<JS
 <script>
 	$(function() {
 
-		function giveCoords(c) {
-			$('#jcrop-y').val(c.y);
-			$('#jcrop-x').val(c.x);
-			$('#jcrop-y2').val(c.y2);
-			$('#jcrop-x2').val(c.x2);
-			$('#jcrop-w').val(c.w);
-			$('#jcrop-h').val(c.h);
-		}
+		if ( $('#menu').css('display') === 'none' ) {
+				function giveCoords(c) {
+				$('#jcrop-y').val(c.y);
+				$('#jcrop-x').val(c.x);
+				$('#jcrop-y2').val(c.y2);
+				$('#jcrop-x2').val(c.x2);
+				$('#jcrop-w').val(c.w);
+				$('#jcrop-h').val(c.h);
+			}
 
-		$('#profile-photo img').Jcrop({
-			'onChange': giveCoords,
-			'aspectRatio': 1,
-			'setSelect': [0,0,255,255]
-		});
+			$('#profile-photo img').Jcrop({
+				'onChange': giveCoords,
+				'aspectRatio': 1,
+				'setSelect': [0,0,255,255]
+			});
 
-		$('#photo-input').change(function() {
+			$('#photo-input').change(function() {
 
-			// Get photo object
-			photo = $(this)[0].files[0];
-			reader = new FileReader();
-			reader.onload = imageIsLoaded;
-			reader.readAsDataURL(photo);
-			function imageIsLoaded(e) {
-				if ( photo.size < 2000000 ) {
-					if ( $('#profile-photo img').length > 0 ) {
-						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+				// Get photo object
+				photo = $(this)[0].files[0];
+				reader = new FileReader();
+				reader.onload = imageIsLoaded;
+				reader.readAsDataURL(photo);
+				function imageIsLoaded(e) {
+					if ( photo.size < 2000000 ) {
+						if ( $('#profile-photo img').length > 0 ) {
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
+						else {
+							$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
+
+						$('#profile-photo img').Jcrop({
+							'onChange': giveCoords,
+							'aspectRatio': 1,
+							'setSelect': [0,0,255,255]
+						});
 					}
-					else {
-						$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
-						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-					}
-
-					$('#profile-photo img').Jcrop({
-						'onChange': giveCoords,
-						'aspectRatio': 1,
-						'setSelect': [0,0,255,255]
-					});
+					else { console.log("Photo too big"); }
 				}
-				else { console.log("Photo too big"); }
+				var imagefile = photo.type;
+				var match= ["image/jpeg","image/png","image/jpg"];
+				if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
+			})
+
+			$('.add-input').click(function() {
+
+				parent = $(this).parent();
+				section = $(this).siblings('.drop-down:first').find('.drop-down-input:first').attr('placeholder');
+				dropDownClone = $(this).siblings('.drop-down:first').clone(true, true);
+
+				dropDownClone.find('input').val('');
+				dropDownClone.find('h5').text(section);
+				console.log(section);
+				dropDownClone.insertBefore($(this));
+
+				generateTabIndex();
+
+			});
+
+			function generateTabIndex() {
+				$(':input, .drop-down').each(function (i) { 
+					if ( $(this).attr('type') != 'hidden' ) {
+						$(this).attr('tabindex', i + 1); 
+					}
+				});
 			}
-			var imagefile = photo.type;
-			var match= ["image/jpeg","image/png","image/jpg"];
-			if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
-		})
+		}
 	});
-
-	$('.add-input').click(function() {
-
-		parent = $(this).parent();
-		section = $(this).siblings('.drop-down:first').find('.drop-down-input:first').attr('placeholder');
-		dropDownClone = $(this).siblings('.drop-down:first').clone(true, true);
-
-		dropDownClone.find('input').val('');
-		dropDownClone.find('h5').text(section);
-		console.log(section);
-		dropDownClone.insertBefore($(this));
-
-		generateTabIndex();
-
-	});
-
-	function generateTabIndex() {
-		$(':input, .drop-down').each(function (i) { 
-			if ( $(this).attr('type') != 'hidden' ) {
-				$(this).attr('tabindex', i + 1); 
-			}
-		});
-	}
 
 </script>
 JS;

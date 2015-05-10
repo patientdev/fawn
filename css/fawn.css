@@ -19,6 +19,8 @@ body {
 	font: 16px/1.2em Raleway, Helvetica, Arial, sans-serif;
 }
 
+#menu { display: none;}
+
 header {
 	background-color: rgba(32, 121, 209, 1);
 	padding: 20px 10%;
