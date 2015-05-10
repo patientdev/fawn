@@ -2,7 +2,7 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
-$styles = "
+$styles = <<<CSS
 
 h2 {
 	margin: 20px 0 60px 0;
@@ -57,7 +57,55 @@ h2 {
 p {
 	width: 100%;
 }
-";
+
+
+@media only screen and (max-width: 840px) {
+
+	#content {
+		top: 0;
+		padding-top: 0;
+}
+
+	#team {
+	width: 80%;
+}
+
+	.teammate {
+		width: 100%;
+		display: block;
+		text-align: left;
+	}
+
+	.teammate-image {
+		width: 50px;
+		float: left;
+		vertical-align: middle;
+		margin-right: 20px;
+	}
+
+	.teammate-image img {
+		width: 60px;
+		height: 60px;
+		vertical-align: middle;
+	}
+
+	.teammate-info {
+		width: 100%;
+	}
+
+	h2 {
+		line-height: 1.2em;
+		font-size: 1.4em;
+		margin: 40px 0;
+	}
+
+	footer {
+		top: 0;
+	}
+
+}
+
+CSS;
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 

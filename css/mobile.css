@@ -19,14 +19,14 @@ header {
 
 #logo h1 img {
 	width: 100px;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 #actions {
 	width: 100px;
 	float: left;
 	padding: 0;
-	line-height: 1em;
+	line-height: 37px;
 }
 
 #actions button {
@@ -83,4 +83,9 @@ footer {
 
 .drop-down {
 	margin: 0;
+}
+
+#content, footer {
+	top: 0;
+	padding-top: 0;
 }
