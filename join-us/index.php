@@ -218,19 +218,28 @@ $('#join-us-submit').click(function(e) {
   else $('#sign-up').submit();
 })
 
-$('#facebook-login').click(function(e) {
-  e.preventDefault();
-  FB.login(function(response){
-    if ( response.status == 'connected') {
-      FB.api('/me?fields=id,name,email,picture', function(user) {
-        $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
-        console.log(success);
-        window.location.replace('/profile/edit/');
-      } );
-      })
-    }
-  });
-})
+  $('#facebook-login').click(function(e) {
+    e.preventDefault();
+    FB.login(function(response){
+      if ( response.status == 'connected') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/');
+        } );
+        })
+      }
+
+      else if ( response.status == 'not_authorized') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/edit/');
+        } );
+        })
+      }
+    });
+  })
 
 $('#facebook-logout').click(function() {
   FB.logout(function(response) {
