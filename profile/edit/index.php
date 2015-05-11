@@ -285,6 +285,8 @@ input.other { width: 50%; padding: 5px 15px;}
 		line-height: 1.4em;
 		letter-spacing: 5px;
 	}
+
+	input.other { margin-top: 10px; }
 }
 
 CSS;

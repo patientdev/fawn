@@ -28,6 +28,15 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 		$avatar->crop($jcrop, $id);
 	}
 
+			
+
+			unset($_POST["jcrop-x"]);
+			unset($_POST["jcrop-y"]);
+			unset($_POST["jcrop-x2"]);
+			unset($_POST["jcrop-y2"]);
+			unset($_POST["jcrop-w"]);
+			unset($_POST["jcrop-h"]);
+
 	foreach ($_POST as $key => $value) {
 
 		// Convert array variables to ,-concatenated strings
