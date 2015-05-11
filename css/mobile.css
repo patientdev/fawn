@@ -53,7 +53,7 @@ header {
 	vertical-align: middle;
 }
 
-#sentence ul {
+#sentence ul li {
 	z-index: 10;
 }
 

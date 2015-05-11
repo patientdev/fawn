@@ -8,7 +8,18 @@ class Search {
 		$this->con = $db->connect();
 	}
 
-	public function results($occupation, $location) {
+	public function exact($occupation, $cause, $location) {
+
+		$sql = "SELECT id
+				FROM artists 
+				WHERE (occupation = :occupation AND location = :location)";
+		$stmt = $this->con->prepare($sql);
+		$stmt->execute(array("occupation" => $occupation, "location" => $location));
+		$result = $stmt->fetch();
+		return $result;
+	}
+
+	public function artistsInLocation($occupation, $location) {
 
 		$sql = "SELECT id
 				FROM artists 

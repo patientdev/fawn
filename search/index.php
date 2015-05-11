@@ -3,7 +3,6 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/search.controller.php";
 
-
 $styles = <<< CSS
 
 #content {
@@ -53,63 +52,6 @@ $styles = <<< CSS
 	font-style: italic;
 	letter-spacing: 4px;
 	line-height: 1.3em;
-}
-
-.drop-down {
-	background-color: white;
-	display: inline-block;
-	position: relative;
-}
-
-.drop-down:hover {
-	cursor: pointer;
-}
-
-.drop-down h5 {
-	display: inline-block;
-	background-color: rgba(255, 255, 255, 1);
-	padding: 14px 0 13px 15px;
-	color: black;
-	font-size: 1.1em;
-	font-weight: 400;
-	font-style: italic;
-	letter-spacing: 8px;
-	margin: 0;
-}
-
-.drop-down h5:after {
-	content: "\\25BE";
-	font-style: normal;
-	padding: 13px 15px 12px 22px;
-	margin-left: 10px;
-	background-color: rgba(235, 235, 235, 1);
-	color: rgba(137, 137, 137, 1);
-}
-
-.drop-down ul {
-	display: none;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	border-top: 2px solid rgba(235, 235, 235, 1);
-	position: absolute;
-	width: 100%;
-}
-
-.drop-down li {
-	font-style: normal;
-	padding: 15px 15px 15px 22px;
-	background-color: rgba(255, 255, 255, 1);
-	color: black;
-	text-align: left;
-	font-size: 1.2em;
-	line-height: 1.4em;
-	border-bottom: 2px solid rgba(235, 235, 235, 1);
-}
-
-.drop-down li:hover {
-	background-color: rgba(125, 164, 221, 1);
-	color: white;
 }
 
 #results {
@@ -213,6 +155,16 @@ $styles = <<< CSS
 	width: 400px;
 	white-space: pre-wrap;
 }
+
+.drop-down h5 {
+	overflow: hidden;
+}
+
+.drop-down h5:after {
+	position: absolute;
+	top: 0; right: 0;
+	padding: 15px 15px 12px 18px;
+}
 CSS;
 
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
@@ -255,13 +207,6 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				</ul>
 			</div>
 		</div>
-
-		<!-- <div class="drop-down">
-			<h5>Cause</h5>
-		</div>
-		<div class="drop-down">
-			<h5>Location</h5>
-		</div> -->
 	</div>
 
 </div>
@@ -269,6 +214,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div id="results">
 
 <?php echo $result; ?>
+
+<h2>Other <?php echo $occupation . "s in " . $location; ?></h2>
 
 </div>
 

@@ -39,19 +39,35 @@ function dropDownClick() {
 
 	$('.drop-down li').unbind('click');
 	$('.drop-down li').click(function() {
+		
 		text = $(this).text();
 		ul = $(this).parent();
-		section = $(this).parents('.drop-down').find('.drop-down-input:first').attr('placeholder')
-
 		ul.prev().text(text);
-		ul.slideDown('fast');
 
-		input = ul.next();
-		input.val(text);
+		if ( $('#search-occupation').length > 0 ) {
+			//Auto-submit search with selected parameters
+			if ( $('#search-occupation h5').text() != 'Occupation' && $('#search-cause h5').text() != 'Cause' && $('#search-location h5').text() != 'Location' ) {
 
-		if ( $(this).hasClass('other') ) {
-			other = '<input class="other" type="text" name="location[]" placeholder="Other ' + section + 's ...">';
-			$(this).parents('.drop-down').replaceWith(other);
+				occupation = $('#search-occupation h5').text();
+				cause =  $('#search-cause h5').text();
+				locale =  $('#search-location h5').text();
+				$('<form action="/search/" method="POST">' + 
+		    		'<input type="hidden" name="occupation" value="' + occupation + '">' +'<input type="hidden" name="cause" value="' + cause + '">' +'<input type="hidden" name="location" value="' + locale + '">' +
+		    		'</form>').submit();
+			}
+		} else if ( $('#profile-occupation').length > 0 ) {
+			section = $(this).parents('.drop-down').find('.drop-down-input:first').attr('placeholder')
+
+			ul.slideDown('fast');
+
+			input = ul.next();
+			input.val(text);
+
+			if ( $(this).hasClass('other') ) {
+				other = '<input class="other" type="text" name="location[]" placeholder="Other ' + section + 's ...">';
+				$(this).parents('.drop-down').replaceWith(other);
+			}
 		}
+
 	});
 }

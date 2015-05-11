@@ -10,50 +10,55 @@ $occupation = $_POST["occupation"];
 $cause = $_POST["cause"];
 $location = $_POST["location"];
 
-$results = $search->results($occupation, $location);
+$results = $search->exact($occupation, $cause, $location);
 
-foreach ( $results as $key => $id ) {
-	$photo = "/app/controller/avatar.controller.php?id=" . $id;
-	$name = $profile->gimme("name", "id", $id);
-	$occupation = $profile->gimme("occupation", "id", $id);
-	$location = $profile->gimme("location", "id", $id);
-	$summary = $profile->gimme("summary", "id", $id);
+if ( !empty($results) ) {
 
-	$result = "<div class=\"result\">";
+	foreach ( $results as $id ) {
+		$photo = "/app/controller/avatar.controller.php?id=" . $id;
+		$name = $profile->gimme("name", "id", $id);
+		$occupation = $profile->gimme("occupation", "id", $id);
+		$location = $profile->gimme("location", "id", $id);
+		$summary = $profile->gimme("summary", "id", $id);
 
-	// Profile URL
-	$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
-		
-		//Photo
-		$result .= "<div class=\"photo\">";
-			$result .= "<img src=\"" . $photo . "\">";
-		$result .= "</div>";
+		$result = "<div class=\"result\">";
 
-		$result .= "<div class=\"info\">";
+		// Profile URL
+		$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+			
+			//Photo
+			$result .= "<div class=\"photo\">";
+				$result .= "<img src=\"" . $photo . "\">";
+			$result .= "</div>";
 
-			//Name
-			$result .= "<div class=\"name\"><h2>";
-				$result .= $name;
-			$result .= "</h2></div>";
+			$result .= "<div class=\"info\">";
 
-			//Occupation
-			$result .= "<div class=\"occupation\"><h3>";
-				$result .= $occupation;
-			$result .= "</h3></div>";
+				//Name
+				$result .= "<div class=\"name\"><h2>";
+					$result .= $name;
+				$result .= "</h2></div>";
 
-			//Location
-			$result .= "<div class=\"location\"><h3>";
-				$result .= $location;
-			$result .= "</h3></div>";
+				//Occupation
+				$result .= "<div class=\"occupation\"><h3>";
+					$result .= $occupation;
+				$result .= "</h3></div>";
 
-			//Summary
-			$result .= "<div class=\"summary\">";
-				$result .= $summary;
+				//Location
+				$result .= "<div class=\"location\"><h3>";
+					$result .= $location;
+				$result .= "</h3></div>";
+
+				//Summary
+				$result .= "<div class=\"summary\">";
+					$result .= $summary;
+				$result .= "</div>";
+
 			$result .= "</div>";
 
 		$result .= "</div>";
-
-	$result .= "</div>";
+	}
+} else {
+	$result = "No results.";
 }
 
 ?>

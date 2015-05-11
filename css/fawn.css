@@ -243,6 +243,7 @@ input:focus {
 	font-style: italic;
 	letter-spacing: 8px;
 	margin: 0;
+	max-width: 300px;
 }
 
 .drop-down h5:after {

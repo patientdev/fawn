@@ -184,7 +184,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<h3>Elevating Creativity That Makes A Difference</h3>
 	</div>
 
-	<div id="search">
+	<form id="search">
 		<h3>I&rsquo;m searching for a...</h3>
 
 		<div id="sentence">
@@ -275,7 +275,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</form>
 
 </div>
 
@@ -312,39 +312,24 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <?php 
 
-$foot = <<<'JS'
+$foot = <<<JAVASCRIPT
 
 <script>
 //Parallax
 $(window).scroll(function() {
 
-	$parallax = 0;
-	$windowScroll = $(window).scrollTop();
+	parallax = 0;
+	windowScroll = $(window).scrollTop();
 
-	if ( $windowScroll <= 0 ) { $parallax = 0; }
-	else { $parallax = $windowScroll/3; }
+	if ( windowScroll <= 0 ) { parallax = 0; }
+	else { parallax = windowScroll/3; }
 
-	$('body').css('background-position', '0 ' + $parallax + 'px');
+	$('body').css('background-position', '0 ' + parallax + 'px');
 
 })
-
-//Drop-down search
-$('.drop-down li').click(function() {
-
-	//Auto-submit search with selected parameters
-	if ( $('#search-occupation h5').text() != 'Occupation' && $('#search-cause h5').text() != 'Cause' && $('#search-location h5').text() != 'Location') {
-		
-		$occupation = $('#search-occupation h5').text();
-		$cause =  $('#search-cause h5').text();
-		$location =  $('#search-location h5').text();
-		$('<form action="/search/" method="POST">' + 
-    		'<input type="hidden" name="occupation" value="' + $occupation + '">' +'<input type="hidden" name="cause" value="' + $cause + '">' +'<input type="hidden" name="location" value="' + $location + '">' +
-    		'</form>').submit();
-	}
-});
 </script>
 
-JS;
+JAVASCRIPT;
 
 
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
