@@ -201,6 +201,7 @@ h3 {
 .drop-down h5 {
 	font-size: 0.9em;
 	padding-bottom: 14px;
+	max-width: 100%;
 }
 
 .drop-down h5:after {
@@ -211,7 +212,6 @@ h3 {
 .drop-down-input { display: none; }
 
 input.other { width: 50%; }
-
 
 @media only screen and (max-width: 840px) {
 
@@ -327,7 +327,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-occupation">
 		<div class="drop-down" tabindex="2">
-			<h5>Occupation</h5>
+			<h5><?php if ( !empty($occupation) ) { echo $occupation; } else echo "Occupation"; ?></h5>
 			<ul>
 				<li class="option">Photographer</li>
 				<li class="option">Writer</li>
@@ -359,7 +359,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-location">
 		<div class="drop-down" tabindex="3">
-			<h5>Location</h5>
+			<h5><?php if ( !empty($location) ) { echo $location; } else echo "Location"; ?></h5>
 			<ul>
 				<li class="option">New York</li>
 				<li class="option">Miami</li>
@@ -402,7 +402,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-cause">
 		<div class="drop-down" tabindex="4">
-			<h5>Cause</h5>
+			<h5><?php if ( !empty($cause) ) { echo $cause; } else echo "Cause"; ?></h5>
 			<ul>
 				<li class="option">Gender Equality</li>
 				<li class="option">LGBT Rights</li>
