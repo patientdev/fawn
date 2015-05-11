@@ -212,22 +212,6 @@ h3 {
 
 input.other { width: 50%; }
 
-.add-input {
-	display: inline-block;
-	font-size: 2em;
-	vertical-align: middle;
-	color: white;
-	background-color: #ccc;
-	padding: 10px;
-	text-align: center;
-	margin-left: 20px;
-}
-
-.add-input:hover {
-	background-color: #777;
-	cursor: pointer;
-}
-
 
 @media only screen and (max-width: 840px) {
 
@@ -283,14 +267,6 @@ input.other { width: 50%; }
 		position: absolute;
 		right: 0; top: 0;
 		padding: 15px 15px 12px 22px;
-	}
-
-	.add-input {
-		margin-left: 0;
-		float: right;
-		vertical-align: middle;
-		padding: 15px;
-		display: none;
 	}
 
 	#profile-summary {
@@ -379,8 +355,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input class="drop-down-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
 
 		</div>
-
-		<span class="add-input">+</span>
 	</div>
 
 	<div id="profile-location">
@@ -424,8 +398,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input class="drop-down-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 
 		</div>
-
-		<span class="add-input">+</span>
 	</div>
 
 	<div id="profile-cause">
@@ -452,8 +424,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
-
-		<span class="add-input">+</span>	</div>
+	</div>
 
 	<div id="profile-website">
 		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
@@ -504,21 +475,6 @@ $foot .= <<<JS
 				'onChange': giveCoords,
 				'aspectRatio': 1,
 				'setSelect': [0,0,255,255]
-			});
-
-			$('.add-input').click(function() {
-
-				parent = $(this).parent();
-				section = $(this).siblings('.drop-down:first').find('.drop-down-input:first').attr('placeholder');
-				dropDownClone = $(this).siblings('.drop-down:first').clone(true, true);
-
-				dropDownClone.find('input').val('');
-				dropDownClone.find('h5').text(section);
-				console.log(section);
-				dropDownClone.insertBefore($(this));
-
-				generateTabIndex();
-
 			});
 
 			function generateTabIndex() {
