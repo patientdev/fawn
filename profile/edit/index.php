@@ -211,7 +211,7 @@ h3 {
 
 .drop-down-input { display: none; }
 
-input.other { width: 50%; }
+input.other { width: 50%; padding: 5px 15px;}
 
 @media only screen and (max-width: 840px) {
 
@@ -352,9 +352,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other...</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
+		<input class="drop-down-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
 
 		</div>
+
+		<br><input type="text" name="otheroccupations" class="other" placeholder="Other Occupations...">
 	</div>
 
 	<div id="profile-location">
@@ -395,9 +397,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+		<input class="drop-down-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 
 		</div>
+
+		<br><input type="text" name="otherlocations" class="other" placeholder="Other Locations...">
+
 	</div>
 
 	<div id="profile-cause">
@@ -421,9 +426,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other...</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+		<input class="drop-down-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
+
+		<br><input type="text" name="othercauses" class="other" placeholder="Other Causes...">
+
 	</div>
 
 	<div id="profile-website">
