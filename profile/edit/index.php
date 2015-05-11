@@ -356,7 +356,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 		</div>
 
-		<br><input type="text" name="otheroccupations" class="other" placeholder="Other Occupations...">
+		<br><input type="text" name="otheroccupations" class="other" placeholder="Other Occupations..." value="<?php echo $otheroccupations; ?>">
 	</div>
 
 	<div id="profile-location">
@@ -401,7 +401,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 		</div>
 
-		<br><input type="text" name="otherlocations" class="other" placeholder="Other Locations...">
+		<br><input type="text" name="otherlocations" class="other" placeholder="Other Locations..." value="<?php echo $otherlocations; ?>">
 
 	</div>
 
@@ -430,7 +430,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 		</div>
 
-		<br><input type="text" name="othercauses" class="other" placeholder="Other Causes...">
+		<br><input type="text" name="othercauses" class="other" placeholder="Other Causes..." value="<?php echo $othercauses; ?>">
 
 	</div>
 
