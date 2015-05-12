@@ -172,6 +172,8 @@ input[type=\"checkbox\"] + span {
 button#facebook-login {
   background-color: #3b5998;
   background-color: rgba(59, 89, 152, 1);
+  font-size: 1em;
+  letter-spacing: 5px;
 }
 
 @media only screen and (max-width: 840px) {
