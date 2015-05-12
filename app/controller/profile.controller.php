@@ -75,8 +75,6 @@ if ( isset($_SESSION["id"]) ) {
 	include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
 	$avatar = new Avatar;
 	$photo = "/app/controller/avatar.controller.php?id=" . $id;
-
-	if ( empty($name) && $_SERVER["REQUEST_URI"] != "/profile/edit/") { header("Location: /profile/edit/"); }
 }
 
 function generateDropDowns($list, $title) {
