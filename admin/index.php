@@ -289,4 +289,24 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <?php echo $results; ?>
 </div>
-<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php 
+
+$foot = <<<JAVASCRIPT
+  
+  <script>
+    $('form').submit(function(e) {
+      e.preventDefault();
+
+      confirmation = confirm('Are you sure that you want to delete ' + $('input:checkbox:checked').length + 'users?');
+
+      if ( confirmation == true ) {
+        $(this).submit();
+      }
+      else { return false; }
+    }); 
+  </script>
+
+
+JAVASCRIPT;
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

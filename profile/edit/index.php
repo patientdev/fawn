@@ -508,7 +508,7 @@ $foot .= <<<JS
 				reader.onload = imageIsLoaded;
 				reader.readAsDataURL(photo);
 				function imageIsLoaded(e) {
-					if ( photo.size < 2000000 ) {
+					if ( photo.size < 500000 ) {
 						if ( $('#profile-photo img').length > 0 ) {
 							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
 						}
