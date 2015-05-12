@@ -184,7 +184,6 @@ footer {
 		padding: 0 10px;
 		line-height: 1.2em;
 	}
-
 	#who-we-are, #what-were-up-to {
 		padding: 10px;
 }
