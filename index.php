@@ -172,6 +172,22 @@ footer {
 		padding: 15px 15px 12px 22px;
 	}
 
+	#about {
+		text-align: center;
+	}
+
+	#about p {
+		width: 100%;
+	}
+
+	#about h3 {
+		padding: 0 10px;
+		line-height: 1.2em;
+	}
+	#who-we-are, #what-were-up-to {
+		padding: 10px;
+}
+
 }
 
 CSS;

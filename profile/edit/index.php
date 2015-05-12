@@ -287,6 +287,10 @@ input.other { width: 50%; padding: 5px 15px;}
 	}
 
 	input.other { margin-top: 10px; }
+
+	#about {
+		padding: 0;
+	}
 }
 
 CSS;
