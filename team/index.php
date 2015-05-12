@@ -186,7 +186,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name"><a href="http://meghanjordan.com">Megan Jordan</a></span>
+		<span class="teammate-name"><a href="http://meghanjordan.com">Meghan Jordan</a></span>
 		<span class="teammate-job">Admin Guru</span>
 	</div>
 

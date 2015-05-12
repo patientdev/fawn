@@ -29,7 +29,7 @@ header {
 	line-height: 37px;
 }
 
-#actions button {
+#actions button, #search-button button {
 	vertical-align: middle;
 	background-color: transparent;
 	border: 1px solid white;
@@ -52,6 +52,8 @@ header {
 	white-space: nowrap;
 	vertical-align: middle;
 }
+
+#sentence ul { position: absolute; z-index: 10; }
 
 #sentence ul li {
 	z-index: 10;

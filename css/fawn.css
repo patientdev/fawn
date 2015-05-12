@@ -244,6 +244,9 @@ input:focus {
 	letter-spacing: 8px;
 	margin: 0;
 	max-width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
 }
 
 .drop-down h5:after {
