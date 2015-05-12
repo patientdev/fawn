@@ -5,20 +5,18 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/profile.model.php";
 
 	$profile = new Profile;
 
-	$id = intval($_GET["forger"]);
+	$forgerId = intval($_GET["forger"]);
 
-	$name = $profile->gimme("name", "id", $id);
-	$location = $profile->gimme("location", "id", $id);
-	$cause = $profile->gimme("cause", "id", $id);
-	$website = $profile->gimme("website", "id", $id);
-	$occupation = $profile->gimme("occupation", "id", $id);
-	$about = $profile->gimme("about", "id", $id);
-	$summary = $profile->gimme("summary", "id", $id);
-	$currentprojects = $profile->gimme("currentprojects", "id", $id);
+	$forgerName = $profile->gimme("name", "id", $forgerId);
+	$forgerLocation = $profile->gimme("location", "id", $forgerId);
+	$forgerCause = $profile->gimme("cause", "id", $forgerId);
+	$forgerWebsite = $profile->gimme("website", "id", $forgerId);
+	$forgerOccupation = $profile->gimme("occupation", "id", $forgerId);
+	$forgerAbout = $profile->gimme("about", "id", $forgerId);
+	$forgerSummary = $profile->gimme("summary", "id", $forgerId);
+	$forgerCurrentprojects = $profile->gimme("currentprojects", "id", $forgerId);
 
-	include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
-	$avatar = new Avatar;
-	$photo = "/app/controller/avatar.controller.php?id=" . $id;
+	$forgerPhoto = "/app/controller/avatar.controller.php?id=" . $forgerId;
 
 $styles = <<<CSS
 
@@ -251,32 +249,32 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="profile">
 
 <div id="profile-photo">
-	<?php if(!empty($photo)) { ?>
-		<h3><img src="<?php echo $photo; ?>"></h3>
+	<?php if(!empty($forgerPhoto)) { ?>
+		<h3><img src="<?php echo $forgerPhoto; ?>"></h3>
 	<?php } ?>
 </div>
 <div id="info">
 	<div id="profile-name">
-		<?php if(!empty($name)) { ?>
-			<h2><?php echo $name ?></h2>
+		<?php if(!empty($forgerName)) { ?>
+			<h2><?php echo $forgerName ?></h2>
 		<?php } ?>
 	</div>
 
 	<div id="profile-occupation">
-		<?php if(!empty($occupation)) { ?>
-			<h3><?php echo $occupation ?></h3>
+		<?php if(!empty($forgerOccupation)) { ?>
+			<h3><?php echo $forgerOccupation ?></h3>
 		<?php } ?>
 	</div>
 
 	<div id="profile-location">
-		<?php if(!empty($location)) { ?>
-			<h3><?php echo $location ?></h3>
+		<?php if(!empty($forgerLocation)) { ?>
+			<h3><?php echo $forgerLocation ?></h3>
 		<?php } ?>
 	</div>
 
 	<div id="profile-website">
-		<?php if(!empty($website)) { ?>
-			<h3><a href="http://<?php echo $website ?>" target="_blank"><?php echo $website ?></a></h3>
+		<?php if(!empty($forgerWebsite)) { ?>
+			<h3><a href="http://<?php echo $forgerWebsite ?>" target="_blank"><?php echo $forgerWebsite ?></a></h3>
 		<?php } ?>
 	</div>
 </div>
@@ -284,22 +282,22 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div style="clear: both;"></div>
 
 <div id="profile-summary">
-	<?php if(!empty($summary)) { ?>
-		<div><?php echo $summary ?></div>
+	<?php if(!empty($forgerSummary)) { ?>
+		<div><?php echo $forgerSummary ?></div>
 	<?php } ?>
 </div>
 
 <div id="profile-about">
-	<?php if(!empty($about)) { ?>
+	<?php if(!empty($forgerAbout)) { ?>
 		<h3>About</h3>
-		<div><?php echo nl2br($about); ?></div>
+		<div><?php echo nl2br($forgerAbout); ?></div>
 	<?php } ?>
 </div>
 
 <div id="profile-currentprojects">
-	<?php if(!empty($currentprojects)) { ?>
+	<?php if(!empty($forgerCurrentprojects)) { ?>
 		<h3>Current Projects</h3>
-		<div><?php echo nl2br($currentprojects); ?></div>
+		<div><?php echo nl2br($forgerCurrentprojects); ?></div>
 	<?php } ?>
 </div>
 
