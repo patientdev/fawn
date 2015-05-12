@@ -201,6 +201,7 @@ h3 {
 .drop-down h5 {
 	font-size: 0.9em;
 	padding-bottom: 14px;
+	max-width: 100%;
 }
 
 .drop-down h5:after {
@@ -210,24 +211,7 @@ h3 {
 
 .drop-down-input { display: none; }
 
-input.other { width: 50%; }
-
-.add-input {
-	display: inline-block;
-	font-size: 2em;
-	vertical-align: middle;
-	color: white;
-	background-color: #ccc;
-	padding: 10px;
-	text-align: center;
-	margin-left: 20px;
-}
-
-.add-input:hover {
-	background-color: #777;
-	cursor: pointer;
-}
-
+input.other { width: 50%; padding: 5px 15px;}
 
 @media only screen and (max-width: 840px) {
 
@@ -285,14 +269,6 @@ input.other { width: 50%; }
 		padding: 15px 15px 12px 22px;
 	}
 
-	.add-input {
-		margin-left: 0;
-		float: right;
-		vertical-align: middle;
-		padding: 15px;
-		display: none;
-	}
-
 	#profile-summary {
 		margin-top: 0;
 	}
@@ -309,6 +285,8 @@ input.other { width: 50%; }
 		line-height: 1.4em;
 		letter-spacing: 5px;
 	}
+
+	input.other { margin-top: 10px; }
 }
 
 CSS;
@@ -351,7 +329,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 	<div id="profile-occupation">
 		<div class="drop-down" tabindex="2">
-			<h5>Occupation</h5>
+			<h5><?php if ( !empty($occupation) ) { echo $occupation; } else echo "Occupation"; ?></h5>
 			<ul>
 				<li class="option">Photographer</li>
 				<li class="option">Writer</li>
@@ -376,16 +354,16 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other...</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="occupation[]" placeholder="Occupation" value="<?php echo $occupation; ?>">
+		<input class="drop-down-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
 
 		</div>
 
-		<span class="add-input">+</span>
+		<br><input type="text" name="otheroccupations" class="other" placeholder="Other Occupations..." value="<?php echo $otheroccupations; ?>">
 	</div>
 
 	<div id="profile-location">
 		<div class="drop-down" tabindex="3">
-			<h5>Location</h5>
+			<h5><?php if ( !empty($location) ) { echo $location; } else echo "Location"; ?></h5>
 			<ul>
 				<li class="option">New York</li>
 				<li class="option">Miami</li>
@@ -421,16 +399,17 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="location[]" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+		<input class="drop-down-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 
 		</div>
 
-		<span class="add-input">+</span>
+		<br><input type="text" name="otherlocations" class="other" placeholder="Other Locations..." value="<?php echo $otherlocations; ?>">
+
 	</div>
 
 	<div id="profile-cause">
 		<div class="drop-down" tabindex="4">
-			<h5>Cause</h5>
+			<h5><?php if ( !empty($cause) ) { echo $cause; } else echo "Cause"; ?></h5>
 			<ul>
 				<li class="option">Gender Equality</li>
 				<li class="option">LGBT Rights</li>
@@ -449,11 +428,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option other">Other...</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="cause[]" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+		<input class="drop-down-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
 
-		<span class="add-input">+</span>	</div>
+		<br><input type="text" name="othercauses" class="other" placeholder="Other Causes..." value="<?php echo $othercauses; ?>">
+
+	</div>
 
 	<div id="profile-website">
 		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
@@ -504,21 +485,6 @@ $foot .= <<<JS
 				'onChange': giveCoords,
 				'aspectRatio': 1,
 				'setSelect': [0,0,255,255]
-			});
-
-			$('.add-input').click(function() {
-
-				parent = $(this).parent();
-				section = $(this).siblings('.drop-down:first').find('.drop-down-input:first').attr('placeholder');
-				dropDownClone = $(this).siblings('.drop-down:first').clone(true, true);
-
-				dropDownClone.find('input').val('');
-				dropDownClone.find('h5').text(section);
-				console.log(section);
-				dropDownClone.insertBefore($(this));
-
-				generateTabIndex();
-
 			});
 
 			function generateTabIndex() {

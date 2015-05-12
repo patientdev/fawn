@@ -28,13 +28,21 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 		$avatar->crop($jcrop, $id);
 	}
 
+			
+
+			unset($_POST["jcrop-x"]);
+			unset($_POST["jcrop-y"]);
+			unset($_POST["jcrop-x2"]);
+			unset($_POST["jcrop-y2"]);
+			unset($_POST["jcrop-w"]);
+			unset($_POST["jcrop-h"]);
+
 	foreach ($_POST as $key => $value) {
 
 		// Convert array variables to ,-concatenated strings
 		if ( is_array($value) ) { $value = implode(",", $value); }
 
-		if ( !empty($value) && $key != "photo" ) {
-		$_SESSION["debug"] = "blah";
+		if ( $key != "photo" ) {
 
 			// Remove "http://" from website value
 			if ( $key == "website" ) { $value = str_replace("http://", "", $value); }
@@ -54,9 +62,12 @@ if ( isset($_SESSION["id"]) ) {
 
 	$name = $profile->gimme("name", "id", $id);
 	$location = $profile->gimme("location", "id", $id);
+	$otherlocations = $profile->gimme("otherlocations", "id", $id);
 	$cause = $profile->gimme("cause", "id", $id);
+	$othercauses = $profile->gimme("othercauses", "id", $id);
 	$website = $profile->gimme("website", "id", $id);
 	$occupation = $profile->gimme("occupation", "id", $id);
+	$otheroccupations = $profile->gimme("otheroccupations", "id", $id);
 	$about = $profile->gimme("about", "id", $id);
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);

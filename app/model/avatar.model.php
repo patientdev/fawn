@@ -114,14 +114,7 @@ class Avatar {
 
 			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($w * $widthMultipler), ($h * $heightMultipler));
 
-			imagejpeg($croppedPhoto, $path, 90);			
-
-			unset($_POST["jcrop-x"]);
-			unset($_POST["jcrop-y"]);
-			unset($_POST["jcrop-x2"]);
-			unset($_POST["jcrop-y2"]);
-			unset($_POST["jcrop-w"]);
-			unset($_POST["jcrop-h"]);
+			imagejpeg($croppedPhoto, $path, 90);	
 	}
 	public function show($id) {
 		$photo = $this->profile->gimme("photo", "id", $id);
