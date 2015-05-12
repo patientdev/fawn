@@ -297,7 +297,7 @@ CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
-<div id="status"></div>
+<?php echo showStatus(); ?>
 
 <form id="profile" name="profile-edit" method="post" action="/app/controller/profile.controller.php" class="editing" enctype="multipart/form-data">
 
