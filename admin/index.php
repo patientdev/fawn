@@ -159,6 +159,10 @@ td {
   text-align: center;
 }
 
+#newusers p {
+  text-align: center;
+}
+
 @media only screen and (max-width: 840px) {
 
   #search {

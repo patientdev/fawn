@@ -117,12 +117,11 @@ class Avatar {
 			imagejpeg($croppedPhoto, $path, 90);	
 	}
 	public function show($id) {
-		$photo = $this->profile->gimme("photo", "id", $id);
+		$gimme = $this->profile->gimme("photo", "id", $id);
+		$photo = ( $gimme != NULL ) ? $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $gimme : $_SERVER["DOCUMENT_ROOT"] . "img/default-avatar.png" ;
 
 		// Get the file extension
 		$extension = end((explode(".", $photo)));
-
-		$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photo;
 
 		if ( $extension == "jpg" || $extension == "jpeg" ) {
 			header("Content-type: image/jpeg");
@@ -136,7 +135,7 @@ class Avatar {
 			header("Content-type: image/gif");
 		}
 
-		readfile($avatar);
+		readfile($photo);
 	}
 }
 

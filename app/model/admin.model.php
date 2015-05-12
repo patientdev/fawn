@@ -15,17 +15,29 @@ class Admin {
 		$stmt->execute(array("id" => $id));
 		$result = $stmt->fetch();
 
-		if ( $id = $_SESSION["id"] ) { return true; }
+		if ( !empty($result) ) { return true; }
 		else return false;
 
 	}
 
 	public function newUsers() {
-		$stmt = $this->con->prepare("SELECT * FROM artists");
+		$stmt = $this->con->prepare("SELECT * FROM artists LIMIT 50");
 		$stmt->execute();
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		return $result;
+	}
+
+	public function deleteUsers($userIds) {
+		
+		$userIds = implode(",", $userIds);
+
+		$stmt = $this->con->prepare("DELETE FROM artists WHERE id = (:userIds) AND admin IS NULL");
+		$result = $stmt->execute(array("userIds" => $userIds));
+
+		if ( $result > 0 ) { return true; }
+		else { return false; }
+
 	}
 
 }
