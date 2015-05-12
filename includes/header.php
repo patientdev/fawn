@@ -64,4 +64,4 @@
 
 	<div id="content">
 
-	<?php if ( isset($_SESSION["status"]) ) { echo $_SESSION["status"]; unset($_SESSION["status"]); } ?>
+	<?php if ( isset($_SESSION["status"]) ) { echo "<div id=\"status\">" . $_SESSION["status"] . "</div>"; unset($_SESSION["status"]); } ?>
