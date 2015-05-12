@@ -297,7 +297,11 @@ $foot = <<<JAVASCRIPT
     $('form').submit(function(e) {
       e.preventDefault();
 
-      confirmation = confirm('Are you sure that you want to delete ' + $('input:checkbox:checked').length + 'users?');
+      numChecked = $('input:checkbox:checked').length;
+      if ( numChecked > 1 ) { numUsers = numChecked + ' users'; }
+      else { numUsers = numChecked + ' user'; }
+
+      confirmation = confirm('Are you sure that you want to delete ' + numUsers);
 
       if ( confirmation == true ) {
         $(this).submit();
