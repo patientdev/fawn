@@ -62,6 +62,6 @@
 		</div>
 	</header>
 
-	<?php echo showStatus(); ?>
-
 	<div id="content">
+
+	<?php echo showStatus(); ?>

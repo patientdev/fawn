@@ -189,8 +189,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
   }
 </script>
 
-<div id="status"></div>
-
 <form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
 <button type="button" id="facebook-login">Sign Up with Facebook</button>

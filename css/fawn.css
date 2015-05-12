@@ -203,14 +203,10 @@ input:focus {
 }
 
 #status {
-	position: absolute;
-	top: 0; right: 0;
-	background-color: white;
-	width: 300px;
-	white-space: pre;
-	font-size: 12px;
-	line-height: 1em;
-	overflow: hidden;
+	width: 50%;
+	margin: auto;
+	line-height: 1.4em;
+	text-align: center;
 
 }
 
