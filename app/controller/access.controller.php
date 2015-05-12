@@ -33,7 +33,9 @@ else if ( !empty($_COOKIE["remember"]) ) {
 function showStatus() {
 	if ( !empty($_SESSION["status"]) ) {
 		return "<div id=\"status\">" . $_SESSION["status"] . "</div>";
-		$_SESSION["status"] = "";
+		unset($_SESSION["status"]);
 	}
+
+	else { return false; }
 }
 ?>
