@@ -8,40 +8,34 @@ class Search {
 		$this->con = $db->connect();
 	}
 
-	public function exact($occupation, $cause, $location) {
+	public function results($occupation, $cause, $location) {
 
-		$sql = "SELECT id
+		$results = $exact = $differentCause = $differentOccupation = array();
+
+		$sql = "SELECT id, occupation, cause, location
 				FROM artists 
-				WHERE (occupation = :occupation AND cause = :cause AND location = :location)";
+				WHERE location = :location";
 		$stmt = $this->con->prepare($sql);
-		$stmt->execute(array("occupation" => $occupation, "location" => $location, "cause" => $cause));
-		$result = $stmt->fetch();
-		return $result;
+		$stmt->execute(array("location" => $location));
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	}
+		foreach ( $result as $user ) {
+			if ( $user["occupation"] == $occupation && $user["cause"] == $cause ) {
+				array_push($exact, $user["id"]);
+			}
 
-	public function differentCause($occupation, $location) {
+			if ( $user["cause"] != $cause && $user["occupation"] == $occupation ) {
+				array_push($differentCause, $user["id"]);
+			}
 
-		$sql = "SELECT id
-				FROM artists 
-				WHERE (occupation = :occupation AND location = :location)";
-		$stmt = $this->con->prepare($sql);
-		$stmt->execute(array("occupation" => $occupation, "location" => $location));
-		$result = $stmt->fetch();
-		return $result;
+			if ( $user["occupation"] != $occupation && $user["cause"] == $cause ) {
+				array_push($differentOccupation, $user["id"]);
+			}
+		}
 
-	}
+		array_push($results, $exact, $differentCause, $differentOccupation);
 
-	public function differentOccupation($cause, $location) {
-
-		$sql = "SELECT id
-				FROM artists 
-				WHERE (cause = :cause AND location = :location)";
-		$stmt = $this->con->prepare($sql);
-		$stmt->execute(array("cause" => $cause, "location" => $location));
-		$result = $stmt->fetch();
-		return $result;
-
+		return $results;
 	}
 
 }

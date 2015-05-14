@@ -3,176 +3,171 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/search.model.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
-$search = new Search;
+$searchOccupation = $_POST["occupation"];
+$searchCause = $_POST["cause"];
+$searchLocation = $_POST["location"];
 
-$occupation = $_POST["occupation"];
-$cause = $_POST["cause"];
-$location = $_POST["location"];
+function generateResults($searchOccupation, $searchCause, $searchLocation) { 
 
-$exact = $search->exact($occupation, $cause, $location);
-$differentCause = $search->differentCause($occupation, $location);
-$differentOccupation = $search->differentOccupation($cause, $location);
+	$search = new Search;
+	$results = $search->results($searchOccupation, $searchCause, $searchLocation);
 
-if ( !empty($exact) ) { $exactResults = exactResults( $exact ); } 
-else { $exact = "No results."; }
-
-if ( !empty($differentCause) ) { $differentCauseResults = differentCause( $differentCause ); } 
-else { $exact = "No results."; }
-
-if ( !empty($differentOccupation) ) { $differentOccupationResults = differentOccupation( $differentOccupation ); } 
-else { $exact = "No results."; }
-
-function exactResults($results) { 
+	list($exact, $differentCause, $differentOccupation) = $results;
+	$generatedResults = "";
 
 	$profile = new Profile;
 
-	foreach ( $results as $id ) {
-		$photo = "/app/controller/avatar.controller.php?id=" . $id;
-		$name = $profile->gimme("name", "id", $id);
-		$occupation = $profile->gimme("occupation", "id", $id);
-		$location = $profile->gimme("location", "id", $id);
-		$summary = $profile->gimme("summary", "id", $id);
+	if ( !empty($exact) ) {
+		foreach ( $exact as $id ) {
+			$photo = "/app/controller/avatar.controller.php?id=" . $id;
+			$name = $profile->gimme("name", "id", $id);
+			$occupation = $profile->gimme("occupation", "id", $id);
+			$location = $profile->gimme("location", "id", $id);
+			$summary = $profile->gimme("summary", "id", $id);
 
-		$result = "<div class=\"result\">";
+			$exactResult = "blah<div class=\"result\">";
 
-		// Profile URL
-		$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
-			
-			//Photo
-			$result .= "<div class=\"photo\">";
-				$result .= "<img src=\"" . $photo . "\">";
-			$result .= "</div>";
+			// Profile URL
+			$exactResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+				
+				//Photo
+				$exactResult .= "<div class=\"photo\">";
+					$exactResult .= "<img src=\"" . $photo . "\">";
+				$exactResult .= "</div>";
 
-			$result .= "<div class=\"info\">";
+				$exactResult .= "<div class=\"info\">";
 
-				//Name
-				$result .= "<div class=\"name\"><h2>";
-					$result .= $name;
-				$result .= "</h2></div>";
+					//Name
+					$exactResult .= "<div class=\"name\"><h2>";
+						$exactResult .= $name;
+					$exactResult .= "</h2></div>";
 
-				//Occupation
-				$result .= "<div class=\"occupation\"><h3>";
-					$result .= $occupation;
-				$result .= "</h3></div>";
+					//Occupation
+					$exactResult .= "<div class=\"occupation\"><h3>";
+						$exactResult .= $occupation;
+					$exactResult .= "</h3></div>";
 
-				//Location
-				$result .= "<div class=\"location\"><h3>";
-					$result .= $location;
-				$result .= "</h3></div>";
+					//Location
+					$exactResult .= "<div class=\"location\"><h3>";
+						$exactResult .= $location;
+					$exactResult .= "</h3></div>";
 
-				//Summary
-				$result .= "<div class=\"summary\">";
-					$result .= $summary;
-				$result .= "</div>";
+					//Summary
+					$exactResult .= "<div class=\"summary\">";
+						$exactResult .= $summary;
+					$exactResult .= "</div>";
 
-			$result .= "</div>";
+				$exactResult .= "</div>";
 
-		$result .= "</div>";
+			$exactResult .= "</div>";
+		}
+
+		$generatedResults .= $exactResult;
+
+	} else { $generatedResults .= "<p id=\"nomatch\">Sorry! No artists match that exact criteria.</p>"; }
+
+	if ( !empty($differentCause) ) {
+
+		foreach ( $differentCause as $id ) {
+			$photo = "/app/controller/avatar.controller.php?id=" . $id;
+			$name = $profile->gimme("name", "id", $id);
+			$occupation = $profile->gimme("occupation", "id", $id);
+			$location = $profile->gimme("location", "id", $id);
+			$summary = $profile->gimme("summary", "id", $id);
+
+			$differentCauseResult = "<h2>Other Artists in <strong>$searchLocation</strong> interested in <strong>$searchCause</strong></h2><div class=\"result\">";
+
+			// Profile URL
+			$differentCauseResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+				
+				//Photo
+				$differentCauseResult .= "<div class=\"photo\">";
+					$differentCauseResult .= "<img src=\"" . $photo . "\">";
+				$differentCauseResult .= "</div>";
+
+				$differentCauseResult .= "<div class=\"info\">";
+
+					//Name
+					$differentCauseResult .= "<div class=\"name\"><h2>";
+						$differentCauseResult .= $name;
+					$differentCauseResult .= "</h2></div>";
+
+					//Occupation
+					$differentCauseResult .= "<div class=\"occupation\"><h3>";
+						$differentCauseResult .= $occupation;
+					$differentCauseResult .= "</h3></div>";
+
+					//Location
+					$differentCauseResult .= "<div class=\"location\"><h3>";
+						$differentCauseResult .= $location;
+					$differentCauseResult .= "</h3></div>";
+
+					//Summary
+					$differentCauseResult .= "<div class=\"summary\">";
+						$differentCauseResult .= $summary;
+					$differentCauseResult .= "</div>";
+
+				$differentCauseResult .= "</div>";
+
+			$differentCauseResult .= "</div>";
+		}
+
+		$generatedResults .= $differentCauseResult;
+
 	}
 
-	return $result;
-}
+	if ( !empty($differentOccupation) ) {
 
-function differentOccupation($results) {
-	
-	$profile = new Profile;
+		foreach ( $differentOccupation as $id ) {
+			$photo = "/app/controller/avatar.controller.php?id=" . $id;
+			$name = $profile->gimme("name", "id", $id);
+			$occupation = $profile->gimme("occupation", "id", $id);
+			$location = $profile->gimme("location", "id", $id);
+			$summary = $profile->gimme("summary", "id", $id);
 
-	foreach ( $results as $id ) {
-		$photo = "/app/controller/avatar.controller.php?id=" . $id;
-		$name = $profile->gimme("name", "id", $id);
-		$occupation = $profile->gimme("occupation", "id", $id);
-		$location = $profile->gimme("location", "id", $id);
-		$summary = $profile->gimme("summary", "id", $id);
+			$differentOccupationResult = "<h2>Other <strong>${searchOccupation}s</strong> in <strong>$searchLocation</strong></h2><div class=\"result\">";
 
-		$result = "<div class=\"result\">";
+			// Profile URL
+			$differentOccupationResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+				
+				//Photo
+				$differentOccupationResult .= "<div class=\"photo\">";
+					$differentOccupationResult .= "<img src=\"" . $photo . "\">";
+				$differentOccupationResult .= "</div>";
 
-		// Profile URL
-		$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
-			
-			//Photo
-			$result .= "<div class=\"photo\">";
-				$result .= "<img src=\"" . $photo . "\">";
-			$result .= "</div>";
+				$differentOccupationResult .= "<div class=\"info\">";
 
-			$result .= "<div class=\"info\">";
+					//Name
+					$differentOccupationResult .= "<div class=\"name\"><h2>";
+						$differentOccupationResult .= $name;
+					$differentOccupationResult .= "</h2></div>";
 
-				//Name
-				$result .= "<div class=\"name\"><h2>";
-					$result .= $name;
-				$result .= "</h2></div>";
+					//Occupation
+					$differentOccupationResult .= "<div class=\"occupation\"><h3>";
+						$differentOccupationResult .= $occupation;
+					$differentOccupationResult .= "</h3></div>";
 
-				//Occupation
-				$result .= "<div class=\"occupation\"><h3>";
-					$result .= $occupation;
-				$result .= "</h3></div>";
+					//Location
+					$differentOccupationResult .= "<div class=\"location\"><h3>";
+						$differentOccupationResult .= $location;
+					$differentOccupationResult .= "</h3></div>";
 
-				//Location
-				$result .= "<div class=\"location\"><h3>";
-					$result .= $location;
-				$result .= "</h3></div>";
+					//Summary
+					$differentOccupationResult .= "<div class=\"summary\">";
+						$differentOccupationResult .= $summary;
+					$differentOccupationResult .= "</div>";
 
-				//Summary
-				$result .= "<div class=\"summary\">";
-					$result .= $summary;
-				$result .= "</div>";
+				$differentOccupationResult .= "</div>";
 
-			$result .= "</div>";
+			$differentOccupationResult .= "</div>";
+		}
 
-		$result .= "</div>";
+		$generatedResults .=  $differentOccupationResult;
+
 	}
 
-	return $result;
-}
+	return $generatedResults;
 
-function differentCause($results) { 
-	
-	$profile = new Profile;
-
-	foreach ( $results as $id ) {
-		$photo = "/app/controller/avatar.controller.php?id=" . $id;
-		$name = $profile->gimme("name", "id", $id);
-		$occupation = $profile->gimme("occupation", "id", $id);
-		$location = $profile->gimme("location", "id", $id);
-		$summary = $profile->gimme("summary", "id", $id);
-
-		$result = "<div class=\"result\">";
-
-		// Profile URL
-		$result .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
-			
-			//Photo
-			$result .= "<div class=\"photo\">";
-				$result .= "<img src=\"" . $photo . "\">";
-			$result .= "</div>";
-
-			$result .= "<div class=\"info\">";
-
-				//Name
-				$result .= "<div class=\"name\"><h2>";
-					$result .= $name;
-				$result .= "</h2></div>";
-
-				//Occupation
-				$result .= "<div class=\"occupation\"><h3>";
-					$result .= $occupation;
-				$result .= "</h3></div>";
-
-				//Location
-				$result .= "<div class=\"location\"><h3>";
-					$result .= $location;
-				$result .= "</h3></div>";
-
-				//Summary
-				$result .= "<div class=\"summary\">";
-					$result .= $summary;
-				$result .= "</div>";
-
-			$result .= "</div>";
-
-		$result .= "</div>";
-	}
-
-	return $result;
 }
 
 ?>

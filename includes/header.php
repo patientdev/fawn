@@ -1,4 +1,4 @@
-<?php $debug = false; ?>
+<?php $debug = true; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>

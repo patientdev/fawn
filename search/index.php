@@ -9,6 +9,10 @@ $styles = <<< CSS
 	padding: 0;
 }
 
+#search-button {
+	display: none; 
+}
+
 #search-wrapper {
 	padding: 40px 0;
 	background-image: url(/img/header-background.jpg);
@@ -56,6 +60,16 @@ $styles = <<< CSS
 
 #results {
 	padding: 0 40px;
+}
+
+#results h2 {
+	font-weight: normal;
+	text-align: center;
+}
+
+#results h2 strong {
+	text-transform: uppercase;
+	letter-spacing: 3px;
 }
 
 .result {
@@ -156,6 +170,12 @@ $styles = <<< CSS
 	position: absolute;
 	top: 0; right: 0;
 	padding: 15px 15px 12px 18px;
+}
+
+#nomatch {
+	text-align: center;
+	padding: 40px 0;
+
 }
 
 @media only screen and (max-width: 840px) {
@@ -381,13 +401,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="results">
 
-<?php echo $exactResults; ?>
-
-<h2>Other Artists in <?php echo $location; ?> interested in <?php echo $cause; ?></h2>
-<?php echo $differentCauseResults; ?>
-
-<h2>Other <?php echo $occupation . "s in " . $location; ?></h2>
-<?php echo $differentOccupationResults; ?>
+<?php echo generateResults($searchOccupation, $searchCause, $searchLocation); ?>
 
 </div>
 
