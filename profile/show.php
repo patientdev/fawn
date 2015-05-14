@@ -117,14 +117,13 @@ h3 {
 	border-bottom: 1px solid black;
 }
 
-#profile-summary div{
-	clear: both;
+#profile-summary {
 	font-weight: 600;
 	font-size: 1.4em;
 	line-height: 1.4em;
 	letter-spacing: 3px;
 	font-style: italic;
-	width: 80%; margin: auto;
+	min-width: 80%; margin: auto;
 	text-align: center;
 
 }
@@ -147,7 +146,6 @@ h3 {
 
 #profile-summary, #profile-about, #profile-currentprojects {
 	margin: 60px 0;
-	clear: both;
 }
 
 @media only screen and (max-width: 840px) {
@@ -155,7 +153,7 @@ h3 {
 	#profile {
 		width: 90%;
 		min-width: 0;
-		padding-top: 20px;
+		padding-top: 0;
 	}
 
 	#profile-edit {
@@ -164,11 +162,11 @@ h3 {
 		text-align: center;
 		right: 0;
 		margin: 20px 0;
-}
+	}
 
 	#profile-name {
 		margin-bottom: 30px;
-}
+	}
 
 	#profile-name h2 {
 		font-size: 1.2em;
@@ -191,7 +189,7 @@ h3 {
 
 	#profile-photo h3 {
 		margin: 0;
-}
+	}
 
 	#profile-photo img {
 		width: 150px;
@@ -219,7 +217,7 @@ h3 {
 
 	#profile-website {
 		font-size: .6em;
-}
+	}
 
 	#profile-summary {
 		margin-top: 0;
@@ -279,25 +277,23 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 </div>
 
-<div style="clear: both;"></div>
-
 <div id="profile-summary">
 	<?php if(!empty($forgerSummary)) { ?>
-		<div><?php echo $forgerSummary ?></div>
+		<?php echo $forgerSummary ?>
 	<?php } ?>
 </div>
 
 <div id="profile-about">
 	<?php if(!empty($forgerAbout)) { ?>
 		<h3>About</h3>
-		<div><?php echo nl2br($forgerAbout); ?></div>
+		<?php echo nl2br($forgerAbout); ?>
 	<?php } ?>
 </div>
 
 <div id="profile-currentprojects">
 	<?php if(!empty($forgerCurrentprojects)) { ?>
 		<h3>Current Projects</h3>
-		<div><?php echo nl2br($forgerCurrentprojects); ?></div>
+		<?php echo nl2br($forgerCurrentprojects); ?>
 	<?php } ?>
 </div>
 
