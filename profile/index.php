@@ -102,14 +102,13 @@ h3 {
 	border-bottom: 1px solid black;
 }
 
-#profile-summary div{
-	clear: both;
+#profile-summary {
 	font-weight: 600;
 	font-size: 1.4em;
 	line-height: 1.4em;
 	letter-spacing: 3px;
 	font-style: italic;
-	width: 80%; margin: auto;
+	min-width: 80%; margin: auto;
 	text-align: center;
 
 }
