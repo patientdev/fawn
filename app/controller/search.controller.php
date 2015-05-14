@@ -25,7 +25,7 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 			$location = $profile->gimme("location", "id", $id);
 			$summary = $profile->gimme("summary", "id", $id);
 
-			$exactResult = "blah<div class=\"result\">";
+			$exactResult = "<div class=\"result\">";
 
 			// Profile URL
 			$exactResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";

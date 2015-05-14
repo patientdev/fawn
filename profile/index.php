@@ -132,7 +132,6 @@ h3 {
 
 #profile-summary, #profile-about, #profile-currentprojects {
 	margin: 60px 0;
-	clear: both;
 }
 
 @media only screen and (max-width: 840px) {
@@ -149,11 +148,11 @@ h3 {
 		text-align: center;
 		right: 0;
 		margin: 20px 0;
-}
+	}
 
 	#profile-name {
 		margin-bottom: 30px;
-}
+	}
 
 	#profile-name h2 {
 		font-size: 1.2em;
@@ -176,7 +175,7 @@ h3 {
 
 	#profile-photo h3 {
 		margin: 0;
-}
+	}
 
 	#profile-photo img {
 		width: 150px;
@@ -204,7 +203,7 @@ h3 {
 
 	#profile-website {
 		font-size: .6em;
-}
+	}
 
 	#profile-summary {
 		margin-top: 0;
@@ -268,25 +267,23 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 </div>
 
-<div style="clear: both;"></div>
-
 <div id="profile-summary">
 	<?php if(!empty($summary)) { ?>
-		<div><?php echo $summary ?></div>
+		<?php echo $summary ?>
 	<?php } ?>
 </div>
 
 <div id="profile-about">
 	<?php if(!empty($about)) { ?>
 		<h3>About</h3>
-		<div><?php echo nl2br($about); ?></div>
+		<?php echo nl2br($about); ?>
 	<?php } ?>
 </div>
 
 <div id="profile-currentprojects">
 	<?php if(!empty($currentprojects)) { ?>
 		<h3>Current Projects</h3>
-		<div><?php echo nl2br($currentprojects); ?></div>
+		<?php echo nl2br($currentprojects); ?>
 	<?php } ?>
 </div>
 
