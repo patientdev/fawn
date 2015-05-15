@@ -86,7 +86,7 @@ button {
 }
 
 #options:after {
-	content: \"\";
+	content: "";
 	display: block;
 	clear: both;
 	overflow: visible;

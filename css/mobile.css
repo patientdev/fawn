@@ -47,6 +47,8 @@ header {
 
 #menu { display: block; }
 
+#menu button { vertical-align: middle; margin: 0; width: 100px; }
+
 #sentence h5 {
 	overflow: hidden;
 	white-space: nowrap;
@@ -60,12 +62,18 @@ header {
 }
 
 footer {
-	padding: 20px;
+	padding: 0 10px;
 	margin-top: 20px;
 }
 
 #contact a {
-	margin-right: 10px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+#social a {
+	display: block;
+	margin-bottom: 5px;
 }
 
 #social img {
