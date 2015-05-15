@@ -403,7 +403,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 
 	<div id="profile-cause">
-		<div class="drop-down" tabindex="">
+		<div class="drop-down" tabindex="0">
 			<h5><?php if ( !empty($cause) ) { echo $cause; } else echo "Cause"; ?></h5>
 			<ul>
 				<li class="option">Animal Rights</li>
