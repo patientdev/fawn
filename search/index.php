@@ -344,20 +344,20 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="drop-down" id="search-cause" tabindex="2">
 				<h5>Cause</h5>
 				<ul>
-					<li class="option">Gender Equality</li>
-					<li class="option">LGBT Rights</li>
-					<li class="option">Race Relations</li>
-					<li class="option">Environmental/Preservation</li>
-					<li class="option">International Relations</li>
 					<li class="option">Animal Rights</li>
-					<li class="option">Food/Water Access</li>
-					<li class="option">Poverty</li>
 					<li class="option">Disease (HIV/Aids, etc)</li>
-					<li class="option">Religious Freedom</li>
 					<li class="option">Education</li>
+					<li class="option">Environmental/Preservation</li>
+					<li class="option">Food/Water Access</li>
+					<li class="option">Gender Equality</li>
+					<li class="option">Human Trafficking</li>
+					<li class="option">International Relations</li>
+					<li class="option">LGBT Rights</li>
+					<li class="option">Poverty</li>
+					<li class="option">Race Relations</li>
+					<li class="option">Religious Freedom</li>
 					<li class="option">Sustainability</li>
 					<li class="option">World Peace</li>
-					<li class="option">Human Trafficking</li>
 				</ul>
 			</div>
 
@@ -366,37 +366,37 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="drop-down" id="search-location" tabindex="3">
 				<h5>Location</h5>
 				<ul>
-					<li class="option">New York</li>
-					<li class="option">Miami</li>
-					<li class="option">Denver</li>
-					<li class="option">San Fransisco</li>
-					<li class="option">Boston</li>
-					<li class="option">Berlin</li>
-					<li class="option">Portland</li>
-					<li class="option">Los Angeles</li>
-					<li class="option">Chicago</li>
-					<li class="option">Madrid</li>
-					<li class="option">Prague</li>
-					<li class="option">Paris</li>
-					<li class="option">London</li>
-					<li class="option">Seattle</li>
-					<li class="option">Mumbai</li>
-					<li class="option">Milan</li>
-					<li class="option">Sydney</li>
-					<li class="option">Hong Kong</li>
-					<li class="option">Tokyo</li>
-					<li class="option">Cape Town</li>
-					<li class="option">Montreal</li>
-					<li class="option">Toronto</li>
-					<li class="option">Mexico City</li>
-					<li class="option">Sao Paolo</li>
-					<li class="option">Cairo</li>
-					<li class="option">Dublin</li>
-					<li class="option">Copenhagen</li>
-					<li class="option">Stockholm</li>
-					<li class="option">Bangladesh</li>
 					<li class="option">Bangkok</li>
+					<li class="option">Bangladesh</li>
+					<li class="option">Berlin</li>
+					<li class="option">Boston</li>
+					<li class="option">Cairo</li>
+					<li class="option">Cape Town</li>
+					<li class="option">Chicago</li>
+					<li class="option">Copenhagen</li>
+					<li class="option">Denver</li>
+					<li class="option">Dublin</li>
+					<li class="option">Hong Kong</li>
+					<li class="option">London</li>
+					<li class="option">Los Angeles</li>
+					<li class="option">Madrid</li>
+					<li class="option">Mexico City</li>
+					<li class="option">Miami</li>
+					<li class="option">Milan</li>
+					<li class="option">Montreal</li>
 					<li class="option">Moscow</li>
+					<li class="option">Mumbai</li>
+					<li class="option">New York</li>
+					<li class="option">Paris</li>
+					<li class="option">Portland</li>
+					<li class="option">Prague</li>
+					<li class="option">San Fransisco</li>
+					<li class="option">Sao Paolo</li>
+					<li class="option">Seattle</li>
+					<li class="option">Stockholm</li>
+					<li class="option">Sydney</li>
+					<li class="option">Tokyo</li>
+					<li class="option">Toronto</li>
 				</ul>
 			</div>
 		</div>
