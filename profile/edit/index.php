@@ -40,7 +40,6 @@ $styles = <<<CSS
 
 #profile-photo {
 	width: 225px;
-	height: 225px;
 	background-color: transparent;
 	border-radius: 50%;
 	text-align: center;
@@ -473,7 +472,6 @@ $foot .= <<<JS
 <script>
 	$(function() {
 
-		if ( $('#menu').css('display') === 'none' ) {
 				function giveCoords(c) {
 				$('#jcrop-y').val(c.y);
 				$('#jcrop-x').val(c.x);
@@ -482,13 +480,7 @@ $foot .= <<<JS
 				$('#jcrop-w').val(c.w);
 				$('#jcrop-h').val(c.h);
 			}
-
-			$('#profile-photo img').Jcrop({
-				'onChange': giveCoords,
-				'aspectRatio': 1,
-				'setSelect': [0,0,255,255]
-			});
-
+		if ( $('#menu').css('display') === 'none' ) {
 			function generateTabIndex() {
 				$(':input, .drop-down').each(function (i) { 
 					if ( $(this).attr('type') != 'hidden' ) {
