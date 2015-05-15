@@ -7,19 +7,19 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>http://dev.forgerworldwide.org/</loc>
+  <loc>http://fawnworldwide.org/</loc>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://dev.forgerworldwide.org/sign-in/</loc>
+  <loc>http://fawnworldwide.org/sign-in/</loc>
   <priority>0.90</priority>
 </url>
 <url>
-  <loc>http://dev.forgerworldwide.org/join-us/</loc>
+  <loc>http://fawnworldwide.org/join-us/</loc>
   <priority>0.90</priority>
 </url>
 <url>
-  <loc>http://dev.forgerworldwide.org/team/</loc>
+  <loc>http://fawnworldwide.org/team/</loc>
   <priority>0.80</priority>
 </url>
 </urlset>
