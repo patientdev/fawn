@@ -173,7 +173,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 	</div>
 
 	<div class="teammate-info">
-		<span class="teammate-name"><a href="" target="_blank" alt="">Sari Murphy</a></span>
+		<span class="teammate-name">Sari Murphy</span>
 		<span class="teammate-job">Partner Outreach</span>
 	</div>
 

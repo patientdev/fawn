@@ -79,6 +79,8 @@ header {
 
 #who-we-are .call-to-action, #what-were-up-to .call-to-action {
 	text-align: center;
+	width: 100%;
+	display: block;
 }
 
 #who-we-are .call-to-action a, #what-were-up-to .call-to-action a {
@@ -89,6 +91,27 @@ header {
 	color: white;
 	text-decoration: none;
 	font-size: 1.2em;
+}
+
+#who-we-are, #what-were-up-to {
+	padding: 40px 0;
+}
+
+#who-we-are p, #what-were-up-to p {
+	letter-spacing: 4px;
+	line-height: 1.8em;
+	margin: 40px auto;
+}
+
+#what-were-up-to p {
+	width: 50%; 
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#who-we-are p {
+	text-align: center;
+	width: 45%;
 }
 
 #headline {
@@ -112,6 +135,28 @@ header {
 
 footer {
 	top: 0;
+}
+
+#what-were-up-to img {
+	width: 400px;
+}
+
+.front-image {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.row {
+	width: 70%;
+	margin: 80px auto;
+}
+
+.row:nth-of-type(odd) .front-image {
+	margin-left: 40px;
+}
+
+.row:nth-of-type(even) .front-image {
+	margin-right: 40px;
 }
 
 @media only screen and (max-width: 840px) {
@@ -187,7 +232,29 @@ footer {
 
 	#who-we-are, #what-were-up-to {
 		padding: 10px;
-}
+	}
+
+	#what-were-up-to {
+		text-align: center;
+	}
+
+	#what-were-up-to img {
+		width: 200px;
+	}
+
+	#what-were-up-to p {
+		display: block;
+	}
+
+	.front-image {
+		display: none;
+	}
+
+	.row {
+		width: 100%;
+		padding: 0 20px;
+		margin: 0;
+	}
 
 }
 
@@ -313,11 +380,20 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 		<h3>What We&rsquo;re Up To</h3>
 
-		<p>We&rsquo;ve created Forging: A Worldwide Network (FAWN) as a space for artists and social activists around the world to connect and collaborate &mdash; via a simple web&ndash;based platform.</p>
+		<div class="row">
+			<p>We&rsquo;ve created Forging: A Worldwide Network (FAWN) as a space for artists and social activists around the world to connect and collaborate &mdash; via a simple web&ndash;based platform.</p>
+			<div class="front-image"><img src="/img/front1.jpg"></div>
+		</div>
 
-		<p>FAWN is a network for communication and collaboration among individuals, as well as businesses and organizations to accomplish their missions through impactful artistic statements.</p>
+		<div class="row">
+			<div class="front-image"><img src="/img/front2.jpg"></div>
+			<p>FAWN is a network for communication and collaboration among individuals, as well as businesses and organizations to accomplish their missions through impactful artistic statements.</p>
+		</div>
 
-		<p>At FAWN, we&rsquo;re creating opportunities to build community, both online and offline, that will foster inspiration, beginnings, partnerships, and more!</p>
+		<div class="row">
+			<p>At FAWN, we&rsquo;re creating opportunities to build community, both online and offline, that will foster inspiration, beginnings, partnerships, and more!</p>
+			<div class="front-image"><img src="/img/front3.jpg"></div>
+		</div>
 
 		<p class="call-to-action"><a href="/join-us/">Join Our Network</a></p>
 

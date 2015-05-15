@@ -145,16 +145,6 @@ h1 img {
 	overflow: visible;
 }
 
-#who-we-are, #what-were-up-to {
-	padding: 40px 0;
-}
-
-#who-we-are p, #what-were-up-to p {
-	letter-spacing: 4px;
-	line-height: 1.8em;
-	width: 50%; margin: 40px auto;
-}
-
 .call-to-action {
 	margin-top: 60px;
 }
