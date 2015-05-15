@@ -53,19 +53,6 @@ header {
 	margin-top: 0; margin-bottom: 40px;
 }
 
-#search select {
-	width: 100%;
-	border: none;
-	border-radius: 0;
-	height: 50px;
-	background-color: white;
-	font-size: 1.1em;
-	font-style: italic;
-	letter-spacing: 4px;
-	background-color: rgba(240, 240, 240, 1);
-	font-weight: 200;
-}
-
 #search p {
 	display: inline-block;
 	margin: 0 30px;
@@ -73,62 +60,6 @@ header {
 	font-style: italic;
 	letter-spacing: 4px;
 	line-height: 1.3em;
-}
-.drop-down {
-	background-color: white;
-	display: inline-block;
-	position: relative;
-}
-
-.drop-down:hover {
-	cursor: pointer;
-}
-
-.drop-down h5 {
-	display: inline-block;
-	background-color: rgba(255, 255, 255, 1);
-	padding: 14px 0 13px 15px;
-	color: black;
-	font-size: 1.4em;
-	font-weight: 300;
-	font-style: italic;
-	letter-spacing: 8px;
-	margin: 0;
-}
-
-.drop-down h5:after {
-	content: "\\25BE";
-	font-style: normal;
-	padding: 10px 15px 10px 22px;
-	margin-left: 10px;
-	background-color: rgba(235, 235, 235, 1);
-	color: rgba(137, 137, 137, 1);
-}
-
-.drop-down ul {
-	display: none;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	border-top: 2px solid rgba(235, 235, 235, 1);
-	position: absolute;
-	width: 100%;
-}
-
-.drop-down li {
-	font-style: normal;
-	padding: 15px 15px 15px 22px;
-	background-color: rgba(255, 255, 255, 1);
-	color: black;
-	text-align: left;
-	font-size: 1.2em;
-	line-height: 1.4em;
-	border-bottom: 2px solid rgba(235, 235, 235, 1);
-}
-
-.drop-down li:hover {
-	background-color: rgba(125, 164, 221, 1);
-	color: white;
 }
 
 #who-we-are {
@@ -183,6 +114,83 @@ footer {
 	top: 0;
 }
 
+@media only screen and (max-width: 840px) {
+	#intro {
+		height: auto;
+		top: 0;
+		padding-top: 0;
+	}
+	
+	#headline h2 {
+	font-size: 1.4em;
+	font-weight: 500;
+	letter-spacing: 3px;
+	line-height: 1.6em;
+}	
+	#headline h3 { display: none; }
+
+	#search {
+	position: relative;
+	background-color: #296EBC;
+	font-size: 1em;
+	margin-top: 0;
+	text-align: center;
+	white-space: normal;
+	padding: 20px 0;
+}
+
+	#search h3, #sentence p {
+	font-size: 1.2em;
+	letter-spacing: 3px;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+	#sentence p {
+	display: block;
+	margin: 10px 0;
+}
+
+	.drop-down {
+	width: 240px;
+}
+
+	.drop-down h5 {
+		font-size: 1em;
+		width: 100%;
+		position: relative;
+		padding: 10px 0 10px 60px;
+	}
+
+	.drop-down li {
+		font-size: 1em;
+	}
+
+	.drop-down h5:before {
+		position: absolute;
+		left: 0; top: 0;
+		padding: 10px 15px 10px 22px;
+	}
+
+	#about {
+		text-align: center;
+	}
+
+	#about p {
+		width: 100%;
+	}
+
+	#about h3 {
+		padding: 0 10px;
+		line-height: 1.2em;
+	}
+
+	#who-we-are, #what-were-up-to {
+		padding: 10px;
+}
+
+}
+
 CSS;
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
@@ -193,43 +201,98 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 		<h3>Elevating Creativity That Makes A Difference</h3>
 	</div>
 
-	<div id="search">
+	<form id="search">
 		<h3>I&rsquo;m searching for a...</h3>
 
 		<div id="sentence">
-			<div class="drop-down" id="search-occupation">
+			<div class="drop-down" id="search-occupation" tabindex="1">
 				<h5>Occupation</h5>
 				<ul>
 					<li class="option">Photographer</li>
+					<li class="option">Writer</li>
+					<li class="option">Web Developer</li>
+					<li class="option">Dancer</li>
+					<li class="option">Actor</li>
 					<li class="option">Musician</li>
+					<li class="option">Visual Artist</li>
+					<li class="option">Poet</li>
+					<li class="option">Sculptor</li>
+					<li class="option">Art Therapist</li>
+					<li class="option">Arts Educator</li>
+					<li class="option">Painter</li>
+					<li class="option">Performance Artist</li>
 					<li class="option">Graphic Designer</li>
-					<li class="option">Web developer</li>
+					<li class="option">Filmmaker</li>
+					<li class="option">Illustrator</li>
+					<li class="option">Printmaker</li>
+					<li class="option">Metal Artist</li>
+					<li class="option">Glass Artist</li>
+					<li class="option">Textile Artist</li>
 				</ul>
 			</div>
 
 			<p>who supports</p>
 
-			<div class="drop-down" id="search-cause">
+			<div class="drop-down" id="search-cause" tabindex="2">
 				<h5>Cause</h5>
 				<ul>
-					<li class="option">Conservation</li>
-					<li class="option">Local Food</li>
-					<li class="option">Local Culture</li>
+					<li class="option">Gender Equality</li>
+					<li class="option">LGBT Rights</li>
+					<li class="option">Race Relations</li>
+					<li class="option">Environmental/Preservation</li>
+					<li class="option">International Relations</li>
+					<li class="option">Animal Rights</li>
+					<li class="option">Food/Water Access</li>
+					<li class="option">Poverty</li>
+					<li class="option">Disease (HIV/Aids, etc)</li>
+					<li class="option">Religious Freedom</li>
+					<li class="option">Education</li>
+					<li class="option">Sustainability</li>
+					<li class="option">World Peace</li>
+					<li class="option">Human Trafficking</li>
 				</ul>
 			</div>
 
 			<p>in</p>
 
-			<div class="drop-down" id="search-location">
+			<div class="drop-down" id="search-location" tabindex="3">
 				<h5>Location</h5>
 				<ul>
-					<li class="option">Ithaca, NY</li>
-					<li class="option">New York, New York</li>
-					<li class="option">Bhangra, India</li>
+					<li class="option">New York</li>
+					<li class="option">Miami</li>
+					<li class="option">Denver</li>
+					<li class="option">San Fransisco</li>
+					<li class="option">Boston</li>
+					<li class="option">Berlin</li>
+					<li class="option">Portland</li>
+					<li class="option">Los Angeles</li>
+					<li class="option">Chicago</li>
+					<li class="option">Madrid</li>
+					<li class="option">Prague</li>
+					<li class="option">Paris</li>
+					<li class="option">London</li>
+					<li class="option">Seattle</li>
+					<li class="option">Mumbai</li>
+					<li class="option">Milan</li>
+					<li class="option">Sydney</li>
+					<li class="option">Hong Kong</li>
+					<li class="option">Tokyo</li>
+					<li class="option">Cape Town</li>
+					<li class="option">Montreal</li>
+					<li class="option">Toronto</li>
+					<li class="option">Mexico City</li>
+					<li class="option">Sao Paolo</li>
+					<li class="option">Cairo</li>
+					<li class="option">Dublin</li>
+					<li class="option">Copenhagen</li>
+					<li class="option">Stockholm</li>
+					<li class="option">Bangladesh</li>
+					<li class="option">Bangkok</li>
+					<li class="option">Moscow</li>
 				</ul>
 			</div>
 		</div>
-	</div>
+	</form>
 
 </div>
 
@@ -266,24 +329,24 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <?php 
 
-$foot = <<<'JS'
+$foot = <<<JAVASCRIPT
 
 <script>
 //Parallax
 $(window).scroll(function() {
 
-	$parallax = 0;
-	$windowScroll = $(window).scrollTop();
+	parallax = 0;
+	windowScroll = $(window).scrollTop();
 
-	if ( $windowScroll <= 0 ) { $parallax = 0; }
-	else { $parallax = $windowScroll/3; }
+	if ( windowScroll <= 0 ) { parallax = 0; }
+	else { parallax = windowScroll/3; }
 
-	$('body').css('background-position', '0 ' + $parallax + 'px');
+	$('body').css('background-position', '0 ' + parallax + 'px');
 
 })
 </script>
 
-JS;
+JAVASCRIPT;
 
 
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

@@ -2,7 +2,7 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
-$styles = "
+$styles = <<<CSS
 
 h2 {
 	margin-top: 20px;
@@ -29,7 +29,7 @@ input:focus {
 	outline: none;
 }
 
-input[type=\"text\"], input[type=\"password\"] {
+input[type="email"], input[type="password"] {
 	background-color: rgba(235, 232, 232, 1);
 	padding: 20px;
 	color: black;
@@ -113,11 +113,11 @@ label {
 	text-align: left;
 }
 
-input[type=\"checkbox\"] {
+input[type="checkbox"] {
 	display: none;
 }
 
-input[type=\"checkbox\"] + span {
+input[type="checkbox"] + span {
 	width: auto;
 	border: 2px solid #555;
 	border-radius: 0;
@@ -153,7 +153,85 @@ input[type=\"checkbox\"] + span {
 	letter-spacing: 3px;
 }
 
-";
+#sign-up button, #facebook-login {
+	background-color: rgba(125, 164, 221, 1);
+	font-weight: 500;
+	letter-spacing: 8px;
+	position: relative;
+	border: none;
+	font-size: 1.2em;
+	padding: 20px;
+	color: white;
+	border: none;
+	text-transform: uppercase;
+	text-decoration: none;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+button#facebook-login {
+  background-color: #3b5998;
+  background-color: rgba(59, 89, 152, 1);
+  font-size: 1em;
+  letter-spacing: 5px;
+}
+
+@media only screen and (max-width: 840px) {
+
+	h2 {
+		font-size: 1.2em;
+		letter-spacing: 3px;
+	}
+
+	hr {
+		margin: 20px auto; 
+	}
+
+  #sign-up button, #facebook-login {
+    font-size: .8em;
+    letter-spacing: 3px;
+    margin: 10px 0;
+  }
+
+  form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  form div {
+    font-size: 1.2em;
+    margin: 20px 0 20px 0;
+  }
+
+  input[type="email"], input[type="password"] {
+    font-size: 1em;
+    letter-spacing: 3px;
+  }
+
+  #options label {
+  	display: block;
+  	width: 100%;
+  	text-align: center;
+  	float: none;
+  	margin-bottom: 20px;
+	}
+
+	#options a {
+	display: block;
+	text-align: center;
+	width: 100%;
+	float: none;
+}
+
+	#sign-up {
+	width: 100%;
+	border-left: none;
+	border-right: none;
+}
+
+}
+
+CSS;
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
  ?>
@@ -161,9 +239,83 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <h2>Sign In Below</h2>
 
 <hr>
+<script>
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+     // logIn();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1560529120863841',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function logIn() {
+    FB.api('/me', function(response) {
+      $.post("/app/controller/sign-in.controller.php", { facebook: 'true', response: response }, function( success ) {
+        console.log(success);
+      });
+    });
+  }
+</script>
 
 <form name="sign-in" id="sign-in" method="post" action="/app/controller/sign-in.controller.php">
-<p><input type="text" name="email" placeholder="Your Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'"></p>
+
+<button type="button" id="facebook-login">Sign In with Facebook</button>
+
+<p><input type="email" name="email" placeholder="Your Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'"></p>
 <p><input type="password" name="password" placeholder="Your Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"></p>
 <p><button type="submit">Sign In</button></p>
 
@@ -193,21 +345,43 @@ $(function() {
 		$('#checkbox input').attr('checked', '');
 		$('#checkbox span').html('&#x2713;');
 	}
-});
 
-$('#checkbox').click(function(e) {
-	e.preventDefault();
-	checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
-	if (!checked && $.cookie('remember')) {
-		$.removeCookie('remember', { expires: 60, path: '/'});
-		$('input', this).removeAttr('checked'); 
-		$('span', this).html('');
-	}
+	$('#facebook-login').click(function(e) {
+	  e.preventDefault();
+	  FB.login(function(response){
+	    if ( response.status == 'connected') {
+	      FB.api('/me?fields=id,name,email,picture', function(user) {
+	        $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+	        console.log(success);
+	        window.location.replace('/profile/');
+	      } );
+	      })
+	    }
 
-	else { 
-		$('input', this).attr('checked', '');
-		$('span', this).html('&#x2713;');
-	}
+	    else if ( response.status == 'not_authorized') {
+	      FB.api('/me?fields=id,name,email,picture', function(user) {
+	        $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+	        console.log(success);
+	        window.location.replace('/profile/edit/');
+	      } );
+	      })
+	    }
+	  });
+	})
+
+	$('#checkbox').click(function(e) {
+		e.preventDefault();
+		if ( $('#checkbox input').prop('checked') === true ) {
+			$('#checkbox input').prop('checked', false); 
+			$('#checkbox span').html('');
+		}
+
+		else { 
+			$('input', this).prop('checked', true); 
+			$('span', this).html('&#x2713;');
+		}
+	});
+
 });
 </script>
 JS;

@@ -54,19 +54,17 @@ class Avatar {
 		// Create the target_dir if it doesn't exist
 		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
 
-		if ( !is_array($photo) ) {
-			copy($photo, $target_dir . "facebook.jpg");
-		}
+		if ( !is_array($photo) ) { copy($photo, $target_dir . "facebook.jpg"); }
 
 		else {
 
-			$tmp = $_FILES["photo"]["tmp_name"];
+			$tmp = $photo["tmp_name"];
 
 			// Put into user's photo column
 			$column = "photo";
 
 			// Get the filename
-			$filename = $_FILES["photo"]["name"];
+			$filename = $photo["name"];
 
 			// Get the extension
 			$extension = "." . end((explode(".", $filename)));
@@ -83,18 +81,46 @@ class Avatar {
 
 			// Copy it from tmp to destination directory
 			move_uploaded_file($tmp, $target_dir . $md5filename);
+
+			$this->profile->set("photo", $md5filename, $id);
 		}
 	}
+	
+	public function crop($jcrop, $id) {
 
-	public function crop() {}
+			list($x, $y, $w, $h) = $jcrop;
+
+			$photoFile = $this->profile->gimme("photo", "id", $id);
+
+			// Get file path
+			$path = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photoFile;
+
+			// Create photo object from image file path
+			$photo = imagecreatefromjpeg($path);
+
+			// Get width and height of incoming photo
+			$size = getimagesize($path);
+			$width = $size[0];
+			$height = $size[1];
+
+			// Now we need to get multipliers for the width and height so we can convert the jcrop selection to the actual size of the image
+			$widthMultipler = $width/225;
+			$heightMultipler = $height/225;
+
+			// Create destination photo object
+			$croppedPhoto = ImageCreateTrueColor( 225, 225 );
+
+			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($w * $widthMultipler), ($h * $heightMultipler));
+
+			imagejpeg($croppedPhoto, $path, 90);	
+	}
 
 	public function show($id) {
-		$photo = $this->profile->gimme("photo", "id", $id);
+		$gimme = $this->profile->gimme("photo", "id", $id);
+		$photo = ( $gimme != NULL ) ? $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $gimme : $_SERVER["DOCUMENT_ROOT"] . "img/default-avatar.png" ;
 
 		// Get the file extension
 		$extension = end((explode(".", $photo)));
-
-		$avatar = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photo;
 
 		if ( $extension == "jpg" || $extension == "jpeg" ) {
 			header("Content-type: image/jpeg");
@@ -108,7 +134,7 @@ class Avatar {
 			header("Content-type: image/gif");
 		}
 
-		readfile($avatar);
+		readfile($photo);
 	}
 }
 

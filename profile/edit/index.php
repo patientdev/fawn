@@ -3,11 +3,9 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
 
-unset($_SESSION["facebookUser"]);
-
 $head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";
 
-$styles = "
+$styles = <<<CSS
 
 #profile {
 	width: 60%; min-width: 960px;
@@ -40,7 +38,6 @@ $styles = "
 
 #profile-photo {
 	width: 225px;
-	height: 225px;
 	background-color: transparent;
 	border-radius: 50%;
 	text-align: center;
@@ -51,7 +48,6 @@ $styles = "
 
 #profile-photo img {
 	max-width: 225px;
-	max-height: 225px;
 }
 
 #profile-photo input {
@@ -84,7 +80,6 @@ $styles = "
 	width: 60%;
 	display: inline-block;
 	text-align: left;
-	white-space: nowrap;
 }
 
 input {
@@ -141,7 +136,7 @@ textarea {
 	height: 15em;
 }
 
-#info input {
+#info > div {
 	margin-bottom: 30px;
 }
 
@@ -187,11 +182,117 @@ h3 {
 	border-radius: 50%;
 }
 
-";
+.drop-down {
+	border: 1px solid #777;
+}
+
+.drop-down ul {
+	border: 1px solid #777;
+	padding: 0 1px;
+}
+
+.drop-down li {
+	font-size: 0.9em;
+}
+
+.drop-down h5 {
+	font-size: 0.9em;
+	max-width: 100%;
+	padding: 9px 10px 9px 0px;
+}
+
+.drop-down h5:before {
+  padding: 15px 15px 15px 22px;
+  margin-right: 20px;
+}
+
+.drop-down-input { display: none; }
+
+input.other { width: 50%; padding: 5px 15px;}
+
+@media only screen and (max-width: 840px) {
+
+	#profile {
+		width: 90%;
+		min-width: 0;
+		padding-top: 0;
+	}
+
+	#profile-edit {
+		position: relative;
+		width: 100%;
+		text-align: center;
+		right: 0;
+		margin: 20px 0;
+}
+
+	#profile-photo {
+		width: 100%;
+		display: block;
+		float: none;
+		height: auto;
+		margin-bottom: 20px;
+	}
+
+	#profile-photo h3 {
+		margin: 0;
+}
+
+	#profile-photo img {
+		width: 200px;
+	}
+
+	#info {
+		display: block;
+		width: 100%;
+		margin: 20px 0;
+	}
+
+	#info > div {
+		margin-bottom: 10px;
+	}
+
+	#info input {
+		width: 100%;
+}
+
+	.drop-down {
+		width: 100%;
+	}
+
+	.drop-down h5:after {
+		position: absolute;
+		right: 0; top: 0;
+		padding: 15px 15px 12px 22px;
+	}
+
+	#profile-summary {
+		margin-top: 0;
+	}
+
+	#profile-summary, #profile-about, #profile-currentprojects {
+		margin-bottom: 30px;
+	}
+
+	textarea {
+		margin: 0;
+	}
+
+	h3 {
+		line-height: 1.4em;
+		letter-spacing: 5px;
+	}
+
+	input.other { margin-top: 10px; }
+
+	#about {
+		padding: 0;
+	}
+}
+
+CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
-
-<div id="status"></div>
 
 <form id="profile" name="profile-edit" method="post" action="/app/controller/profile.controller.php" class="editing" enctype="multipart/form-data">
 
@@ -205,8 +306,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	<?php } ?>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
-		<input type="hidden" name="jcrop-x2" id="jcrop-y2">
-		<input type="hidden" name="jcrop-y2" id="jcrop-x2">
 		<input type="hidden" name="jcrop-w" id="jcrop-w">
 		<input type="hidden" name="jcrop-h" id="jcrop-h">
 	<div id="profile-photo-input">
@@ -222,19 +321,120 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="info">
 
 	<div id="profile-name">
-		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>">
+		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>" tabindex="0">
 	</div>
 
 	<div id="profile-occupation">
-		<input id="profile-occupation-input" type="text" name="occupation" placeholder="Occupation" class="editing" value="<?php echo $occupation; ?>">
+		<div class="drop-down" tabindex="0">
+			<h5><?php if ( !empty($occupation) ) { echo $occupation; } else echo "Occupation"; ?></h5>
+			<ul>
+				<li class="option">Photographer</li>
+				<li class="option">Writer</li>
+				<li class="option">Web Developer</li>
+				<li class="option">Dancer</li>
+				<li class="option">Actor</li>
+				<li class="option">Musician</li>
+				<li class="option">Visual Artist</li>
+				<li class="option">Poet</li>
+				<li class="option">Sculptor</li>
+				<li class="option">Art Therapist</li>
+				<li class="option">Arts Educator</li>
+				<li class="option">Painter</li>
+				<li class="option">Performance Artist</li>
+				<li class="option">Graphic Designer</li>
+				<li class="option">Filmmaker</li>
+				<li class="option">Illustrator</li>
+				<li class="option">Printmaker</li>
+				<li class="option">Metal Artist</li>
+				<li class="option">Glass Artist</li>
+				<li class="option">Textile Artist</li>
+				<li class="option other">Other...</li>
+			</ul>
+
+		<input class="drop-down-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
+
+		</div>
+
+		<br><input type="text" name="otheroccupations" class="other" placeholder="Other Occupations..." value="<?php echo $otheroccupations; ?>">
 	</div>
 
 	<div id="profile-location">
-		<input id="profile-location-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+		<div class="drop-down" tabindex="0">
+			<h5><?php if ( !empty($location) ) { echo $location; } else echo "Location"; ?></h5>
+			<ul>
+				<li class="option">New York</li>
+				<li class="option">Miami</li>
+				<li class="option">Denver</li>
+				<li class="option">San Fransisco</li>
+				<li class="option">Boston</li>
+				<li class="option">Berlin</li>
+				<li class="option">Portland</li>
+				<li class="option">Los Angeles</li>
+				<li class="option">Chicago</li>
+				<li class="option">Madrid</li>
+				<li class="option">Prague</li>
+				<li class="option">Paris</li>
+				<li class="option">London</li>
+				<li class="option">Seattle</li>
+				<li class="option">Mumbai</li>
+				<li class="option">Milan</li>
+				<li class="option">Sydney</li>
+				<li class="option">Hong Kong</li>
+				<li class="option">Tokyo</li>
+				<li class="option">Cape Town</li>
+				<li class="option">Montreal</li>
+				<li class="option">Toronto</li>
+				<li class="option">Mexico City</li>
+				<li class="option">Sao Paolo</li>
+				<li class="option">Cairo</li>
+				<li class="option">Dublin</li>
+				<li class="option">Copenhagen</li>
+				<li class="option">Stockholm</li>
+				<li class="option">Bangladesh</li>
+				<li class="option">Bangkok</li>
+				<li class="option">Moscow</li>
+				<li class="option other">Other</li>
+			</ul>
+
+		<input class="drop-down-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+
+		</div>
+
+		<br><input type="text" name="otherlocations" class="other" placeholder="Other Locations..." value="<?php echo $otherlocations; ?>">
+
+	</div>
+
+	<div id="profile-cause">
+		<div class="drop-down" tabindex="">
+			<h5><?php if ( !empty($cause) ) { echo $cause; } else echo "Cause"; ?></h5>
+			<ul>
+				<li class="option">Gender Equality</li>
+				<li class="option">LGBT Rights</li>
+				<li class="option">Race Relations</li>
+				<li class="option">Environmental/Preservation</li>
+				<li class="option">International Relations</li>
+				<li class="option">Animal Rights</li>
+				<li class="option">Food/Water Access</li>
+				<li class="option">Poverty</li>
+				<li class="option">Disease (HIV/Aids, etc)</li>
+				<li class="option">Religious Freedom</li>
+				<li class="option">Education</li>
+				<li class="option">Sustainability</li>
+				<li class="option">World Peace</li>
+				<li class="option">Human Trafficking</li>
+				<li class="option other">Other...</li>
+			</ul>
+
+		<input class="drop-down-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+
+		</div>
+
+		<br><input type="text" name="othercauses" class="other" placeholder="Other Causes..." value="<?php echo $othercauses; ?>">
+
 	</div>
 
 	<div id="profile-website">
-		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="0">
 	</div>
 </div>
 
@@ -263,55 +463,49 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 $foot = "<script src=\"/js/jquery.Jcrop.min.js\"></script>";
 
-$foot .= <<<'JS'
+$foot .= <<<JS
 
 <script>
 	$(function() {
 
-		function giveCoords(c) {
-			$('#jcrop-y').val(c.y);
-			$('#jcrop-x').val(c.x);
-			$('#jcrop-y2').val(c.y2);
-			$('#jcrop-x2').val(c.x2);
-			$('#jcrop-w').val(c.w);
-			$('#jcrop-h').val(c.h);
-		}
-
-					$('#profile-photo img').Jcrop({
-						'onChange': giveCoords,
-						'aspectRatio': 1,
-						'setSelect': [0,0,255,255]
-					});
+				function giveCoords(c) {
+				$('#jcrop-y').val(c.y);
+				$('#jcrop-x').val(c.x);
+				$('#jcrop-w').val(c.w);
+				$('#jcrop-h').val(c.h);
+			}
 
 		$('#photo-input').change(function() {
 
-			// Get photo object
-			photo = $(this)[0].files[0];
-			reader = new FileReader();
-			reader.onload = imageIsLoaded;
-			reader.readAsDataURL(photo);
-			function imageIsLoaded(e) {
-				if ( photo.size < 2000000 ) {
-					if ( $('#profile-photo img').length > 0 ) {
-						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-					}
-					else {
-						$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
-						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-					}
+				// Get photo object
+				photo = $(this)[0].files[0];
+				reader = new FileReader();
+				reader.onload = imageIsLoaded;
+				reader.readAsDataURL(photo);
+				function imageIsLoaded(e) {
+					if ( photo.size < 500000 ) {
+						if ( $('#profile-photo img').length > 0 ) {
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
+						else {
+							$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
+							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+						}
 
-					$('#profile-photo img').Jcrop({
-						'onChange': giveCoords,
-						'aspectRatio': 1,
-						'setSelect': [0,0,255,255]
-					});
+						if ( $('#menu').css('display') === 'none' ) {
+							$('#profile-photo img').Jcrop({
+								'onChange': giveCoords,
+								'aspectRatio': 1,
+								'setSelect': [0,0,225,225]
+							});
+						}
+					}
+					else { console.log("Photo too big"); }
 				}
-				else { console.log("Photo too big"); }
-			}
-			var imagefile = photo.type;
-			var match= ["image/jpeg","image/png","image/jpg"];
-			if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
-		})
+				var imagefile = photo.type;
+				var match= ["image/jpeg","image/png","image/jpg"];
+				if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) { return false; }
+			})
 	});
 
 </script>

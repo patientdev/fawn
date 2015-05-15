@@ -7,8 +7,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/sign-up.model.php";
 $signUp = new signUp();
 
 if ( $signUp->emailExists($_POST["user"]["email"]) ) {
-		$_SESSION["status"] = "It looks like you&rsquo;re already signed&ndash;up. Do you need to <a href=\"\">reset your password</a>?";
-		header("Location: /sign-in/");
+		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/profile.model.php";
+		$profile = new Profile;
+
+		$_SESSION["id"] = $profile->gimme("id", "email", $_POST["user"]["email"]);
 }
 
 else {

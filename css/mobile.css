@@ -1,74 +1,102 @@
-html, body {
-	height: 100%;
+html. body {
 	width: 100%;
-	overflow: auto;
 }
 
 header {
-	padding: 0;
-}
-
-#top-bar {
-	font-size: 0.5em;
 	padding: 10px 20px;
+	position: relative;
 }
 
-#actions button {
-	display: block;
-	padding: 15px;
+#logo {
+	width: 100px;
+	float: right;
 }
 
-#headline { margin-top: 0; padding: 0 10px;}
-
-#search {
-	padding: 50px 0;
+#logo h1 {
+	padding: 0;
+	line-height: 1em;
 }
 
-#search h3 {
-	line-height: 1.4em;
-	margin-top: 0;
+#logo h1 img {
+	width: 100px;
+	vertical-align: middle;
 }
 
-#sentence {
-	width: 95%;
-	margin: auto;
-	padding: 10px;
+#actions {
+	width: 100px;
+	float: left;
+	padding: 0;
+	line-height: 37px;
 }
 
-#sentence {
-	font-size: 0.9em;
+#actions button, #search-button button {
+	vertical-align: middle;
+	background-color: transparent;
+	border: 1px solid white;
+	padding: 5px 10px;
+	color: white;
+	font-size: .7em;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-weight: 200;
 }
 
-.drop-down ul {
+#actions a {
+	display: none;
+}
+
+#menu { display: block; }
+
+#sentence h5 {
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+#sentence ul { position: absolute; z-index: 10; }
+
+#sentence ul li {
 	z-index: 10;
 }
 
-.drop-down, .search p {
-	display: inline-block;
-	margin: 20px 0;
+footer {
+	padding: 20px;
+	margin-top: 20px;
 }
 
-.drop-down li {
+#contact a {
+	margin-right: 10px;
+}
+
+#social img {
+	margin-left: 10px;
+}
+
+.drop-down {
+	margin: 0;
+}
+
+#content, footer {
+	top: 0;
+	padding-top: 0;
+}
+
+#menu-options {
+	clear: both;
 	text-align: center;
+	padding: 20px 0;
 }
 
-content {
-	padding: 0 20px;
+#menu-options img {
+	width: 40px;
+	border-radius: 50%;
+	vertical-align: middle;
 }
 
-content p {
-	width: auto;
+#menu-options a {
+	text-decoration: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: .8em;
+	padding: 5px;
 }
-
-#who-we-are, #what-were-up-to {
-	padding: 40px 10px;
-}
-
-#who-we-are h3, #what-were-up-to h3 {
-	line-height: 1.4em;
-}
-
-#who-we-are h4 {
-	line-height: 1.6em;
-}
-

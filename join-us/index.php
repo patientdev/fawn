@@ -3,7 +3,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
 
-$styles = "
+$styles = <<<CSS
 
 form {
 	width: 40%;
@@ -18,7 +18,7 @@ form div {
   margin-top: 30px;
 }
 
-input[type=\"email\"], input[type=\"password\"] {
+input[type="email"], input[type="password"] {
 	background-color: rgba(235, 232, 232, 1);
 	padding: 20px;
 	color: black;
@@ -87,7 +87,32 @@ button:hover {
   cursor: pointer;
 }
 
-";
+@media only screen and (max-width: 840px) {
+
+  #sign-up button, #facebook-login {
+    font-size: .8em;
+    letter-spacing: 3px;
+    margin: 10px 0;
+  }
+
+  form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  form div {
+    font-size: 1.2em;
+    margin: 20px 0 20px 0;
+  }
+
+  input[type="email"], input[type="password"] {
+    font-size: 1em;
+    letter-spacing: 3px;
+  }
+
+}
+
+CSS;
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 ?>
@@ -164,12 +189,9 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
   }
 </script>
 
-<div id="status"></div>
-
 <form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
 
 <button type="button" id="facebook-login">Sign Up with Facebook</button>
-<button type="button" id="facebook-logout">Log out of Facebook</button>
 <div>Or with your email:</div>
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
@@ -194,19 +216,28 @@ $('#join-us-submit').click(function(e) {
   else $('#sign-up').submit();
 })
 
-$('#facebook-login').click(function(e) {
-  e.preventDefault();
-  FB.login(function(response){
-    if ( response.status == 'connected') {
-      FB.api('/me?fields=id,name,email,picture', function(user) {
-        $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
-        console.log(success);
-        window.location.replace('/profile/edit/');
-      } );
-      })
-    }
-  });
-})
+  $('#facebook-login').click(function(e) {
+    e.preventDefault();
+    FB.login(function(response){
+      if ( response.status == 'connected') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/');
+        } );
+        })
+      }
+
+      else if ( response.status == 'not_authorized') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/edit/');
+        } );
+        })
+      }
+    });
+  })
 
 $('#facebook-logout').click(function() {
   FB.logout(function(response) {

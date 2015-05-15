@@ -19,6 +19,8 @@ body {
 	font: 16px/1.2em Raleway, Helvetica, Arial, sans-serif;
 }
 
+#menu, #menu-options { display: none;}
+
 header {
 	background-color: rgba(32, 121, 209, 1);
 	padding: 20px 10%;
@@ -162,6 +164,7 @@ h1 img {
 	font-weight: 300;
 	letter-spacing: 6px;
 	font-style: italic;
+	line-height: 1em;
 }
 
 #what-were-up-to {
@@ -200,13 +203,89 @@ input:focus {
 }
 
 #status {
-	position: absolute;
-	top: 0; right: 0;
-	background-color: white;
-	width: 300px;
-	white-space: pre;
-	font-size: 12px;
-	line-height: 1em;
-	overflow: hidden;
+	width: 50%;
+	margin: auto;
+	line-height: 1.4em;
+	text-align: center;
 
+}
+
+.drop-down {
+	background-color: white;
+	display: inline-block;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.drop-down:hover {
+	cursor: pointer;
+}
+
+.drop-down:focus {
+	outline: 1px solid #ccc;
+}
+
+.drop-down:focus ul {
+	outline: 1px solid #ccc;
+}
+
+.drop-down h5 {
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 1);
+	padding: 14px 15px 13px 0;
+	color: black;
+	font-size: 1.4em;
+	font-weight: 300;
+	font-style: italic;
+	letter-spacing: 8px;
+	margin: 0;
+	max-width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.drop-down h5:before {
+	content: "\25BE";
+	font-style: normal;
+	padding: 10px 15px 10px 22px;
+	margin-right: 10px;
+	background-color: rgba(235, 235, 235, 1);
+	color: rgba(137, 137, 137, 1);
+}
+
+.drop-down ul {
+	display: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border-top: 2px solid rgba(235, 235, 235, 1);
+	position: absolute;
+	min-width: 100%;
+	overflow: scroll;
+	z-index: 100;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.drop-down li {
+	font-style: normal;
+	padding: 15px 15px 15px 22px;
+	background-color: rgba(255, 255, 255, 1);
+	color: black;
+	text-align: left;
+	font-size: 1.2em;
+	line-height: 1.4em;
+	border-bottom: 2px solid rgba(235, 235, 235, 1);
+}
+
+.drop-down li:hover {
+	background-color: rgba(125, 164, 221, 1);
+	color: white;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
