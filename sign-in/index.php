@@ -113,11 +113,11 @@ label {
 	text-align: left;
 }
 
-input[type=\"checkbox\"] {
+input[type="checkbox"] {
 	display: none;
 }
 
-input[type=\"checkbox\"] + span {
+input[type="checkbox"] + span {
 	width: auto;
 	border: 2px solid #555;
 	border-radius: 0;
@@ -371,15 +371,13 @@ $(function() {
 
 	$('#checkbox').click(function(e) {
 		e.preventDefault();
-		checked = typeof $('input', this).attr('checked') === 'undefined' ? false : true;
-		if (!checked && $.cookie('remember')) {
-			$.removeCookie('remember', { expires: 60, path: '/'});
-			$('input', this).removeAttr('checked'); 
-			$('span', this).html('');
+		if ( $('#checkbox input').prop('checked') === true ) {
+			$('#checkbox input').prop('checked', false); 
+			$('#checkbox span').html('');
 		}
 
 		else { 
-			$('input', this).attr('checked', '');
+			$('input', this).prop('checked', true); 
 			$('span', this).html('&#x2713;');
 		}
 	});
