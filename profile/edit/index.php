@@ -328,7 +328,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<div class="drop-down" tabindex="0">
 			<h5><?php if ( !empty($occupation) ) { echo $occupation; } else echo "Occupation"; ?></h5>
 			<ul>
-				<li class="option">Actor</li>	
+				<li class="option">Actor</li>
+				<li class="option">Architect</li>
 				<li class="option">Art Therapist</li>	
 				<li class="option">Arts Educator</li>	
 				<li class="option">Dancer</li>	

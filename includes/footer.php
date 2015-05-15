@@ -2,7 +2,7 @@
 
 	<div id="contact">
 		<a href="mailto:info@fawnworldwide.org">Email</a>
-		<a href="http://fawnworldwide.tumblr.com">Blog</a>
+		<!-- <a href="http://fawnworldwide.tumblr.com">Blog</a> -->
 		<a href="/terms/">Terms of Use</a>
 	</div>
 

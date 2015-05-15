@@ -316,26 +316,27 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="drop-down" id="search-occupation" tabindex="1">
 				<h5>Occupation</h5>
 				<ul>
-					<li class="option">Photographer</li>
-					<li class="option">Writer</li>
-					<li class="option">Web Developer</li>
-					<li class="option">Dancer</li>
 					<li class="option">Actor</li>
+					<li class="option">Architect</li>
+					<li class="option">Art Therapist</li>	
+					<li class="option">Arts Educator</li>	
+					<li class="option">Dancer</li>	
+					<li class="option">Filmmaker</li>
+					<li class="option">Glass Artist</li>
+					<li class="option">Graphic Designer</li>
+					<li class="option">Illustrator</li>
+					<li class="option">Metal Artist</li>
 					<li class="option">Musician</li>
-					<li class="option">Visual Artist</li>
-					<li class="option">Poet</li>
-					<li class="option">Sculptor</li>
-					<li class="option">Art Therapist</li>
-					<li class="option">Arts Educator</li>
 					<li class="option">Painter</li>
 					<li class="option">Performance Artist</li>
-					<li class="option">Graphic Designer</li>
-					<li class="option">Filmmaker</li>
-					<li class="option">Illustrator</li>
+					<li class="option">Photographer</li>
+					<li class="option">Poet</li>
 					<li class="option">Printmaker</li>
-					<li class="option">Metal Artist</li>
-					<li class="option">Glass Artist</li>
+					<li class="option">Sculptor</li>
 					<li class="option">Textile Artist</li>
+					<li class="option">Visual Artist</li>
+					<li class="option">Web Developer</li>
+					<li class="option">Writer</li>
 				</ul>
 			</div>
 

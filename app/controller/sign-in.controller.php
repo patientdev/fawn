@@ -36,7 +36,7 @@ else {
 	}
 
 	else {
-		$_SESSION["status"] = "Sorry! You&rsquo;re login information wasn&rsquo;t recognized. Please try again.";
+		$_SESSION["status"] = "Sorry! Your login information wasn&rsquo;t recognized. Please try again.";
 		header("Location: /sign-in");
 	}
 }
