@@ -106,6 +106,8 @@ p {
 }
 
 CSS;
+
+$title = "FAWN :: Who We Are";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 

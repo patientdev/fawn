@@ -232,6 +232,8 @@ button#facebook-login {
 }
 
 CSS;
+
+$title = "FAWN :: Sign&ndash;in";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
  ?>

@@ -2,7 +2,7 @@
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 
-$head = <<<CSS
+$head = <<<'CSS'
 
 	<style>
 		#content {
@@ -12,6 +12,7 @@ $head = <<<CSS
 	</style>
 CSS;
 
+$title = "FAWN :: Terms of Use";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <h2>TERMS OF USE OF FAWN: Forging A Worldwide Network, LLC </h2>

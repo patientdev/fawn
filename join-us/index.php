@@ -113,6 +113,8 @@ button:hover {
 }
 
 CSS;
+
+$title = "FAWN :: Join Us";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 ?>

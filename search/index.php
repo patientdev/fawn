@@ -300,6 +300,7 @@ $styles = <<< CSS
 
 CSS;
 
+$title = "FAWN :: Search";
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 
 <div id="search-wrapper">

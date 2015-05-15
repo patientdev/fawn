@@ -239,6 +239,8 @@ h3 {
 }
 
 CSS;
+
+$title = "FAWN :: ${name}&rsquo;s profile";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 

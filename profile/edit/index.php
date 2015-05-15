@@ -291,6 +291,8 @@ input.other { width: 50%; padding: 5px 15px;}
 }
 
 CSS;
+
+$title = "FAWN :: Edit Profile";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
