@@ -19,7 +19,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 	else { 
 		$signUp->confirmEmail($email, $hash); 
-		$_SESSION["status"] = "Great! You&rsquo;re all signed&ndash;up. We&rsquo;ve sent you an email with a link to click so that we can confirm your email address."; 
+		$_SESSION["status"] = "Great! You&rsquo;re all signed&ndash;up. We&rsquo;ve sent you an email with a link to click so that we can confirm your email address. <i>Be sure and double check your spam folder.</i> :)"; 
 		header("Location: /join-us/");
 	}
 }
