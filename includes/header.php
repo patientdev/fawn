@@ -9,6 +9,9 @@
 		<title><?php if (isset($title)) { echo $title; } else { echo "FAWN :: Forging A Worldwide Network"; } ?></title>
         <meta name="description" content="Elevating Creativity That Makes A Difference">
 
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
 		<link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="/css/fawn.css" media="screen">
 		<link rel="stylesheet" href="/css/mobile.css" media="only screen and (max-width: 840px)">
