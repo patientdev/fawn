@@ -73,10 +73,6 @@ $styles = <<< CSS
 
   /* edit: added z-index */
   z-index: 1;
-
-  /* edit: fixes overlap error in IE7/8, 
-   make sure you have an empty gif */
-  background-image: url('empty.gif');
 }
 
 table {
