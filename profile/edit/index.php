@@ -199,13 +199,13 @@ h3 {
 
 .drop-down h5 {
 	font-size: 0.9em;
-	padding-bottom: 14px;
 	max-width: 100%;
+	padding: 9px 10px 9px 0px;
 }
 
-.drop-down h5:after {
+.drop-down h5:before {
   padding: 15px 15px 15px 22px;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .drop-down-input { display: none; }
@@ -511,7 +511,7 @@ $foot .= <<<JS
 							$('#profile-photo img').Jcrop({
 								'onChange': giveCoords,
 								'aspectRatio': 1,
-								'setSelect': [0,0,255,255]
+								'setSelect': [0,0,225,225]
 							});
 						}
 					}
