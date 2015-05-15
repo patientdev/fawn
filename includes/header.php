@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Forging\ A Worldwide Network</title>
+		<title>Forging A Worldwide Network</title>
         <meta name="description" content="Elevating Creativity That Makes A Difference">
 
 		<link href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,700' rel='stylesheet' type='text/css'>
