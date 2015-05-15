@@ -15,7 +15,7 @@ class Facebook {
 		$email = $user["email"];
 
 		// Put that profile info into the database
-		$sql = "INSERT INTO artists (name, email, photo, facebook) values(:name, :email, 'facebook.jpg', :facebookID)";
+		$sql = "INSERT INTO artists (name, email, photo, facebookID) values(:name, :email, 'facebook.jpg', :facebookID)";
 		$stmt = $this->profile->con->prepare($sql);
 		$stmt->execute(array("name" => $name, "email" => $email, "facebookID" => $facebookID));
 

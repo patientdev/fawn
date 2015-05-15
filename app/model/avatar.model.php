@@ -43,11 +43,21 @@ class Avatar {
 
 		return $image;
 	}
+
 	public function resize() {}
+
 	public function save($photo, $id) {
+
+		// Put into this directory based on users ID #
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+
+		// Create the target_dir if it doesn't exist
+		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
+
 		if ( !is_array($photo) ) {
-			copy($photo, $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/facebook.jpg");
+			copy($photo, $target_dir . "facebook.jpg");
 		}
+
 		else {
 
 			$tmp = $_FILES["photo"]["tmp_name"];
@@ -64,12 +74,6 @@ class Avatar {
 			// Garble the filename
 			$md5filename = md5($filename) . $extension;
 
-			// Put into this directory based on users ID #
-			$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
-
-			// Create the target_dir if it doesn't exist
-			if ( !is_dir($target_dir) ) { mkdir($target_dir); }
-
 			// Delete whatevers in there
 			$files = glob($_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/*"); // get all file names
 			foreach($files as $file){ // iterate files
@@ -79,8 +83,11 @@ class Avatar {
 
 			// Copy it from tmp to destination directory
 			move_uploaded_file($tmp, $target_dir . $md5filename);
+		}
 	}
+
 	public function crop() {}
+
 	public function show($id) {
 		$photo = $this->profile->gimme("photo", "id", $id);
 
