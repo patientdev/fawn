@@ -86,13 +86,9 @@ class Avatar {
 	}
 	public function crop($jcrop, $id) {
 
-			$photoFile = $this->profile->gimme("photo", "id", $id);
+			list($x, $y, $w, $h) = $jcrop;
 
-			// Get jcrop values
-			$x = intval($_POST["jcrop-x"]);
-			$y = intval($_POST["jcrop-y"]);
-			$w = intval($_POST["jcrop-w"]);
-			$h = intval($_POST["jcrop-h"]);
+			$photoFile = $this->profile->gimme("photo", "id", $id);
 
 			// Get file path
 			$path = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photoFile;
@@ -116,6 +112,7 @@ class Avatar {
 
 			imagejpeg($croppedPhoto, $path, 90);	
 	}
+
 	public function show($id) {
 		$gimme = $this->profile->gimme("photo", "id", $id);
 		$photo = ( $gimme != NULL ) ? $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $gimme : $_SERVER["DOCUMENT_ROOT"] . "img/default-avatar.png" ;

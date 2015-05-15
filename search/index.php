@@ -94,10 +94,6 @@ $styles = <<< CSS
 
 	/* edit: added z-index */
 	z-index: 1;
-
-	/* edit: fixes overlap error in IE7/8, 
-	 make sure you have an empty gif */
-	background-image: url('empty.gif');
 }
 
 .result img {
@@ -133,7 +129,7 @@ $styles = <<< CSS
 	vertical-align: middle;
 }
 
-.name h2 {
+.name h3 {
 	font-size: 1.7em;
 	line-height: 1em;
 	font-weight: 700;
@@ -144,7 +140,7 @@ $styles = <<< CSS
 	margin-bottom: 30px;
 }
 
-.info h3 {
+.info h4 {
 	font-size: 1.1em;
 	text-transform: uppercase;
 	font-weight: 400;
@@ -152,11 +148,11 @@ $styles = <<< CSS
 	margin-top: 0;
 }
 
-.occupation h3 {
+.occupation h4 {
 	margin-bottom: 5px;
 }
 
-.location h3 {
+.location h4 {
 	margin-top: 0;
 	margin-bottom: 30px;
 	font-weight: 300;
@@ -217,20 +213,21 @@ $styles = <<< CSS
 		font-size: 1em;
 		width: 100%;
 		position: relative;
-		padding-right: 66px;
+		padding: 10px 0 10px 60px;
 	}
 
 	.drop-down li {
 		font-size: 1em;
 	}
 
-	.drop-down h5:after {
+	.drop-down h5:before {
 		position: absolute;
-		right: 0; top: 0;
-		padding: 15px 15px 12px 22px;
+		left: 0; top: 0;
+		padding: 10px 15px 10px 22px;
 	}
 
 	#search-button {
+		display: block;
 		text-align: center;
 		padding: 0 10px 10px 10px;
 	}
@@ -246,6 +243,8 @@ $styles = <<< CSS
 		float: left;
 		margin: 0;
 		padding: 5px 0;
+		color: white;
+		font-weight: 400;
 	}
 
 	#search-button button {
@@ -281,7 +280,7 @@ $styles = <<< CSS
 		text-align: center;
 	}
 
-	.name h2 {
+	.name h3 {
 		font-size: 1.2em;
 		letter-spacing: 3px;
 		margin: 10px 0 20px 0;
@@ -289,7 +288,13 @@ $styles = <<< CSS
 
 	#results {
 		padding: 0;
-}
+	}
+
+	#results h2 {
+		line-height: 1em;
+		padding: 0 10px;
+		margin-bottom: 0;
+	}
 
 }
 
@@ -402,6 +407,8 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 <div id="results">
 
 <?php echo generateResults($searchOccupation, $searchCause, $searchLocation); ?>
+
+</div>
 
 </div>
 

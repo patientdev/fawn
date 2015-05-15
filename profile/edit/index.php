@@ -3,8 +3,6 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
 
 
-unset($_SESSION["facebookUser"]);
-
 $head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";
 
 $styles = <<<CSS
@@ -308,8 +306,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	<?php } ?>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
-		<input type="hidden" name="jcrop-x2" id="jcrop-y2">
-		<input type="hidden" name="jcrop-y2" id="jcrop-x2">
 		<input type="hidden" name="jcrop-w" id="jcrop-w">
 		<input type="hidden" name="jcrop-h" id="jcrop-h">
 	<div id="profile-photo-input">
@@ -325,11 +321,11 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 <div id="info">
 
 	<div id="profile-name">
-		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>" tabindex="1">
+		<input id="profile-name-input" type="text" name="name" placeholder="First and Last Name" class="editing" value="<?php echo $name; ?>" tabindex="0">
 	</div>
 
 	<div id="profile-occupation">
-		<div class="drop-down" tabindex="2">
+		<div class="drop-down" tabindex="0">
 			<h5><?php if ( !empty($occupation) ) { echo $occupation; } else echo "Occupation"; ?></h5>
 			<ul>
 				<li class="option">Photographer</li>
@@ -363,7 +359,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 
 	<div id="profile-location">
-		<div class="drop-down" tabindex="3">
+		<div class="drop-down" tabindex="0">
 			<h5><?php if ( !empty($location) ) { echo $location; } else echo "Location"; ?></h5>
 			<ul>
 				<li class="option">New York</li>
@@ -409,7 +405,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 
 	<div id="profile-cause">
-		<div class="drop-down" tabindex="4">
+		<div class="drop-down" tabindex="">
 			<h5><?php if ( !empty($cause) ) { echo $cause; } else echo "Cause"; ?></h5>
 			<ul>
 				<li class="option">Gender Equality</li>
@@ -438,7 +434,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	</div>
 
 	<div id="profile-website">
-		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="5">
+		<input id="profile-website-input" type="text" name="website" placeholder="Website" class="editing" value="<?php echo $website; ?>" tabindex="0">
 	</div>
 </div>
 
@@ -475,20 +471,9 @@ $foot .= <<<JS
 				function giveCoords(c) {
 				$('#jcrop-y').val(c.y);
 				$('#jcrop-x').val(c.x);
-				$('#jcrop-y2').val(c.y2);
-				$('#jcrop-x2').val(c.x2);
 				$('#jcrop-w').val(c.w);
 				$('#jcrop-h').val(c.h);
 			}
-		if ( $('#menu').css('display') === 'none' ) {
-			function generateTabIndex() {
-				$(':input, .drop-down').each(function (i) { 
-					if ( $(this).attr('type') != 'hidden' ) {
-						$(this).attr('tabindex', i + 1); 
-					}
-				});
-			}
-		}
 
 		$('#photo-input').change(function() {
 

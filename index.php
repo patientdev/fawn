@@ -159,17 +159,17 @@ footer {
 		font-size: 1em;
 		width: 100%;
 		position: relative;
-		padding-right: 66px;
+		padding: 10px 0 10px 60px;
 	}
 
 	.drop-down li {
 		font-size: 1em;
 	}
 
-	.drop-down h5:after {
+	.drop-down h5:before {
 		position: absolute;
-		right: 0; top: 0;
-		padding: 15px 15px 12px 22px;
+		left: 0; top: 0;
+		padding: 10px 15px 10px 22px;
 	}
 
 	#about {

@@ -19,7 +19,8 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	}
 
 	if ( isset($_POST["jcrop-x"]) && $_POST["jcrop-w"] != 0 ) {
-		$jcrop[] = [$_POST["jcrop-x"], $_POST["jcrop-y"], $_POST["jcrop-x2"], $_POST["jcrop-y2"], $_POST["jcrop-w"], $_POST["jcrop-h"]];
+		$jcrop = array();
+		array_push($jcrop, $_POST["jcrop-x"], $_POST["jcrop-y"], $_POST["jcrop-w"], $_POST["jcrop-h"]);
 
 		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
 
@@ -30,12 +31,10 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 
 			
 
-			unset($_POST["jcrop-x"]);
-			unset($_POST["jcrop-y"]);
-			unset($_POST["jcrop-x2"]);
-			unset($_POST["jcrop-y2"]);
-			unset($_POST["jcrop-w"]);
-			unset($_POST["jcrop-h"]);
+	unset($_POST["jcrop-x"]);
+	unset($_POST["jcrop-y"]);
+	unset($_POST["jcrop-w"]);
+	unset($_POST["jcrop-h"]);
 
 	foreach ($_POST as $key => $value) {
 

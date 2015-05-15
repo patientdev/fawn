@@ -38,19 +38,19 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 				$exactResult .= "<div class=\"info\">";
 
 					//Name
-					$exactResult .= "<div class=\"name\"><h2>";
+					$exactResult .= "<div class=\"name\"><h3>";
 						$exactResult .= $name;
-					$exactResult .= "</h2></div>";
+					$exactResult .= "</h3></div>";
 
 					//Occupation
-					$exactResult .= "<div class=\"occupation\"><h3>";
+					$exactResult .= "<div class=\"occupation\"><h4>";
 						$exactResult .= $occupation;
-					$exactResult .= "</h3></div>";
+					$exactResult .= "</h4></div>";
 
 					//Location
-					$exactResult .= "<div class=\"location\"><h3>";
+					$exactResult .= "<div class=\"location\"><h4>";
 						$exactResult .= $location;
-					$exactResult .= "</h3></div>";
+					$exactResult .= "</h4></div>";
 
 					//Summary
 					$exactResult .= "<div class=\"summary\">";
@@ -68,6 +68,8 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 
 	if ( !empty($differentCause) ) {
 
+		$differentCauseResult = "<h2>Other artists in <strong>$searchLocation</strong> who support in <strong>$searchCause</strong></h2>";
+
 		foreach ( $differentCause as $id ) {
 			$photo = "/app/controller/avatar.controller.php?id=" . $id;
 			$name = $profile->gimme("name", "id", $id);
@@ -75,10 +77,8 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 			$location = $profile->gimme("location", "id", $id);
 			$summary = $profile->gimme("summary", "id", $id);
 
-			$differentCauseResult = "<h2>Other Artists in <strong>$searchLocation</strong> interested in <strong>$searchCause</strong></h2><div class=\"result\">";
-
 			// Profile URL
-			$differentCauseResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+			$differentCauseResult .= "<div class=\"result\"><a href=\"/forger/" . $id . "/\"><span></span></a>";
 				
 				//Photo
 				$differentCauseResult .= "<div class=\"photo\">";
@@ -88,19 +88,19 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 				$differentCauseResult .= "<div class=\"info\">";
 
 					//Name
-					$differentCauseResult .= "<div class=\"name\"><h2>";
+					$differentCauseResult .= "<div class=\"name\"><h3>";
 						$differentCauseResult .= $name;
-					$differentCauseResult .= "</h2></div>";
+					$differentCauseResult .= "</h3></div>";
 
 					//Occupation
-					$differentCauseResult .= "<div class=\"occupation\"><h3>";
+					$differentCauseResult .= "<div class=\"occupation\"><h4>";
 						$differentCauseResult .= $occupation;
-					$differentCauseResult .= "</h3></div>";
+					$differentCauseResult .= "</h4></div>";
 
 					//Location
-					$differentCauseResult .= "<div class=\"location\"><h3>";
+					$differentCauseResult .= "<div class=\"location\"><h4>";
 						$differentCauseResult .= $location;
-					$differentCauseResult .= "</h3></div>";
+					$differentCauseResult .= "</h4></div>";
 
 					//Summary
 					$differentCauseResult .= "<div class=\"summary\">";
@@ -118,6 +118,8 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 
 	if ( !empty($differentOccupation) ) {
 
+		$differentOccupationResult = "<h2>Other artists in <strong>$searchLocation</strong></h2>";
+
 		foreach ( $differentOccupation as $id ) {
 			$photo = "/app/controller/avatar.controller.php?id=" . $id;
 			$name = $profile->gimme("name", "id", $id);
@@ -125,10 +127,8 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 			$location = $profile->gimme("location", "id", $id);
 			$summary = $profile->gimme("summary", "id", $id);
 
-			$differentOccupationResult = "<h2>Other <strong>${searchOccupation}s</strong> in <strong>$searchLocation</strong></h2><div class=\"result\">";
-
 			// Profile URL
-			$differentOccupationResult .= "<a href=\"/forger/" . $id . "/\"><span></span></a>";
+			$differentOccupationResult .= "<div class=\"result\"><a href=\"/forger/" . $id . "/\"><span></span></a>";
 				
 				//Photo
 				$differentOccupationResult .= "<div class=\"photo\">";
@@ -138,19 +138,19 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 				$differentOccupationResult .= "<div class=\"info\">";
 
 					//Name
-					$differentOccupationResult .= "<div class=\"name\"><h2>";
+					$differentOccupationResult .= "<div class=\"name\"><h3>";
 						$differentOccupationResult .= $name;
-					$differentOccupationResult .= "</h2></div>";
+					$differentOccupationResult .= "</h3></div>";
 
 					//Occupation
-					$differentOccupationResult .= "<div class=\"occupation\"><h3>";
+					$differentOccupationResult .= "<div class=\"occupation\"><h4>";
 						$differentOccupationResult .= $occupation;
-					$differentOccupationResult .= "</h3></div>";
+					$differentOccupationResult .= "</h4></div>";
 
 					//Location
-					$differentOccupationResult .= "<div class=\"location\"><h3>";
+					$differentOccupationResult .= "<div class=\"location\"><h4>";
 						$differentOccupationResult .= $location;
-					$differentOccupationResult .= "</h3></div>";
+					$differentOccupationResult .= "</h4></div>";
 
 					//Summary
 					$differentOccupationResult .= "<div class=\"summary\">";
