@@ -321,7 +321,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="options">
 	<label id="checkbox"><input name="remember" type="checkbox"><span></span> Remember Me</label>
-	<a href="" id="forgot-password">Forgot Password</a>
+	<!-- <a href="" id="forgot-password">Forgot Password</a> -->
 </div>
 
 </form>
