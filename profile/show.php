@@ -1,7 +1,22 @@
 <?php 
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/profile.model.php";
+
+	$profile = new Profile;
+
+	$forgerId = intval($_GET["forger"]);
+
+	$forgerName = $profile->gimme("name", "id", $forgerId);
+	$forgerLocation = $profile->gimme("location", "id", $forgerId);
+	$forgerCause = $profile->gimme("cause", "id", $forgerId);
+	$forgerWebsite = $profile->gimme("website", "id", $forgerId);
+	$forgerOccupation = $profile->gimme("occupation", "id", $forgerId);
+	$forgerAbout = $profile->gimme("about", "id", $forgerId);
+	$forgerSummary = $profile->gimme("summary", "id", $forgerId);
+	$forgerCurrentprojects = $profile->gimme("currentprojects", "id", $forgerId);
+
+	$forgerPhoto = "/app/controller/avatar.controller.php?id=" . $forgerId;
 
 $styles = <<<CSS
 
@@ -231,58 +246,54 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile">
 
-<div id="profile-edit">
-	&#x270e; <button type="button" id="edit">Edit Your Profile</button>
-</div>
-
 <div id="profile-photo">
-	<?php if(!empty($photo)) { ?>
-		<h3><img src="<?php echo $photo; ?>"></h3>
+	<?php if(!empty($forgerPhoto)) { ?>
+		<h3><img src="<?php echo $forgerPhoto; ?>"></h3>
 	<?php } ?>
 </div>
 <div id="info">
 	<div id="profile-name">
-		<?php if(!empty($name)) { ?>
-			<h2><?php echo $name ?></h2>
+		<?php if(!empty($forgerName)) { ?>
+			<h2><?php echo $forgerName ?></h2>
 		<?php } ?>
 	</div>
 
 	<div id="profile-occupation">
-		<?php if(!empty($occupation)) { ?>
-			<h3><?php echo $occupation ?></h3>
+		<?php if(!empty($forgerOccupation)) { ?>
+			<h3><?php echo $forgerOccupation ?></h3>
 		<?php } ?>
 	</div>
 
 	<div id="profile-location">
-		<?php if(!empty($location)) { ?>
-			<h3><?php echo $location ?></h3>
+		<?php if(!empty($forgerLocation)) { ?>
+			<h3><?php echo $forgerLocation ?></h3>
 		<?php } ?>
 	</div>
 
 	<div id="profile-website">
-		<?php if(!empty($website)) { ?>
-			<h3><a href="http://<?php echo $website ?>" target="_blank"><?php echo $website ?></a></h3>
+		<?php if(!empty($forgerWebsite)) { ?>
+			<h3><a href="http://<?php echo $forgerWebsite ?>" target="_blank"><?php echo $forgerWebsite ?></a></h3>
 		<?php } ?>
 	</div>
 </div>
 
 <div id="profile-summary">
-	<?php if(!empty($summary)) { ?>
-		<?php echo $summary ?>
+	<?php if(!empty($forgerSummary)) { ?>
+		<?php echo $forgerSummary ?>
 	<?php } ?>
 </div>
 
 <div id="profile-about">
-	<?php if(!empty($about)) { ?>
+	<?php if(!empty($forgerAbout)) { ?>
 		<h3>About</h3>
-		<?php echo nl2br($about); ?>
+		<?php echo nl2br($forgerAbout); ?>
 	<?php } ?>
 </div>
 
 <div id="profile-currentprojects">
-	<?php if(!empty($currentprojects)) { ?>
+	<?php if(!empty($forgerCurrentprojects)) { ?>
 		<h3>Current Projects</h3>
-		<?php echo nl2br($currentprojects); ?>
+		<?php echo nl2br($forgerCurrentprojects); ?>
 	<?php } ?>
 </div>
 
@@ -290,16 +301,4 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 </div>
 
-<?php 
-
-$foot = <<<'JS'
-<script>
-	$('#edit').click(function(e){ 
-		e.preventDefault();
-		window.location.href = "edit/";
-	});
-</script>
-JS;
-
-
-include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

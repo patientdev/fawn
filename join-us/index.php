@@ -1,14 +1,24 @@
 <?php 
 
+include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
 
-$styles = "
+$styles = <<<CSS
 
 form {
 	width: 40%;
 	margin: 40px auto;
 }
 
-input[type=\"email\"], input[type=\"password\"] {
+form div {
+  font-size: 1.4em;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+input[type="email"], input[type="password"] {
 	background-color: rgba(235, 232, 232, 1);
 	padding: 20px;
 	color: black;
@@ -52,7 +62,7 @@ input:focus {
 	font-family: Raleway;
 }
 
-button {
+#sign-up button, #facebook-login {
 	background-color: rgba(125, 164, 221, 1);
 	font-weight: 500;
 	letter-spacing: 8px;
@@ -68,62 +78,176 @@ button {
 	margin-bottom: 20px;
 }
 
-";
-
-$script = "
-$('button').click(function(e) {
-	e.preventDevault();
-	$.ajax()
-})
-";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/db.php";
-
-$email = $_POST["email"];
-
-$result = $dbh->prepare("SELECT firstname FROM artists WHERE email = :email");
-$result->bindParam(':email', $email);
-$result->execute();
-$email_exists = ($result->rowCount() > 0) ? true : false;
-
-if($email_exists) {
-    $error = "<div class=\"error\"><p>This email address is already signed&ndash;up.</p> <p>Would you like your password emailed to you?</p></div>";
-} else {
-	$password = crypt($_POST["password"], 'igltt4t5');
-
-	$sql = "INSERT INTO artists (email, password) values(:email, :password)";
-	$stmt = $dbh->prepare($sql);
-	$stmt->bindValue(':email', $email);
-	$stmt->bindValue(':password', $password);
-	$stmt->execute();
+button#facebook-login {
+  background-color: #3b5998;
+  background-color: rgba(59, 89, 152, 1);
 }
 
-$dbh = null;
+button:hover {
+  cursor: pointer;
+}
 
+@media only screen and (max-width: 840px) {
+
+  #sign-up button, #facebook-login {
+    font-size: .8em;
+    letter-spacing: 3px;
+    margin: 10px 0;
+  }
+
+  form {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  form div {
+    font-size: 1.2em;
+    margin: 20px 0 20px 0;
+  }
+
+  input[type="email"], input[type="password"] {
+    font-size: 1em;
+    letter-spacing: 3px;
+  }
+
+}
+
+CSS;
+include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 ?>
 
+<script>
 
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+     // logIn();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
 
-<header>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1560529120863841',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
 
-	<div id="heart">
-		<h1><a href="/">Forger</a></h1>
-	</div>
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
 
-</header>
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
 
-<content>
+  };
 
-<form method="post" action="<?=$_SERVER['PHP_SELF']?>">
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function logIn() {
+    FB.api('/me', function(response) {
+      $.post("/app/controller/sign-in.controller.php", { facebook: 'true', response: response }, function( success ) {
+        console.log(success);
+      });
+    });
+  }
+</script>
 
+<form method="post" id="sign-up" action="/app/controller/sign-up.controller.php">
+
+<button type="button" id="facebook-login">Sign Up with Facebook</button>
+<div>Or with your email:</div>
 <input type="email" id="email" name="email" placeholder="Email address">
 <input type="password" id="password" name="password" placeholder="Password">
+<input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
 
-
-<button>Submit</button>
+<button type="submit" id="join-us-submit">Submit</button>
 </form>
 
-</content>
+</div>
 
-<?php include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>
+<?php 
+
+$foot = <<<'DOC'
+<script>
+
+$('#join-us-submit').click(function(e) {
+  e.preventDefault();
+  if ($('#password').val() !== $('#confirm-password').val() ) {
+    $('#content').append('<p>Whoops! Please retry confirming your password.</p>');
+  }
+
+  else $('#sign-up').submit();
+})
+
+  $('#facebook-login').click(function(e) {
+    e.preventDefault();
+    FB.login(function(response){
+      if ( response.status == 'connected') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/');
+        } );
+        })
+      }
+
+      else if ( response.status == 'not_authorized') {
+        FB.api('/me?fields=id,name,email,picture', function(user) {
+          $.post('/app/controller/facebook.controller.php', { user: user }, function(success) {
+          console.log(success);
+          window.location.replace('/profile/edit/');
+        } );
+        })
+      }
+    });
+  })
+
+$('#facebook-logout').click(function() {
+  FB.logout(function(response) {
+    console.log(response);
+  });
+})
+
+
+</script>
+DOC;
+
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; 
+?>
