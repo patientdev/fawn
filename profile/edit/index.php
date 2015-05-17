@@ -19,7 +19,6 @@ $styles = <<<CSS
 	position: absolute;
 	top: 0; right: 60px;
 	color: #777;
-
 }
 
 #save {
@@ -63,6 +62,11 @@ $styles = <<<CSS
     opacity: 0;
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+}
+
+#profile-photo p {
+	margin: 20px 0;
+	-webkit-transition: color 1s linear;
 }
 
 #profile-photo-input {
@@ -156,8 +160,8 @@ h3 {
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 8px;
-	margin-bottom: 20px;
 	margin-top: 0;
+	margin-bottom: 0;
 	display: inline-block;
 }
 
@@ -477,6 +481,8 @@ $foot .= <<<JS
 
 		$('#photo-input').change(function() {
 
+				$('#profile-photo p').remove();
+
 				// Get photo object
 				photo = $(this)[0].files[0];
 				reader = new FileReader();
@@ -500,7 +506,14 @@ $foot .= <<<JS
 							});
 						}
 					}
-					else { console.log("Photo too big"); }
+					else { 
+						$('#photo-input').val('');
+						$('<p>Photo too big!<br>Please keep it under 500kb</p>').insertBefore('#profile-photo-input');
+						$('#profile-photo p').css('color', 'red');
+						setTimeout(function() {
+							$('#profile-photo p').css('color', 'black');
+						}, 1000);
+					}
 				}
 				var imagefile = photo.type;
 				var match= ["image/jpeg","image/png","image/jpg"];
