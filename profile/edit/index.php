@@ -64,7 +64,12 @@ $styles = <<<CSS
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
-#profile-photo p {
+#profile-photo p.size {
+	font-size: .8em;
+	margin-top: 0;
+}
+
+#profile-photo p.alert {
 	margin: 20px 0;
 	-webkit-transition: color 1s linear;
 }
@@ -307,9 +312,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 </div>
 
 <div id="profile-photo">
-	<?php if(!empty($photo)) { ?>
-		<h3><img src="<?php echo $photo; ?>" id="jcrop"></h3>
-	<?php } ?>
+	<h3><img src="<?php echo $photo; ?>" id="jcrop"></h3>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
 		<input type="hidden" name="jcrop-w" id="jcrop-w">
@@ -322,6 +325,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<?php } ?>
 		<input type="file" name="photo" id="photo-input">
 	</div>
+	<p class="size">Image should be less than 500 kb.</p>
 </div>
 
 <div id="info">
@@ -481,7 +485,7 @@ $foot .= <<<JS
 
 		$('#photo-input').change(function() {
 
-				$('#profile-photo p').remove();
+				$('#profile-photo p.alert').remove();
 
 				// Get photo object
 				photo = $(this)[0].files[0];
@@ -508,10 +512,10 @@ $foot .= <<<JS
 					}
 					else { 
 						$('#photo-input').val('');
-						$('<p>Photo too big!<br>Please keep it under 500kb</p>').insertBefore('#profile-photo-input');
-						$('#profile-photo p').css('color', 'red');
+						$('<p class="alert">Photo too big!<br>Please keep it under 500kb</p>').insertBefore('#profile-photo-input');
+						$('#profile-photo p.alert').css('color', 'red');
 						setTimeout(function() {
-							$('#profile-photo p').css('color', 'black');
+							$('#profile-photo p.alert').css('color', 'black');
 						}, 1000);
 					}
 				}
