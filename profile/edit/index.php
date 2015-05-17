@@ -372,6 +372,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<div class="drop-down" tabindex="0">
 			<h5><?php if ( !empty($location) ) { echo $location; } else echo "Location"; ?></h5>
 			<ul>
+				<li class="option">Argentina</li>
 				<li class="option">Bangkok</li>
 				<li class="option">Bangladesh</li>
 				<li class="option">Berlin</li>

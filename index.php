@@ -326,6 +326,7 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 			<div class="drop-down" id="search-location" tabindex="3">
 				<h5>Location</h5>
 				<ul>
+					<li class="option">Argentina</li>
 					<li class="option">Bangkok</li>
 					<li class="option">Bangladesh</li>
 					<li class="option">Berlin</li>
