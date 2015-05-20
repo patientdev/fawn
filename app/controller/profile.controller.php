@@ -3,12 +3,18 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
-
-	$profile = new Profile();
+$profile = new Profile;
 
 if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	
 	$id = $_SESSION["id"];
+
+	if ( empty($profile->gimme("name", "id", $id)) ) {
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/sign-up.model.php";
+		$signUp = new signUp;
+
+		$signUp->notifySlack($id, $_POST["name"], $_POST["occupation"], $_POST["location"], $_POST["cause"]);
+	}
 
 	if ( !empty($_FILES["photo"]["name"]) ) { 
 		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
