@@ -18,23 +18,25 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 		$avatar->save($_FILES["photo"], $id); 
 	}
 
-	if ( isset($_POST["jcrop-x"]) && $_POST["jcrop-w"] != 0 ) {
+	if ( isset($_POST["jcrop-x"]) && $_POST["jcrop-x2"] != 0 ) {
+
+		// Create array to hold jcrop values
 		$jcrop = array();
-		array_push($jcrop, $_POST["jcrop-x"], $_POST["jcrop-y"], $_POST["jcrop-w"], $_POST["jcrop-h"]);
 
+		// Push incoming jcrop values to jcrop[]
+		array_push($jcrop, $_POST["jcrop-x"], $_POST["jcrop-y"], $_POST["jcrop-x2"], $_POST["jcrop-y2"]);
+
+		// Get Avatar class so we can crop
 		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
-
 		$avatar = new Avatar;
 
 		$avatar->crop($jcrop, $id);
 	}
 
-			
-
 	unset($_POST["jcrop-x"]);
 	unset($_POST["jcrop-y"]);
-	unset($_POST["jcrop-w"]);
-	unset($_POST["jcrop-h"]);
+	unset($_POST["jcrop-x2"]);
+	unset($_POST["jcrop-y2"]);
 
 	foreach ($_POST as $key => $value) {
 
