@@ -19,6 +19,12 @@ $styles = <<<CSS
 	position: absolute;
 	top: 0; right: 60px;
 	color: #777;
+	text-align: right;
+}
+
+#profile-edit p {
+	font-size: .8em;
+	margin: 0;
 }
 
 #save {
@@ -315,8 +321,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 	<h3><img src="<?php echo $photo; ?>" id="jcrop"></h3>
 		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
-		<input type="hidden" name="jcrop-w" id="jcrop-w">
-		<input type="hidden" name="jcrop-h" id="jcrop-h">
+		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
+		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
 			<h3>Update Photo</h3>
@@ -361,7 +367,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Writer</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
+		<input id="profile-occupation-input" class="drop-down-input" type="text" name="occupation" placeholder="Occupation" value="<?php echo $occupation; ?>">
 
 		</div>
 
@@ -406,7 +412,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">Toronto</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
+		<input id="profile-location-input" class="drop-down-input" type="text" name="location" placeholder="Location" class="editing" value="<?php echo $location; ?>">
 
 		</div>
 
@@ -434,7 +440,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 				<li class="option">World Peace</li>
 			</ul>
 
-		<input class="drop-down-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
+		<input id="profile-cause-input" class="drop-down-input" type="text" name="cause" placeholder="Cause" class="editing" value="<?php echo $cause; ?>">
 
 		</div>
 
@@ -472,17 +478,33 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 $foot = "<script src=\"/js/jquery.Jcrop.min.js\"></script>";
 
-$foot .= <<<JS
+$foot .= <<<JAVASCRIPT
 
 <script>
 	$(function() {
 
-				function giveCoords(c) {
-				$('#jcrop-y').val(c.y);
-				$('#jcrop-x').val(c.x);
-				$('#jcrop-w').val(c.w);
-				$('#jcrop-h').val(c.h);
+		$('#save').click(function(e) {
+			e.preventDefault();
+
+			if ( !$('#profile-name-input').val() || !$('#profile-occupation-input').val() || !$('#profile-location-input').val() || !$('#profile-cause-input').val() ) {
+				$('#profile-name input, .drop-down').css('outline', '2px solid red').focus(function() {
+					$(this).css('outline', '');
+				});
+				
+				$('#profile-edit p').remove();
+				$('#profile-edit').append('<p style="color: red">Please let us know your name, occupation, location, and the cause you&rsquo;re interested in.</p>');
 			}
+
+			else { $('#profile').submit(); }
+		});
+
+		function giveCoords(c) {
+			console.log(c);
+			$('#jcrop-x').val(c.x);
+			$('#jcrop-y').val(c.y);
+			$('#jcrop-x2').val(c.x2);
+			$('#jcrop-y2').val(c.y2);
+		}
 
 		$('#photo-input').change(function() {
 
@@ -527,7 +549,7 @@ $foot .= <<<JS
 	});
 
 </script>
-JS;
+JAVASCRIPT;
 
 
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; ?>

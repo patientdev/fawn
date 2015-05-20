@@ -21,6 +21,7 @@ class Avatar {
 		else return false;
 
 	}
+
 	public function open($photo) {
 
 		$image = null;
@@ -88,7 +89,7 @@ class Avatar {
 	
 	public function crop($jcrop, $id) {
 
-			list($x, $y, $w, $h) = $jcrop;
+			list($x, $y, $x2, $y2) = $jcrop;
 
 			$photoFile = $this->profile->gimme("photo", "id", $id);
 
@@ -103,16 +104,18 @@ class Avatar {
 			$width = $size[0];
 			$height = $size[1];
 
-			// Now we need to get multipliers for the width and height so we can convert the jcrop selection to the actual size of the image
-			$widthMultipler = $width/225;
-			$heightMultipler = $height/225;
+			// Get the dimensional ratio of the incoming photo to the jcrop selection
+			// An incoming photo will likely be smaller or larger than the jcrop selection and so we need a
+			// ratio to convert between the two
+			$widthMultipler = $width/$x2;
+			$heightMultipler = $height/$y2;
 
 			// Create destination photo object
 			$croppedPhoto = ImageCreateTrueColor( 225, 225 );
 
-			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($w * $widthMultipler), ($h * $heightMultipler));
+			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($x2 * $widthMultipler), ($y2 * $heightMultipler));
 
-			imagejpeg($croppedPhoto, $path, 90);	
+			imagejpeg($croppedPhoto, $path, 90);
 	}
 
 	public function show($id) {
