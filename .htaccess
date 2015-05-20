@@ -4,8 +4,8 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www.fawnworldwide.org [NC]
 RewriteRule ^(.*)$ http://fawnworldwide.org/$1 [L,R=301]
 
-RewriteCond %{REQUEST_FILENAME} -f [NC,OR] 
-RewriteCond %{REQUEST_FILENAME} -d [NC] 
+RewriteCond -f %{REQUEST_FILENAME} [NC,OR] 
+RewriteCond -d %{REQUEST_FILENAME} [NC] 
 RewriteRule .* - [L]
 RewriteRule ^forger/(.*)$ profile/show.php?forger=$1 [QSA,L]
 
