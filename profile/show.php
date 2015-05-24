@@ -125,6 +125,7 @@ h3 {
 	font-style: italic;
 	min-width: 80%; margin: auto;
 	text-align: center;
+	clear: both;
 
 }
 
