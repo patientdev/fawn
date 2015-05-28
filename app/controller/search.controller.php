@@ -12,7 +12,7 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 	$search = new Search;
 	$results = $search->results($searchOccupation, $searchCause, $searchLocation);
 
-	list($exact, $differentCause, $differentOccupation) = $results;
+	list($exact, $differentCause, $differentOccupation, $locationOnly) = $results;
 	$generatedResults = "";
 
 	$profile = new Profile;
@@ -163,6 +163,56 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 		}
 
 		$generatedResults .=  $differentOccupationResult;
+
+	}
+
+	if ( !empty($locationOnly) ) {
+
+		$locationOnlyResult = "<h2>Other artists in <strong>$searchLocation</strong></h2>";
+
+		foreach ( $locationOnly as $id ) {
+			$photo = "/app/controller/avatar.controller.php?id=" . $id;
+			$name = $profile->gimme("name", "id", $id);
+			$occupation = $profile->gimme("occupation", "id", $id);
+			$location = $profile->gimme("location", "id", $id);
+			$summary = $profile->gimme("summary", "id", $id);
+
+			// Profile URL
+			$locationOnlyResult .= "<div class=\"result\"><a href=\"/forger/" . $id . "/\"><span></span></a>";
+				
+				//Photo
+				$locationOnlyResult .= "<div class=\"photo\">";
+					$locationOnlyResult .= "<img src=\"" . $photo . "\">";
+				$locationOnlyResult .= "</div>";
+
+				$locationOnlyResult .= "<div class=\"info\">";
+
+					//Name
+					$locationOnlyResult .= "<div class=\"name\"><h3>";
+						$locationOnlyResult .= $name;
+					$locationOnlyResult .= "</h3></div>";
+
+					//Occupation
+					$locationOnlyResult .= "<div class=\"occupation\"><h4>";
+						$locationOnlyResult .= $occupation;
+					$locationOnlyResult .= "</h4></div>";
+
+					//Location
+					$locationOnlyResult .= "<div class=\"location\"><h4>";
+						$locationOnlyResult .= $location;
+					$locationOnlyResult .= "</h4></div>";
+
+					//Summary
+					$locationOnlyResult .= "<div class=\"summary\">";
+						$locationOnlyResult .= $summary;
+					$locationOnlyResult .= "</div>";
+
+				$locationOnlyResult .= "</div>";
+
+			$locationOnlyResult .= "</div>";
+		}
+
+		$generatedResults .=  $locationOnlyResult;
 
 	}
 

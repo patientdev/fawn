@@ -10,7 +10,7 @@ class Search {
 
 	public function results($occupation, $cause, $location) {
 
-		$results = $exact = $differentCause = $differentOccupation = array();
+		$results = $exact = $differentCause = $differentOccupation = $locationOnly = array();
 
 		$sql = "SELECT id, occupation, cause, location
 				FROM artists 
@@ -31,9 +31,13 @@ class Search {
 			if ( $user["occupation"] != $occupation && $user["cause"] == $cause ) {
 				array_push($differentOccupation, $user["id"]);
 			}
+
+			if ( $user["occupation"] != $occupation && $user["cause"] != $cause ) {
+				array_push($locationOnly, $user["id"]);
+			}
 		}
 
-		array_push($results, $exact, $differentCause, $differentOccupation);
+		array_push($results, $exact, $differentCause, $differentOccupation, $locationOnly);
 
 		return $results;
 	}
