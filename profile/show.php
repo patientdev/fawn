@@ -241,7 +241,7 @@ h3 {
 
 CSS;
 
-$title = "FAWN :: ${name}&rsquo;s profile";
+$title = "FAWN :: {$forgerName}&rsquo;s profile";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 ?>
 
