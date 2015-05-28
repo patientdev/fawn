@@ -68,7 +68,7 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 
 	if ( !empty($differentCause) ) {
 
-		$differentCauseResult = "<h2>Other artists in <strong>$searchLocation</strong> who support in <strong>$searchCause</strong></h2>";
+		$differentCauseResult = "<h2>Other <strong>{$searchOccupation}s</strong> in <strong>$searchLocation</strong></h2>";
 
 		foreach ( $differentCause as $id ) {
 			$photo = "/app/controller/avatar.controller.php?id=" . $id;
@@ -118,7 +118,7 @@ function generateResults($searchOccupation, $searchCause, $searchLocation) {
 
 	if ( !empty($differentOccupation) ) {
 
-		$differentOccupationResult = "<h2>Other artists in <strong>$searchLocation</strong></h2>";
+		$differentOccupationResult = "<h2>Other artists in <strong>$searchLocation</strong> who support <strong>$searchCause</strong></h2>";
 
 		foreach ( $differentOccupation as $id ) {
 			$photo = "/app/controller/avatar.controller.php?id=" . $id;
