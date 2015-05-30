@@ -39,11 +39,14 @@ $styles = <<<CSS
 	display: inline-block;
 	float: left;
 	margin-right: 60px;
+	border-radius: 50%;
+	width: 225px;
+	height: 225px;
+	overflow: hidden;
 }
 
 #profile-photo img {
 	max-width: 225px;
-	border-radius: 50%;
 }
 
 #info {	
