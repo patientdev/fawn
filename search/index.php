@@ -96,11 +96,11 @@ $styles = <<< CSS
 	z-index: 1;
 }
 
-.result img {
+.result .photo {
 	-webkit-transition: -webkit-transform .4s ease-out;
 }
 
-.result:hover img {
+.result:hover .photo {
 	-webkit-transform: scale(1.2);
 }
 
@@ -108,7 +108,6 @@ $styles = <<< CSS
 	width: 150px;
 	height: 150px;
 	background-color: transparent;
-	border-radius: 50%;
 	text-align: center;
 	display: inline-block;
 	margin-right: 60px;
