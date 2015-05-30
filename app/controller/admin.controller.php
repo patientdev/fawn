@@ -41,7 +41,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 				// Profile URL
 				$result .= "<td><a href=\"/forger/" . $user["id"] . "/\" target=\"_blank\"><span></span></a>";
 					
-				$result .= "<img src=\"" . $photo . "\"> ";
+				$result .= "<div class=\"photo\"><img src=\"" . $photo . "\"></div>";
 				$result .= $name;
 
 				$result .= "</td></tr>";

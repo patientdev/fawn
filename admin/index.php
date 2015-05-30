@@ -91,16 +91,22 @@ td {
 #newusers img {
   width: 40px;
   background-color: transparent;
-  border-radius: 50%;
   text-align: center;
   display: inline-block;
   margin-right: 10px;
   vertical-align: middle;
 }
 
-.photo img {
-  width: 150px;
+.photo {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
   border-radius: 50%;
+  display: inline-block;
+}
+
+.photo img {
+  width: 40px;
 }
 
 .info { 
