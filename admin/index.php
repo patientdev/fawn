@@ -89,7 +89,7 @@ td {
 }
 
 #newusers img {
-  width: 40px;
+  width: 80px;
   background-color: transparent;
   text-align: center;
   display: inline-block;
@@ -98,15 +98,12 @@ td {
 }
 
 .photo {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   overflow: hidden;
   border-radius: 50%;
   display: inline-block;
-}
-
-.photo img {
-  width: 40px;
+  margin-right: 20px;
 }
 
 .info { 
