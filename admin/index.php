@@ -104,6 +104,7 @@ td {
   border-radius: 50%;
   display: inline-block;
   margin-right: 20px;
+  vertical-align: middle;
 }
 
 .info { 
