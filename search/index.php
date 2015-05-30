@@ -112,12 +112,13 @@ $styles = <<< CSS
 	text-align: center;
 	display: inline-block;
 	margin-right: 60px;
+	border-radius: 50%;
+	overflow: hidden;
 	vertical-align: middle;
 }
 
 .photo img {
 	width: 150px;
-	border-radius: 50%;
 }
 
 .info {	
