@@ -53,12 +53,15 @@ $styles = <<<CSS
 	text-align: center;
 	display: inline-block;
 	float: left;
-	margin-right: 60px;
+	margin-right: 60px;  
+	width: 225px;
+	height: 225px;
+	overflow: hidden;
+	border-radius: 50%;
 }
 
 #profile-photo img {
 	max-width: 225px;
-	border-radius: 50%;
 }
 
 #info {	
@@ -181,7 +184,9 @@ h3 {
 	}
 
 	#profile-photo {
-		width: 100%;
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
 		display: block;
 		float: none;
 		height: auto;
