@@ -21,7 +21,7 @@ class Admin {
 	}
 
 	public function newUsers() {
-		$stmt = $this->con->prepare("SELECT * FROM artists LIMIT 50");
+		$stmt = $this->con->prepare("SELECT * FROM artists");
 		$stmt->execute();
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
