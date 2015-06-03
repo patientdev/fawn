@@ -32,7 +32,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 			if ( $user["admin"] === NULL ) {
 				$photo = "/app/controller/avatar.controller.php?id=" . $user["id"];
 				$name =  empty($user["name"]) ? "" : $user["name"] . "<br>";
-				$email = $user["email"];
+				$email = "<a href=\"mailto:" . $user["email"] . "\">" . $user["email"] . "</a>";
 				$occupation = $user["occupation"];
 				$location = $user["location"];
 				$summary = $user["summary"];
