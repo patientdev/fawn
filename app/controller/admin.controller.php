@@ -31,8 +31,8 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
 		foreach ( $newUsers as $user ) {
 			if ( $user["admin"] === NULL ) {
 				$photo = "/app/controller/avatar.controller.php?id=" . $user["id"];
-				$name =  $user["name"];
-				$email = "<br>" . $user["email"];
+				$name =  $user["name"] . "<br>";
+				$email = $user["email"];
 				$occupation = $user["occupation"];
 				$location = $user["location"];
 				$summary = $user["summary"];
