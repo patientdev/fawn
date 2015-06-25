@@ -409,18 +409,20 @@ include $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php"; ?>
 $foot = <<<JAVASCRIPT
 
 <script>
+
 //Parallax
-$(window).scroll(function() {
+	$(window).scroll(function() {
+		if ( $(this).width() > 800 ) {
 
-	parallax = 0;
-	windowScroll = $(window).scrollTop();
+			parallax = 0;
+			windowScroll = $(window).scrollTop();
 
-	if ( windowScroll <= 0 ) { parallax = 0; }
-	else { parallax = windowScroll/3; }
+			if ( windowScroll <= 0 ) { parallax = 0; }
+			else { parallax = windowScroll/3; }
 
-	$('body').css('background-position', '0 ' + parallax + 'px');
-
-})
+			$('body').css('background-position', '0 ' + parallax + 'px');
+		}
+	})
 </script>
 
 JAVASCRIPT;
