@@ -70,11 +70,6 @@ $styles = <<<CSS
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
 
-#profile-photo p.size {
-	font-size: .8em;
-	margin-top: 0;
-}
-
 #profile-photo p.alert {
 	margin: 20px 0;
 	-webkit-transition: color 1s linear;
@@ -331,7 +326,6 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 		<?php } ?>
 		<input type="file" name="photo" id="photo-input">
 	</div>
-	<p class="size">Image should be less than 500 kb.</p>
 </div>
 
 <div id="info">
