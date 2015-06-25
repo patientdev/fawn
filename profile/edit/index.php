@@ -515,30 +515,20 @@ $foot .= <<<JAVASCRIPT
 				reader.onload = imageIsLoaded;
 				reader.readAsDataURL(photo);
 				function imageIsLoaded(e) {
-					if ( photo.size < 500000 ) {
-						if ( $('#profile-photo img').length > 0 ) {
-							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-						}
-						else {
-							$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
-							$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
-						}
-
-						if ( $('#menu').css('display') === 'none' ) {
-							$('#profile-photo img').Jcrop({
-								'onChange': giveCoords,
-								'aspectRatio': 1,
-								'setSelect': [0,0,225,225]
-							});
-						}
+					if ( $('#profile-photo img').length > 0 ) {
+						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
 					}
-					else { 
-						$('#photo-input').val('');
-						$('<p class="alert">Photo too big!<br>Please keep it under 500kb</p>').insertBefore('#profile-photo-input');
-						$('#profile-photo p.alert').css('color', 'red');
-						setTimeout(function() {
-							$('#profile-photo p.alert').css('color', 'black');
-						}, 1000);
+					else {
+						$('#profile-photo').prepend('<h3><img src="' + e.target.result + '"></h3>');
+						$('#profile-photo img').attr('src', e.target.result).css({ 'width': '225px' });
+					}
+
+					if ( $('#menu').css('display') === 'none' ) {
+						$('#profile-photo img').Jcrop({
+							'onChange': giveCoords,
+							'aspectRatio': 1,
+							'setSelect': [0,0,225,225]
+						});
 					}
 				}
 				var imagefile = photo.type;
