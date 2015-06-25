@@ -319,10 +319,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 <div id="profile-photo">
 	<h3><img src="<?php echo $photo; ?>" id="jcrop"></h3>
-		<input type="hidden" name="jcrop-y" id="jcrop-y">
 		<input type="hidden" name="jcrop-x" id="jcrop-x">
-		<input type="hidden" name="jcrop-x2" id="jcrop-x2">
-		<input type="hidden" name="jcrop-y2" id="jcrop-y2">
+		<input type="hidden" name="jcrop-y" id="jcrop-y">
+		<input type="hidden" name="jcrop-w" id="jcrop-w">
+		<input type="hidden" name="jcrop-h" id="jcrop-h">
 	<div id="profile-photo-input">
 		<?php if ( !empty($photo) ) { ?>
 			<h3>Update Photo</h3>
@@ -499,11 +499,10 @@ $foot .= <<<JAVASCRIPT
 		});
 
 		function giveCoords(c) {
-			console.log(c);
 			$('#jcrop-x').val(c.x);
 			$('#jcrop-y').val(c.y);
-			$('#jcrop-x2').val(c.x2);
-			$('#jcrop-y2').val(c.y2);
+			$('#jcrop-w').val(c.w);
+			$('#jcrop-h').val(c.h);
 		}
 
 		$('#photo-input').change(function() {
