@@ -89,6 +89,7 @@ class Avatar {
 	
 	public function crop($jcrop, $id) {
 
+			// Bulk create variables from incoming array
 			list($x, $y, $x2, $y2) = $jcrop;
 
 			$photoFile = $this->profile->gimme("photo", "id", $id);
@@ -97,7 +98,7 @@ class Avatar {
 			$path = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photoFile;
 
 			// Create photo object from image file path
-			$photo = imagecreatefromjpeg($path);
+			$incomingPhoto = imagecreatefromjpeg($path);
 
 			// Get width and height of incoming photo
 			$size = getimagesize($path);
@@ -107,13 +108,15 @@ class Avatar {
 			// Get the dimensional ratio of the incoming photo to the jcrop selection
 			// An incoming photo will likely be smaller or larger than the jcrop selection and so we need a
 			// ratio to convert between the two
-			$widthMultipler = $width/$x2;
-			$heightMultipler = $height/$y2;
+			// $widthMultipler = $width/$x2;
+			// $heightMultipler = $height/$y2;
+
+			$multipler = ($width * $height) / ($x2 * $y2);
 
 			// Create destination photo object
 			$croppedPhoto = ImageCreateTrueColor( 225, 225 );
 
-			imagecopyresampled($croppedPhoto, $photo, 0, 0, ($x * $widthMultipler), ($y * $heightMultipler), 225, 225, ($x2 * $widthMultipler), ($y2 * $heightMultipler));
+			imagecopyresampled($croppedPhoto, $incomingPhoto, 0, 0, ($x * $multipler), ($y * $multipler), 225, 225, ($x2 * $multipler), ($y2 * $multipler));
 
 			imagejpeg($croppedPhoto, $path, 90);
 	}
