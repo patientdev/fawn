@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 
 $profile = new Profile;
@@ -17,7 +17,7 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 	}
 
 	if ( !empty($_FILES["photo"]["name"]) ) { 
-		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/avatar.model.php";
 
 		$avatar = new Avatar;
 
@@ -33,7 +33,7 @@ if ( !empty($_POST) && $_SERVER['REQUEST_URI'] != "/search/" ) {
 		array_push($jcrop, $_POST["jcrop-x"], $_POST["jcrop-y"], $_POST["jcrop-w"], $_POST["jcrop-h"]);
 
 		// Get Avatar class so we can crop
-		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/avatar.model.php";
 		$avatar = new Avatar;
 
 		$avatar->crop($jcrop, $id);
@@ -79,7 +79,7 @@ if ( isset($_SESSION["id"]) ) {
 	$summary = $profile->gimme("summary", "id", $id);
 	$currentprojects = $profile->gimme("currentprojects", "id", $id);
 
-	include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
+	include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/avatar.model.php";
 	$avatar = new Avatar;
 	$photo = "/app/controller/avatar.controller.php?id=" . $id;
 }

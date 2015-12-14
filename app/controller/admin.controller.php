@@ -1,7 +1,7 @@
 <?php
 	
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
-	require_once $_SERVER["DOCUMENT_ROOT"] . "app/model/admin.model.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
+	require_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/admin.model.php";
 
 	$admin = new Admin;
 

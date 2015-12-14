@@ -1,6 +1,6 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php";
 
 
 $head = "<link rel=\"stylesheet\" href=\"/css/jquery.Jcrop.min.css\" media=\"screen\">";

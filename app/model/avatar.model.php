@@ -3,11 +3,11 @@
 class Avatar {
 
 	public function __construct() {
-		require_once $_SERVER["DOCUMENT_ROOT"] . "../protected/db-connect.php";
+		require_once $_SERVER["DOCUMENT_ROOT"] . "/../protected/db-connect.php";
 		$db = new Database;
 		$this->con = $db->connect();
 
-		require_once $_SERVER["DOCUMENT_ROOT"] . "app/model/profile.model.php";
+		require_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/profile.model.php";
 		$this->profile = new Profile;
 	}
 
@@ -50,7 +50,7 @@ class Avatar {
 	public function save($photo, $id) {
 
 		// Put into this directory based on users ID #
-		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/";
+		$target_dir = $_SERVER["DOCUMENT_ROOT"] . "/../protected/avatars/" . $id . "/";
 
 		// Create the target_dir if it doesn't exist
 		if ( !is_dir($target_dir) ) { mkdir($target_dir); }
@@ -74,7 +74,7 @@ class Avatar {
 			$md5filename = md5($filename) . $extension;
 
 			// Delete whatevers in there
-			$files = glob($_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/*"); // get all file names
+			$files = glob($_SERVER["DOCUMENT_ROOT"] . "/../protected/avatars/" . $id . "/*"); // get all file names
 			foreach($files as $file){ // iterate files
 			  if(is_file($file))
 			    unlink($file); // delete file
@@ -95,7 +95,7 @@ class Avatar {
 			$photoFile = $this->profile->gimme("photo", "id", $id);
 
 			// Get file path
-			$path = $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $photoFile;
+			$path = $_SERVER["DOCUMENT_ROOT"] . "/../protected/avatars/" . $id . "/" . $photoFile;
 
 			// Create photo object from image file path
 			$incomingPhoto = imagecreatefromjpeg($path);
@@ -120,7 +120,7 @@ class Avatar {
 
 	public function show($id) {
 		$gimme = $this->profile->gimme("photo", "id", $id);
-		$photo = ( $gimme != NULL ) ? $_SERVER["DOCUMENT_ROOT"] . "../protected/avatars/" . $id . "/" . $gimme : $_SERVER["DOCUMENT_ROOT"] . "img/default-avatar.png" ;
+		$photo = ( $gimme != NULL ) ? $_SERVER["DOCUMENT_ROOT"] . "/../protected/avatars/" . $id . "/" . $gimme : $_SERVER["DOCUMENT_ROOT"] . "img/default-avatar.png" ;
 
 		// Get the file extension
 		$extension = end((explode(".", $photo)));

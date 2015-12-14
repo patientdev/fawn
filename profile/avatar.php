@@ -1,6 +1,6 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/profile.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/profile.controller.php";
 
 session_start();
 

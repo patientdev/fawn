@@ -3,7 +3,7 @@
 class Admin {
 
 	public function __construct() {
-		require_once $_SERVER["DOCUMENT_ROOT"] . "../protected/db-connect.php";
+		require_once $_SERVER["DOCUMENT_ROOT"] . "/../protected/db-connect.php";
 		$db = new Database;
 		$this->con = $db->connect();
 	}

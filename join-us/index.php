@@ -1,6 +1,6 @@
 <?php 
 
-include_once $_SERVER["DOCUMENT_ROOT"] . "app/controller/access.controller.php";
+include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
 
 $styles = <<<CSS

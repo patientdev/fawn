@@ -23,7 +23,7 @@ class Facebook {
 		$photo = "http://graph.facebook.com/" . $facebookID . "/picture?width=225";
 		$id = $this->profile->gimme("id", "email", $email);
 		
-		include_once $_SERVER["DOCUMENT_ROOT"] . "app/model/avatar.model.php";
+		include_once $_SERVER["DOCUMENT_ROOT"] . "/app/model/avatar.model.php";
 		$avatar = new Avatar;
 
 		$avatar->save($photo, $id);
