@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/access.controller.php";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/app/controller/sign-up.controller.php";
@@ -14,8 +14,8 @@ h2 {
 }
 
 form {
-	width: 40%;
-	margin: 40px auto;
+    width: 40%;
+    margin: 40px auto;
 }
 
 form div {
@@ -27,63 +27,63 @@ form div {
 }
 
 input[type="email"], input[type="password"] {
-	background-color: rgba(235, 232, 232, 1);
-	padding: 20px;
-	color: black;
-	font-size: 1.2em;
-	font-weight: 100;
-	font-style: italic;
-	letter-spacing: 6px;
-	text-align: center;
-	width: 100%;
-	border: none;
-	margin-bottom: 5px;
-	font-family: Raleway;
-	margin-bottom: 20px;
+    background-color: rgba(235, 232, 232, 1);
+    padding: 20px;
+    color: black;
+    font-size: 1.2em;
+    font-weight: 100;
+    font-style: italic;
+    letter-spacing: 6px;
+    text-align: center;
+    width: 100%;
+    border: none;
+    margin-bottom: 5px;
+    font-family: Raleway;
+    margin-bottom: 20px;
 }
 
 input:focus {
-	outline: none;
+    outline: none;
 }
 
 ::-webkit-input-placeholder {
-	color: black;
-	font-weight: 100;
-	font-family: Raleway;
+    color: black;
+    font-weight: 100;
+    font-family: Raleway;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-	color: black;  
-	font-weight: 100;
-	font-family: Raleway;
+    color: black;
+    font-weight: 100;
+    font-family: Raleway;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-	color: black;  
-	font-weight: 100;
-	font-family: Raleway;
+    color: black;
+    font-weight: 100;
+    font-family: Raleway;
 }
 
-:-ms-input-placeholder {  
-	color: black; 
-	font-weight: 100; 
-	font-family: Raleway;
+:-ms-input-placeholder {
+    color: black;
+    font-weight: 100;
+    font-family: Raleway;
 }
 
 #sign-up button, #facebook-login {
-	background-color: rgba(125, 164, 221, 1);
-	font-weight: 500;
-	letter-spacing: 8px;
-	position: relative;
-	border: none;
-	font-size: 1.2em;
-	padding: 20px;
-	color: white;
-	border: none;
-	text-transform: uppercase;
-	text-decoration: none;
-	width: 100%;
-	margin-bottom: 20px;
+    background-color: rgba(125, 164, 221, 1);
+    font-weight: 500;
+    letter-spacing: 8px;
+    position: relative;
+    border: none;
+    font-size: 1.2em;
+    padding: 20px;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 button#facebook-login {
@@ -140,7 +140,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/includes/header.php";
 
 </div>
 
-<?php 
+<?php
 
 $foot = <<<'DOC'
 <script>
@@ -157,5 +157,5 @@ $('#join-us-submit').click(function(e) {
 </script>
 DOC;
 
-include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php"; 
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/footer.php";
 ?>
